@@ -44,7 +44,7 @@ public class Enemy : MonoBehaviour
 
         if (player.transform.position.y < -1f)
         {
-            enemyRb.velocity = Vector3.zero;
+            enemyRb.linearVelocity = Vector3.zero;
         }
     }
 }

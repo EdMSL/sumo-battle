@@ -64,7 +64,7 @@ public class PlayerController : MonoBehaviour
             if (transform.position.y < -5f)
             {
                 transform.position = respawn.position;
-                playerRb.velocity = Vector3.zero;
+                playerRb.linearVelocity = Vector3.zero;
                 isHavePowerup = false;
                 indicator.gameObject.SetActive(false);
                 RecountLives();
@@ -125,7 +125,7 @@ public class PlayerController : MonoBehaviour
       if (collision.gameObject.CompareTag("Ground"))
       {
           isOnGround = true;
-          playerRb.drag = 0.5f;
+          playerRb.linearDamping = 0.5f;
       }
     }
 
@@ -133,7 +133,7 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Ground"))
         {
             isOnGround = false;
-            playerRb.drag = 3f;
+            playerRb.linearDamping = 3f;
         }
     }
 }
