@@ -60,7 +60,7 @@ public class PlayerController : MonoBehaviour
                 playerRb.AddForce(focalPoint.transform.forward * verticalInput * speed);
             }
 
-            indicator.transform.position = transform.position + new Vector3(0, -0.5f, 0);
+            indicator.transform.rotation = Quaternion.identity;
 
             if (transform.position.y < -5f)
             {
