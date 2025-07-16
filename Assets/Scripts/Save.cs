@@ -4,9 +4,15 @@ using UnityEngine;
 
 public static class Save
 {
-    public static string difficultyLevel = "Normal";
+    public enum DifficultyLevel
+    {
+        Easy,
+        Normal,
+        Hard,
+    }
+    public static DifficultyLevel difficultyLevel = DifficultyLevel.Normal;
 
-    public static void SetDifficultyLevel(string level)
+    public static void SetDifficultyLevel(DifficultyLevel level)
     {
         difficultyLevel = level;
     }

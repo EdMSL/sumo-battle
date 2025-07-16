@@ -9,13 +9,13 @@ public class RotateCamera : MonoBehaviour
     {
         switch (Save.difficultyLevel)
         {
-            case "Easy":
+            case Save.DifficultyLevel.Easy:
                 rotationSpeed = 100f;
                 break;
-            case "Normal":
+            case Save.DifficultyLevel.Normal:
                 rotationSpeed = 80f;
                 break;
-            case "Hard":
+            case Save.DifficultyLevel.Hard:
                 rotationSpeed = 60f;
                 break;
             default:

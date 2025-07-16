@@ -5,45 +5,40 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     public GameManager gameManager;
+    public GameObject focalPoint;
+    public float powerupStrength = 10.0f;
+    public bool isHavePowerup;
+    public GameObject indicator;
+    public Transform respawn;
     public AudioClip powerup;
     public AudioClip touch;
     public AudioClip heavyTouch;
     public AudioClip lose;
+
     private AudioSource audioSource;
     private Rigidbody playerRb;
-    private GameObject focalPoint;
-    private float powerupStrength = 10.0f;
-    public float speed = 10f;
-    public bool isHavePowerup;
-    public GameObject indicator;
-    public Transform respawn;
+    private float speed = 10f;
 
     public int lives { get; set; }
     public bool isOnGround { get; set; }
-    public Vector2 movement;
-
-    private void Awake()
-    {
-        // playerInput = GetComponent<PlayerInput>();
-    }
+    [HideInInspector] public Vector2 movement;
 
     void Start()
     {
         playerRb = gameObject.GetComponent<Rigidbody>();
         audioSource = gameObject.GetComponent<AudioSource>();
-        focalPoint = GameObject.Find("Focal Point");
 
         switch (Save.difficultyLevel)
         {
-            case "Easy":
+            case Save.DifficultyLevel.Easy:
                 speed = 30f;
                 lives = 3;
                 break;
-            case "Normal":
+            case Save.DifficultyLevel.Normal:
                 speed = 20f;
                 lives = 2;
                 break;
-            case "Hard":
+            case Save.DifficultyLevel.Hard:
                 speed = 10f;
                 lives = 1;
                 break;
@@ -80,13 +75,7 @@ public class PlayerController : MonoBehaviour
 
     public void Move(InputAction.CallbackContext context)
     {
-        Debug.Log(context);
-
-        if (context.performed)
-        {
-            movement = context.ReadValue<Vector2>();
-        }
-
+        movement = context.ReadValue<Vector2>();
     }
 
     private void RecountLives()

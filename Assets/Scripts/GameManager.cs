@@ -1,5 +1,4 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
@@ -11,10 +10,10 @@ public class GameManager : MonoBehaviour
     public Text countdownText;
     public GameObject EndGameScreen;
     public PlayerController player;
-    public bool isGamePlay {get; set;} = false;
-    public int score {get; private set;}
-    public int wave {get; private set;}
-    public int lives {get; private set;}
+    public bool isGamePlay { get; set; } = false;
+    public int score { get; private set; }
+    public int wave { get; private set; }
+    public int lives { get; private set; }
 
     void Start()
     {

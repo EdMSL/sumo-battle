@@ -1,14 +1,12 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
     private Rigidbody enemyRb;
     private GameObject player;
     private float bottomBound = -10.0f;
-    public float speed = 3f;
-  
+    private float speed = 3f;
+
     void Start()
     {
         enemyRb = gameObject.GetComponent<Rigidbody>();
@@ -16,21 +14,20 @@ public class Enemy : MonoBehaviour
 
         switch (Save.difficultyLevel)
         {
-            case "Easy":
-              speed = 1f;
-              break;
-            case "Normal":
-              speed = 2f;
-              break;
-            case "Hard":
-              speed = 3f;
-              break;
+            case Save.DifficultyLevel.Easy:
+                speed = 1f;
+                break;
+            case Save.DifficultyLevel.Normal:
+                speed = 2f;
+                break;
+            case Save.DifficultyLevel.Hard:
+                speed = 3f;
+                break;
             default:
-              break;
+                break;
         }
     }
 
-    // Update is called once per frame
     void Update()
     {
         Vector3 lookDirection = (player.transform.position - transform.position).normalized;
