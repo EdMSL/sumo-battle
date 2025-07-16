@@ -1,6 +1,6 @@
 ﻿using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerController : MonoBehaviour
 {
@@ -18,9 +18,15 @@ public class PlayerController : MonoBehaviour
     public GameObject indicator;
     public Transform respawn;
 
-    public int lives {get; set;}
-    public bool isOnGround {get; set;}
-    
+    public int lives { get; set; }
+    public bool isOnGround { get; set; }
+    public Vector2 movement;
+
+    private void Awake()
+    {
+        // playerInput = GetComponent<PlayerInput>();
+    }
+
     void Start()
     {
         playerRb = gameObject.GetComponent<Rigidbody>();
@@ -30,29 +36,29 @@ public class PlayerController : MonoBehaviour
         switch (Save.difficultyLevel)
         {
             case "Easy":
-              speed = 30f;
-              lives = 3;
-              break;
+                speed = 30f;
+                lives = 3;
+                break;
             case "Normal":
-              speed = 20f;
-              lives = 2;
-              break;
+                speed = 20f;
+                lives = 2;
+                break;
             case "Hard":
-              speed = 10f;
-              lives = 1;
-              break;
+                speed = 10f;
+                lives = 1;
+                break;
             default:
-              break;
+                break;
         }
 
         gameManager.livesText.text = lives.ToString();
-
     }
 
     void Update()
     {
-        if (gameManager.isGamePlay) {
-            float verticalInput = Input.GetAxis("Vertical");
+        if (gameManager.isGamePlay)
+        {
+            float verticalInput = movement.y;
 
             if (isOnGround)
             {
@@ -72,6 +78,17 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void Move(InputAction.CallbackContext context)
+    {
+        Debug.Log(context);
+
+        if (context.performed)
+        {
+            movement = context.ReadValue<Vector2>();
+        }
+
+    }
+
     private void RecountLives()
     {
         audioSource.PlayOneShot(lose);
@@ -87,49 +104,52 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-      if (other.CompareTag("Powerup"))
-      {
-          audioSource.PlayOneShot(powerup);
-          isHavePowerup = true;
-          Destroy(other.gameObject);
-          StartCoroutine(Counter());
-          indicator.gameObject.SetActive(true);
-      }
+        if (other.CompareTag("Powerup"))
+        {
+            audioSource.PlayOneShot(powerup);
+            isHavePowerup = true;
+            Destroy(other.gameObject);
+            StartCoroutine(Counter());
+            indicator.gameObject.SetActive(true);
+        }
     }
 
     IEnumerator Counter()
     {
-      yield return new WaitForSeconds(5);
-      isHavePowerup = false;
-      indicator.gameObject.SetActive(false);
+        yield return new WaitForSeconds(5);
+        isHavePowerup = false;
+        indicator.gameObject.SetActive(false);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-      if (collision.gameObject.CompareTag("Enemy"))
-      {
-          if (isHavePowerup)
-          {
-            Rigidbody enemyRb = collision.gameObject.GetComponent<Rigidbody>();
-            Vector3 awayFromPlayer = collision.gameObject.transform.position - transform.position;
-            
-            audioSource.PlayOneShot(heavyTouch);
-            enemyRb.AddForce(awayFromPlayer * powerupStrength, ForceMode.Impulse);
-            isHavePowerup = false;
-            indicator.gameObject.SetActive(false);
-          } else {
-            audioSource.PlayOneShot(touch);
-          }
-      }
+        if (collision.gameObject.CompareTag("Enemy"))
+        {
+            if (isHavePowerup)
+            {
+                Rigidbody enemyRb = collision.gameObject.GetComponent<Rigidbody>();
+                Vector3 awayFromPlayer = collision.gameObject.transform.position - transform.position;
 
-      if (collision.gameObject.CompareTag("Ground"))
-      {
-          isOnGround = true;
-          playerRb.linearDamping = 0.5f;
-      }
+                audioSource.PlayOneShot(heavyTouch);
+                enemyRb.AddForce(awayFromPlayer * powerupStrength, ForceMode.Impulse);
+                isHavePowerup = false;
+                indicator.gameObject.SetActive(false);
+            }
+            else
+            {
+                audioSource.PlayOneShot(touch);
+            }
+        }
+
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isOnGround = true;
+            playerRb.linearDamping = 0.5f;
+        }
     }
 
-    private void OnCollisionExit(Collision other) {
+    private void OnCollisionExit(Collision other)
+    {
         if (other.gameObject.CompareTag("Ground"))
         {
             isOnGround = false;

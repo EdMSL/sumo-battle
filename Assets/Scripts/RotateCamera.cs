@@ -1,11 +1,10 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class RotateCamera : MonoBehaviour
 {
+    public PlayerController playerController;
     public float rotationSpeed = 50f;
-    
+
     void Start()
     {
         switch (Save.difficultyLevel)
@@ -26,7 +25,7 @@ public class RotateCamera : MonoBehaviour
 
     void Update()
     {
-        float horizontalInput = Input.GetAxis("Horizontal");
+        float horizontalInput = playerController.movement.x;
         transform.Rotate(Vector3.up, rotationSpeed * horizontalInput * Time.deltaTime);
     }
 }

@@ -52,5 +52,7 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Sumo Battle.sln"
+    "dotnet.defaultSolution": "Sumo Battle.sln",
+    "editor.tabSize": 4,
+    "editor.detectIndentation": false
 }
