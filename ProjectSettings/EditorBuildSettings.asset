@@ -9,6 +9,11 @@ EditorBuildSettings:
     path: Assets/Scenes/Menu.unity
     guid: b3f3cd8c36668834792534a334653116
   - enabled: 1
-    path: Assets/Scenes/Prototype 4.unity
+    path: Assets/Scenes/Arena.unity
     guid: a4b96ad7a65484fd4a83cb97540eee50
-  m_configObjects: {}
+  m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: 438434ca39b7f204094808506a1c125d,
+      type: 2}
+    com.unity.localization.settings: {fileID: 11400000, guid: 65ba26908b42fb14ead917e532ca6c05,
+      type: 2}
+  m_UseUCBPForAssetBundles: 0

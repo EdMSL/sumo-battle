@@ -1,0 +1,47 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/Styles.uss?fileID=7433441132597879392&amp;guid=6c2a7a29e6f6b5749a27053048a177da&amp;type=3#Styles" />
+    <ui:VisualElement name="root" style="flex-grow: 1; flex-shrink: 0; flex-direction: row;">
+        <ui:VisualElement name="menu-container" class="menu__container">
+            <ui:Label text="Label" name="game-title" class="game__title">
+                <Bindings>
+                    <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(11786403381248)" />
+                </Bindings>
+            </ui:Label>
+            <ui:VisualElement name="btns-container" class="btns__block" style="display: flex;">
+                <ui:Button text="Button" name="play-btn" class="menu__btn">
+                    <Bindings>
+                        <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(28502589440)" />
+                    </Bindings>
+                </ui:Button>
+                <ui:Button text="Button" name="settings-btn" class="menu__btn">
+                    <Bindings>
+                        <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(131489529856)" />
+                    </Bindings>
+                </ui:Button>
+            </ui:VisualElement>
+            <ui:VisualElement name="difficult-container" class="btns__block" style="display: none;">
+                <ui:Label text="Label" name="difficult-title" />
+                <ui:Button text="Button" name="easy-btn" class="menu__btn">
+                    <Bindings>
+                        <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(25080031805440)" />
+                    </Bindings>
+                </ui:Button>
+                <ui:Button text="Button" name="normal-btn" class="menu__btn">
+                    <Bindings>
+                        <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(25157462851584)" />
+                    </Bindings>
+                </ui:Button>
+                <ui:Button text="Button" name="hard-btn" class="menu__btn">
+                    <Bindings>
+                        <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(25173317320704)" />
+                    </Bindings>
+                </ui:Button>
+                <ui:Button text="Button" name="back-btn" class="menu__btn">
+                    <Bindings>
+                        <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(34371501490176)" />
+                    </Bindings>
+                </ui:Button>
+            </ui:VisualElement>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

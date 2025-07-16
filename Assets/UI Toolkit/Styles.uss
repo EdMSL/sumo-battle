@@ -1,0 +1,70 @@
+.menu__container {
+    flex-direction: column;
+    width: auto;
+    justify-content: space-between;
+    align-content: auto;
+    flex-grow: 1;
+    height: 100%;
+    max-width: 300px;
+    align-items: stretch;
+    align-self: auto;
+}
+
+.game__title {
+    font-size: 50px;
+    -unity-font-style: bold;
+    margin-top: 30px;
+    margin-right: 0;
+    margin-bottom: 0;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    flex-grow: 0;
+    align-self: auto;
+    justify-content: flex-start;
+    -unity-text-align: lower-center;
+    white-space: normal;
+}
+
+.btns__block {
+    max-width: 200px;
+    align-self: center;
+}
+
+.menu__btn {
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    background-color: rgba(0, 0, 0, 0);
+    font-size: 30px;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 30px;
+    margin-left: 0;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    -unity-text-align: upper-center;
+}
+
+#difficult-title {
+    -unity-font-style: bold;
+    -unity-text-align: upper-center;
+    font-size: 40px;
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    margin-top: 0;
+    margin-right: 0;
+    margin-bottom: 20px;
+    margin-left: 0;
+}
