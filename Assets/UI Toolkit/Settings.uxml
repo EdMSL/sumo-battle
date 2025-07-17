@@ -1,0 +1,53 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <Style src="project://database/Assets/UI%20Toolkit/Styles.uss?fileID=7433441132597879392&amp;guid=6c2a7a29e6f6b5749a27053048a177da&amp;type=3#Styles" />
+    <ui:VisualElement name="settings-block" class="settings__block">
+        <ui:Label text="Label" name="settings-title">
+            <Bindings>
+                <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(131489529856)" />
+            </Bindings>
+        </ui:Label>
+        <ui:ScrollView name="options-list">
+            <ui:VisualElement name="options-container" class="options__container" style="flex-grow: 1;">
+                <ui:VisualElement name="options-block" style="flex-grow: 1;">
+                    <ui:Label text="Label" name="options-block-title" class="options__block__title">
+                        <Bindings>
+                            <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(348055499112448)" />
+                        </Bindings>
+                    </ui:Label>
+                    <ui:Slider label="Slider" value="42" high-value="100" />
+                    <ui:Toggle label="Toggle" />
+                </ui:VisualElement>
+                <ui:VisualElement name="options-block" style="flex-grow: 1;">
+                    <ui:Label text="Label" name="options-block-title" class="options__block__title">
+                        <Bindings>
+                            <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(368872052162560)" />
+                        </Bindings>
+                    </ui:Label>
+                    <ui:Slider label="Slider" value="42" high-value="100" />
+                    <ui:Toggle label="Toggle" />
+                </ui:VisualElement>
+                <ui:VisualElement name="options-block" style="flex-grow: 1;">
+                    <ui:Label text="Label" name="options-block-title" class="options__block__title">
+                        <Bindings>
+                            <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(368915626786816)" />
+                        </Bindings>
+                    </ui:Label>
+                    <ui:Slider label="Slider" value="42" high-value="100" />
+                    <ui:Toggle label="Toggle" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:ScrollView>
+        <ui:VisualElement name="control-btns-block" class="control__btns__block">
+            <ui:Button text="Button" name="cancel-btn">
+                <Bindings>
+                    <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(356965207441408)" />
+                </Bindings>
+            </ui:Button>
+            <ui:Button text="Button" name="accept-btn">
+                <Bindings>
+                    <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(357013739732992)" />
+                </Bindings>
+            </ui:Button>
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>
