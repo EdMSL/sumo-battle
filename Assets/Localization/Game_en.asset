@@ -30,6 +30,22 @@ MonoBehaviour:
     m_Localized: The King of the Hill
     m_Metadata:
       m_Items: []
+  - m_Id: 25080031805440
+    m_Localized: Easy
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25173317320704
+    m_Localized: Hard
+    m_Metadata:
+      m_Items: []
+  - m_Id: 25157462851584
+    m_Localized: Normal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 34371501490176
+    m_Localized: Back
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
