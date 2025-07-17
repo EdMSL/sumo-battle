@@ -43,6 +43,34 @@ MonoBehaviour:
     m_Key: back
     m_Metadata:
       m_Items: []
+  - m_Id: 348055499112448
+    m_Key: options-audio
+    m_Metadata:
+      m_Items: []
+  - m_Id: 356965207441408
+    m_Key: cancel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 357013739732992
+    m_Key: accept
+    m_Metadata:
+      m_Items: []
+  - m_Id: 368872052162560
+    m_Key: options-video
+    m_Metadata:
+      m_Items: []
+  - m_Id: 368915626786816
+    m_Key: options-control
+    m_Metadata:
+      m_Items: []
+  - m_Id: 425376906149888
+    m_Key: player-wave
+    m_Metadata:
+      m_Items: []
+  - m_Id: 425458057543680
+    m_Key: player-live
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

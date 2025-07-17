@@ -46,6 +46,34 @@ MonoBehaviour:
     m_Localized: Back
     m_Metadata:
       m_Items: []
+  - m_Id: 348055499112448
+    m_Localized: Sounds and music
+    m_Metadata:
+      m_Items: []
+  - m_Id: 356965207441408
+    m_Localized: Cancel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 357013739732992
+    m_Localized: Accept
+    m_Metadata:
+      m_Items: []
+  - m_Id: 368872052162560
+    m_Localized: Graphics
+    m_Metadata:
+      m_Items: []
+  - m_Id: 368915626786816
+    m_Localized: Controls
+    m_Metadata:
+      m_Items: []
+  - m_Id: 425376906149888
+    m_Localized: Wave
+    m_Metadata:
+      m_Items: []
+  - m_Id: 425458057543680
+    m_Localized: Lives
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
