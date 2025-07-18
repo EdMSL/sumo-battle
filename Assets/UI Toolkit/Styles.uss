@@ -131,4 +131,23 @@
 
 .hud__counter {
     -unity-font-style: bold;
+    flex-direction: row-reverse;
+    padding-right: 20px;
+}
+
+.popup {
+    flex-grow: 1;
+    align-items: center;
+    justify-content: center;
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+}
+
+.end-game__btns {
+    flex-direction: row;
+}
+
+.end-game__btn {
 }

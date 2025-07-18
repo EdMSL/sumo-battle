@@ -78,6 +78,14 @@ MonoBehaviour:
     m_Localized: Battle!
     m_Metadata:
       m_Items: []
+  - m_Id: 789094227705856
+    m_Localized: Yes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 789118621777920
+    m_Localized: No
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

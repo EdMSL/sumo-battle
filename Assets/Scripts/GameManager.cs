@@ -51,7 +51,7 @@ public class GameManager : MonoBehaviour
 
     IEnumerator GamePrepare()
     {
-        gameUI.countdownText.style.display = DisplayStyle.Flex;
+        gameUI.countdownContainer.style.display = DisplayStyle.Flex;
         gameUI.countdownText.text = "3";
 
         yield return new WaitForSeconds(1f);
@@ -69,6 +69,6 @@ public class GameManager : MonoBehaviour
 
         yield return new WaitForSeconds(0.3f);
 
-        gameUI.countdownText.style.display = DisplayStyle.None;
+        gameUI.countdownContainer.style.display = DisplayStyle.None;
     }
 }

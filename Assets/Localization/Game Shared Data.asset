@@ -75,6 +75,14 @@ MonoBehaviour:
     m_Key: countdown-go
     m_Metadata:
       m_Items: []
+  - m_Id: 789094227705856
+    m_Key: yes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 789118621777920
+    m_Key: no
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
