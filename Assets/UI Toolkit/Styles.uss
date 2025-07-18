@@ -121,3 +121,13 @@
     flex-direction: row;
     justify-content: space-between;
 }
+
+.hud__counter {
+}
+
+.hud__item {
+    flex-direction: row;
+}
+
+.hud__counter {
+}
