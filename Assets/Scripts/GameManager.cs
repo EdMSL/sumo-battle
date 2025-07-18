@@ -1,12 +1,15 @@
 ﻿using System.Collections;
+using UnityEditor.Localization.Editor;
+using UnityEditor.Search;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class GameManager : MonoBehaviour
 {
-    public Text waveText;
-    public Text livesText;
+    public GameUI gameUI;
     public Text countdownText;
     public GameObject EndGameScreen;
     public PlayerController player;
@@ -43,28 +46,29 @@ public class GameManager : MonoBehaviour
     public void ChageWave()
     {
         wave += 1;
-        waveText.text = wave.ToString();
+        gameUI.waveCounter.text = wave.ToString();
     }
 
     IEnumerator GamePrepare()
     {
-        countdownText.text = "3";
+        gameUI.countdownText.style.display = DisplayStyle.Flex;
+        gameUI.countdownText.text = "3";
 
         yield return new WaitForSeconds(1f);
 
-        countdownText.text = "2";
+        gameUI.countdownText.text = "2";
 
         yield return new WaitForSeconds(1f);
 
-        countdownText.text = "1";
+        gameUI.countdownText.text = "1";
 
         yield return new WaitForSeconds(1f);
 
-        countdownText.text = "Battle!";
+        gameUI.countdownText.text = LocalizationSettings.StringDatabase.GetLocalizedString("countdown-go");
         isGamePlay = true;
 
         yield return new WaitForSeconds(0.3f);
 
-        countdownText.gameObject.SetActive(false);
+        gameUI.countdownText.style.display = DisplayStyle.None;
     }
 }

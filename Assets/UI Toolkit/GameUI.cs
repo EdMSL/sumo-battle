@@ -3,9 +3,12 @@ using UnityEngine.UIElements;
 
 public class GameUI : MonoBehaviour
 {
+    public PlayerController playerController;
+    public GameManager gameManager;
     private VisualElement _playerContainer;
-    private Label _livesCounter;
-    private Label _waveCounter;
+    public Label livesCounter;
+    public Label waveCounter;
+    public Label countdownText;
 
     private void OnEnable()
     {
@@ -13,10 +16,11 @@ public class GameUI : MonoBehaviour
 
         _playerContainer = uiDocument.rootVisualElement.Q("hud-container");
 
-        _livesCounter = _playerContainer.Q("lives-block").Q<Label>(className: "hud__counter");
-        _waveCounter = _playerContainer.Q("wave-block").Q<Label>(className: "hud__counter");
+        livesCounter = _playerContainer.Q("lives-block").Q<Label>(className: "hud__counter");
+        waveCounter = _playerContainer.Q("wave-block").Q<Label>(className: "hud__counter");
+        countdownText = uiDocument.rootVisualElement.Q<Label>("countdown-text");
 
-        _livesCounter.text = "5";
-        _waveCounter.text = "55";
+        livesCounter.text = playerController.lives.ToString();
+        waveCounter.text = gameManager.wave.ToString();
     }
 }

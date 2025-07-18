@@ -67,11 +67,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 425376906149888
-    m_Localized: Wave
+    m_Localized: 'Wave:'
     m_Metadata:
       m_Items: []
   - m_Id: 425458057543680
-    m_Localized: Lives
+    m_Localized: 'Lives:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 747543141220352
+    m_Localized: Battle!
     m_Metadata:
       m_Items: []
   references:

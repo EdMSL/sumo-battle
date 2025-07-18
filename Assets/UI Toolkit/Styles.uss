@@ -122,12 +122,13 @@
     justify-content: space-between;
 }
 
-.hud__counter {
-}
-
 .hud__item {
     flex-direction: row;
+    -unity-font-style: normal;
+    font-size: 34px;
+    color: rgb(255, 255, 255);
 }
 
 .hud__counter {
+    -unity-font-style: bold;
 }

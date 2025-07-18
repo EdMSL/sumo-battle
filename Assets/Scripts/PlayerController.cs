@@ -5,6 +5,7 @@ using UnityEngine.InputSystem;
 public class PlayerController : MonoBehaviour
 {
     public GameManager gameManager;
+    public GameUI gameUI;
     public GameObject focalPoint;
     public float powerupStrength = 10.0f;
     public bool isHavePowerup;
@@ -46,7 +47,7 @@ public class PlayerController : MonoBehaviour
                 break;
         }
 
-        gameManager.livesText.text = lives.ToString();
+        gameUI.livesCounter.text = lives.ToString();
     }
 
     void Update()
@@ -82,11 +83,11 @@ public class PlayerController : MonoBehaviour
     {
         audioSource.PlayOneShot(lose);
         lives -= 1;
-        gameManager.livesText.text = lives.ToString();
+        gameUI.livesCounter.text = lives.ToString();
 
         if (lives <= 0)
         {
-            gameManager.livesText.text = "0";
+            gameUI.livesCounter.text = "0";
             gameManager.GameOver();
         }
     }

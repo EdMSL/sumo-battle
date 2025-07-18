@@ -71,6 +71,10 @@ MonoBehaviour:
     m_Key: player-live
     m_Metadata:
       m_Items: []
+  - m_Id: 747543141220352
+    m_Key: countdown-go
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

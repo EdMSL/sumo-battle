@@ -273,6 +273,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameManager: {fileID: 1332217589}
+  gameUI: {fileID: 1834242936}
   focalPoint: {fileID: 626983385}
   powerupStrength: 10
   isHavePowerup: 0
@@ -1606,8 +1607,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89b6ca7d0059a0a4984a052db56d44cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  waveText: {fileID: 808847617}
-  livesText: {fileID: 1895550271}
+  gameUI: {fileID: 1834242936}
   countdownText: {fileID: 1184839177}
   EndGameScreen: {fileID: 2066722339}
   player: {fileID: 87930516}
@@ -1969,6 +1969,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1834242935}
   - component: {fileID: 1834242934}
+  - component: {fileID: 1834242936}
   m_Layer: 5
   m_Name: UIDocument
   m_TagString: Untagged
@@ -2011,6 +2012,20 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1834242936
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1834242933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b5aee512188a51468cbf8ce8e64e185, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerController: {fileID: 87930516}
+  gameManager: {fileID: 1332217589}
 --- !u!1 &1842776843
 GameObject:
   m_ObjectHideFlags: 0
