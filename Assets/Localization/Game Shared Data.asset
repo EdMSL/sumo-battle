@@ -83,6 +83,14 @@ MonoBehaviour:
     m_Key: no
     m_Metadata:
       m_Items: []
+  - m_Id: 1191566724919296
+    m_Key: end-game
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1191739735764992
+    m_Key: retry
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
