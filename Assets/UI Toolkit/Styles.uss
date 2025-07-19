@@ -145,8 +145,27 @@
     display: flex;
 }
 
+.end-game__menu {
+    -unity-text-align: upper-center;
+    font-size: 30px;
+}
+
+.end-game__title {
+    padding-top: 0;
+    padding-right: 0;
+    padding-bottom: 0;
+    padding-left: 0;
+    margin-bottom: 20px;
+    font-size: 40px;
+}
+
 .end-game__btns {
     flex-direction: row;
+    flex-grow: 1;
+    justify-content: space-between;
+    flex-shrink: 0;
+    align-self: stretch;
+    padding-top: 20px;
 }
 
 .end-game__btn {

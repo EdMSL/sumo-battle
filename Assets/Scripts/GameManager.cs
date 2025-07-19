@@ -1,6 +1,4 @@
 ﻿using System.Collections;
-using UnityEditor.Localization.Editor;
-using UnityEditor.Search;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
 using UnityEngine.SceneManagement;
@@ -28,7 +26,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         Time.timeScale = 0;
-        EndGameScreen.SetActive(true);
+        gameUI.menuContainer.style.display = DisplayStyle.Flex;
     }
 
     public void RepeatGame()
@@ -65,10 +63,10 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         gameUI.countdownText.text = LocalizationSettings.StringDatabase.GetLocalizedString("countdown-go");
+
+        yield return new WaitForSeconds(1f);
+
         isGamePlay = true;
-
-        yield return new WaitForSeconds(0.3f);
-
         gameUI.countdownContainer.style.display = DisplayStyle.None;
     }
 }

@@ -23,11 +23,19 @@
             <ui:Label text="Label" name="countdown-text" style="font-size: 40px; -unity-font-style: bold; color: rgb(255, 255, 255); display: flex;" />
         </ui:VisualElement>
         <ui:VisualElement name="menu-container" class="popup" style="flex-grow: 1;">
-            <ui:VisualElement name="end-game-menu">
-                <ui:Label text="Label" name="end-game-title" />
-                <ui:Label text="Label" name="end-game-text" />
-                <ui:VisualElement name="end-game-btns" class="end-game__btns" style="flex-grow: 1;">
-                    <ui:Button text="Button" name="bnt-no" class="end-game__btn">
+            <ui:VisualElement name="end-game-menu" class="end-game__menu" style="justify-content: flex-start; align-items: center;">
+                <ui:Label text="Label" name="end-game-title" class="end-game__title">
+                    <Bindings>
+                        <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(1191566724919296)" />
+                    </Bindings>
+                </ui:Label>
+                <ui:Label text="Label" name="end-game-text">
+                    <Bindings>
+                        <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(1191739735764992)" />
+                    </Bindings>
+                </ui:Label>
+                <ui:VisualElement name="end-game-btns" class="end-game__btns" style="justify-content: space-around;">
+                    <ui:Button text="Button" name="btn-no" class="end-game__btn">
                         <Bindings>
                             <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(789118621777920)" />
                         </Bindings>
