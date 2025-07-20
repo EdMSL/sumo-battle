@@ -21,7 +21,11 @@
                 </ui:Button>
             </ui:VisualElement>
             <ui:VisualElement name="difficult-container" class="btns__block" style="display: none;">
-                <ui:Label text="Label" name="difficult-title" />
+                <ui:Label text="Label" name="difficult-title">
+                    <Bindings>
+                        <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(1485044524609536)" />
+                    </Bindings>
+                </ui:Label>
                 <ui:Button text="Button" name="easy-btn" class="menu__btn">
                     <Bindings>
                         <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(25080031805440)" />

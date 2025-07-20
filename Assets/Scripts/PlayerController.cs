@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using JSAM;
 
 public class PlayerController : MonoBehaviour
 {
@@ -11,12 +12,7 @@ public class PlayerController : MonoBehaviour
     public bool isHavePowerup;
     public GameObject indicator;
     public Transform respawn;
-    public AudioClip powerup;
-    public AudioClip touch;
-    public AudioClip heavyTouch;
-    public AudioClip lose;
 
-    private AudioSource audioSource;
     private Rigidbody playerRb;
     private float speed = 10f;
 
@@ -27,7 +23,6 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         playerRb = gameObject.GetComponent<Rigidbody>();
-        audioSource = gameObject.GetComponent<AudioSource>();
 
         switch (Save.difficultyLevel)
         {
@@ -81,7 +76,7 @@ public class PlayerController : MonoBehaviour
 
     private void RecountLives()
     {
-        audioSource.PlayOneShot(lose);
+        AudioManager.PlaySound(GameAudioLibrarySounds.die);
         lives -= 1;
         gameUI.livesCounter.text = lives.ToString();
 
@@ -96,7 +91,7 @@ public class PlayerController : MonoBehaviour
     {
         if (other.CompareTag("Powerup"))
         {
-            audioSource.PlayOneShot(powerup);
+            AudioManager.PlaySound(GameAudioLibrarySounds.powerup);
             isHavePowerup = true;
             Destroy(other.gameObject);
             StartCoroutine(Counter());
@@ -120,14 +115,14 @@ public class PlayerController : MonoBehaviour
                 Rigidbody enemyRb = collision.gameObject.GetComponent<Rigidbody>();
                 Vector3 awayFromPlayer = collision.gameObject.transform.position - transform.position;
 
-                audioSource.PlayOneShot(heavyTouch);
+                AudioManager.PlaySound(GameAudioLibrarySounds.heavyknock);
                 enemyRb.AddForce(awayFromPlayer * powerupStrength, ForceMode.Impulse);
                 isHavePowerup = false;
                 indicator.gameObject.SetActive(false);
             }
             else
             {
-                audioSource.PlayOneShot(touch);
+                AudioManager.PlaySound(GameAudioLibrarySounds.knock);
             }
         }
 
