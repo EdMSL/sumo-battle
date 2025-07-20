@@ -94,6 +94,10 @@ MonoBehaviour:
     m_Localized: Play again?
     m_Metadata:
       m_Items: []
+  - m_Id: 1485044524609536
+    m_Localized: Difficulty level
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
