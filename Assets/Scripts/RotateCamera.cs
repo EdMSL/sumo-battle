@@ -2,20 +2,19 @@
 
 public class RotateCamera : MonoBehaviour
 {
-    public PlayerController playerController;
     public float rotationSpeed = 50f;
 
     void Start()
     {
-        switch (Save.difficultyLevel)
+        switch (GameManager.Instance.difficultyLevel)
         {
-            case Save.DifficultyLevel.Easy:
+            case GameManager.DifficultyLevel.Easy:
                 rotationSpeed = 100f;
                 break;
-            case Save.DifficultyLevel.Normal:
+            case GameManager.DifficultyLevel.Normal:
                 rotationSpeed = 80f;
                 break;
-            case Save.DifficultyLevel.Hard:
+            case GameManager.DifficultyLevel.Hard:
                 rotationSpeed = 60f;
                 break;
             default:
@@ -25,7 +24,7 @@ public class RotateCamera : MonoBehaviour
 
     void Update()
     {
-        float horizontalInput = playerController.movement.x;
+        float horizontalInput = PlayerController.Instance.movement.x;
         transform.Rotate(Vector3.up, rotationSpeed * horizontalInput * Time.deltaTime);
     }
 }

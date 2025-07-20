@@ -5,7 +5,7 @@ using JSAM;
 
 public class PlayerController : MonoBehaviour
 {
-    public GameManager gameManager;
+    public static PlayerController Instance { get; private set; }
     public GameUI gameUI;
     public GameObject focalPoint;
     public float powerupStrength = 10.0f;
@@ -20,21 +20,26 @@ public class PlayerController : MonoBehaviour
     public bool isOnGround { get; set; }
     [HideInInspector] public Vector2 movement;
 
+    private void Awake()
+    {
+        Instance = this;
+    }
+
     void Start()
     {
         playerRb = gameObject.GetComponent<Rigidbody>();
 
-        switch (Save.difficultyLevel)
+        switch (GameManager.Instance.difficultyLevel)
         {
-            case Save.DifficultyLevel.Easy:
+            case GameManager.DifficultyLevel.Easy:
                 speed = 30f;
                 lives = 3;
                 break;
-            case Save.DifficultyLevel.Normal:
+            case GameManager.DifficultyLevel.Normal:
                 speed = 20f;
                 lives = 2;
                 break;
-            case Save.DifficultyLevel.Hard:
+            case GameManager.DifficultyLevel.Hard:
                 speed = 10f;
                 lives = 1;
                 break;
@@ -47,7 +52,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        if (gameManager.isGamePlay)
+        if (GameManager.Instance.state == GameManager.State.GameProcess)
         {
             float verticalInput = movement.y;
 
@@ -83,7 +88,7 @@ public class PlayerController : MonoBehaviour
         if (lives <= 0)
         {
             gameUI.livesCounter.text = "0";
-            gameManager.GameOver();
+            GameManager.Instance.GameOver();
         }
     }
 

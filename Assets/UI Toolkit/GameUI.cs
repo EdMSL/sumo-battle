@@ -5,8 +5,6 @@ using UnityEngine.UIElements;
 
 public class GameUI : MonoBehaviour
 {
-    public PlayerController playerController;
-    public GameManager gameManager;
     private VisualElement _playerContainer;
     public VisualElement countdownContainer;
     public VisualElement menuContainer;
@@ -39,17 +37,17 @@ public class GameUI : MonoBehaviour
         repeatGameBtn.RegisterCallback<ClickEvent>(OnRepeatGameBtnClick);
         goToMenuBtn.RegisterCallback<ClickEvent>(OnGoToMenuBtnClick);
 
-        livesCounter.text = playerController.lives.ToString();
-        waveCounter.text = gameManager.wave.ToString();
+        livesCounter.text = PlayerController.Instance.lives.ToString();
+        waveCounter.text = GameManager.Instance.wave.ToString();
     }
 
     private void OnGoToMenuBtnClick(ClickEvent evt)
     {
-        gameManager.EndGame();
+        GameManager.Instance.EndGame();
     }
 
     private void OnRepeatGameBtnClick(ClickEvent evt)
     {
-        gameManager.RepeatGame();
+        GameManager.Instance.RepeatGame();
     }
 }

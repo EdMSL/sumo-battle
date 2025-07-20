@@ -52,20 +52,7 @@ public class MainMenuUI : MonoBehaviour
         var button = (Button)evt.target;
         var btnName = button.name.Split('-')[0];
 
-        if (btnName == Save.DifficultyLevel.Easy.ToString().ToLower())
-        {
-            Save.SetDifficultyLevel(Save.DifficultyLevel.Easy);
-        }
-        else if (btnName == Save.DifficultyLevel.Normal.ToString().ToLower())
-        {
-            Save.SetDifficultyLevel(Save.DifficultyLevel.Normal);
-        }
-        else if (btnName == Save.DifficultyLevel.Hard.ToString().ToLower())
-        {
-            Save.SetDifficultyLevel(Save.DifficultyLevel.Hard);
-        }
-
-        SceneManager.LoadScene(1);
+        GameManager.Instance.StartGame(btnName);
     }
 
     private void OnCancelBtnClick(ClickEvent evt)

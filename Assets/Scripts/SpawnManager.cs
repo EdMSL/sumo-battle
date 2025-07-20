@@ -1,43 +1,45 @@
-﻿using System.Collections;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using UnityEngine;
 
 public class SpawnManager : MonoBehaviour
 {
+    public static SpawnManager Instance { get; private set; }
+
     public GameObject enemyPrefab;
     public GameObject powerupPrefab;
-    public GameManager gameManager;
     private float spawnRangeBound = 9f;
     private byte enemiesQuontity = 1;
-    public int enemiesCounter;
+    public List<GameObject> enemiesList;
 
-    void Start()
+    private void Awake()
     {
-        // SpawnEnemysWave(enemiesQuontity);
-        // Instantiate(powerupPrefab, GetRandomSpawnPos(), powerupPrefab.transform.rotation);
-    }
+        if (Instance != null)
+        {
+            Debug.LogError("There is more than one DeliveryManager instance");
+        }
 
-    void SpawnEnemysWave(byte enemiesToSpawn)
-    {
-      for (int i = 0; i < enemiesToSpawn; i++)
-      {
-          Instantiate(enemyPrefab, GetRandomSpawnPos(), enemyPrefab.transform.rotation);
-      }
+        Instance = this;
     }
 
     void Update()
     {
-        if (gameManager.isGamePlay)
+        if (GameManager.Instance.state == GameManager.State.GameProcess)
         {
-            enemiesCounter = FindObjectsOfType<Enemy>().Length;
-
-            if (enemiesCounter == 0)
+            if (enemiesList.Count == 0)
             {
                 enemiesQuontity++;
                 SpawnEnemysWave(enemiesQuontity);
                 Instantiate(powerupPrefab, GetRandomSpawnPos(), powerupPrefab.transform.rotation);
-                gameManager.ChageWave();
+                GameManager.Instance.ChangeWave();
             }
+        }
+    }
+
+    void SpawnEnemysWave(byte enemiesToSpawn)
+    {
+        for (int i = 0; i < enemiesToSpawn; i++)
+        {
+            enemiesList.Add(Instantiate(enemyPrefab, GetRandomSpawnPos(), enemyPrefab.transform.rotation));
         }
     }
 
@@ -47,5 +49,17 @@ public class SpawnManager : MonoBehaviour
         float spawnPosZ = Random.Range(-spawnRangeBound, spawnRangeBound);
 
         return new Vector3(spawnPosX, 0, spawnPosZ);
+    }
+
+    public void DestroyEnemy(GameObject enemy)
+    {
+        Destroy(enemy);
+        enemiesList.RemoveAt(enemiesList.IndexOf(enemy));
+    }
+
+    public void DestroyAllEnemies()
+    {
+        // enemiesList.ForEach(enemy => Destroy(enemy));
+        enemiesList.Clear();
     }
 }
