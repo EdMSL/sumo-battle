@@ -16,6 +16,11 @@ public class GameManager : MonoBehaviour
     public int wave { get; private set; }
     public int lives { get; private set; }
 
+    private void Awake()
+    {
+        Application.targetFrameRate = 60;
+    }
+
     void Start()
     {
         score = 0;
