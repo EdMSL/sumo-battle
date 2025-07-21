@@ -7,9 +7,9 @@ public class SpawnManager : MonoBehaviour
 
     public GameObject enemyPrefab;
     public GameObject powerupPrefab;
-    private float spawnRangeBound = 9f;
+    public float spawnRangeBound = 9f;
     private byte enemiesQuontity = 1;
-    public List<GameObject> enemiesList;
+    [HideInInspector] public List<GameObject> enemiesList;
 
     private void Awake()
     {
@@ -59,7 +59,6 @@ public class SpawnManager : MonoBehaviour
 
     public void DestroyAllEnemies()
     {
-        // enemiesList.ForEach(enemy => Destroy(enemy));
         enemiesList.Clear();
     }
 }
