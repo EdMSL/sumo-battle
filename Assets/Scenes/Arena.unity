@@ -633,7 +633,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 837876f04d17d4e4f86be15155b8c47e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  playerController: {fileID: 87930516}
   rotationSpeed: 100
 --- !u!4 &626983387
 Transform:
@@ -684,7 +683,7 @@ MonoBehaviour:
     type: 3}
   powerupPrefab: {fileID: 4110984330760250481, guid: 6b20bbbcee34632488a0590726b70c28,
     type: 3}
-  enemiesCounter: 0
+  enemiesList: []
 --- !u!4 &778456007
 Transform:
   m_ObjectHideFlags: 0

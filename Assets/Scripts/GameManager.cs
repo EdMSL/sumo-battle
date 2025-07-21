@@ -1,6 +1,5 @@
 ﻿using System.Collections;
 using UnityEngine;
-using UnityEngine.Analytics;
 using UnityEngine.Localization.Settings;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -56,8 +55,7 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        score = 0;
-        wave = 0;
+        ResetCounters();
     }
 
     void Update()
@@ -111,7 +109,7 @@ public class GameManager : MonoBehaviour
             difficultyLevel = DifficultyLevel.Hard;
         }
 
-        this.state = State.Waiting;
+        state = State.Waiting;
         SceneManager.LoadScene(1);
     }
 
@@ -123,17 +121,19 @@ public class GameManager : MonoBehaviour
 
     public void RepeatGame()
     {
-        Time.timeScale = 1;
         SpawnManager.Instance.DestroyAllEnemies();
-        state = State.Waiting;
         isCountdownStarted = false;
+        state = State.Waiting;
+        ResetCounters();
+
+        Time.timeScale = 1;
         SceneManager.LoadScene(1);
     }
 
     public void EndGame()
     {
-        Time.timeScale = 1;
         Destroy(gameObject);
+        Time.timeScale = 1;
         SceneManager.LoadScene(0);
     }
 
@@ -165,5 +165,11 @@ public class GameManager : MonoBehaviour
 
         state = State.GameProcess;
         gameUI.countdownContainer.style.display = DisplayStyle.None;
+    }
+
+    private void ResetCounters()
+    {
+        wave = 0;
+        score = 0;
     }
 }

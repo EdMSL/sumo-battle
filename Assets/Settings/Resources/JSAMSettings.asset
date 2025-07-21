@@ -19,7 +19,7 @@ MonoBehaviour:
   defaultSoundMaxDistance: 7
   useBuiltInAudioListRenderer: 1
   disableConsoleLogs: 0
-  dontDestroyOnLoad: 0
+  dontDestroyOnLoad: 1
   dynamicSourceAllocation: 1
   soundChannelPrefabOverride: {fileID: 0}
   musicChannelPrefabOverride: {fileID: 0}
