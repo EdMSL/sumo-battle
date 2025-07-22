@@ -46,14 +46,14 @@ public class MainMenuUI : MonoBehaviour
 
         _gameTitle = uiDocument.rootVisualElement.Q("game-title") as Image;
 
-        Debug.Log(SceneManager.sceneCount);
+        var buttonsBlock = _levelContainer.Q("btns-block");
 
         for (int i = 1; i < SceneManager.sceneCountInBuildSettings; i++)
         {
             var btn = new Button() { text = $"{LocalizationSettings.StringDatabase.GetLocalizedString("game-level")} {i}" };
             btn.AddToClassList("menu__btn");
             btn.RegisterCallback<ClickEvent>(OnLevelBtnClick);
-            _levelContainer.Add(btn);
+            buttonsBlock.Add(btn);
         }
 
         _playButton.RegisterCallback<ClickEvent>(OnPlayBtnClick);
