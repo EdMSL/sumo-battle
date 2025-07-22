@@ -60,8 +60,6 @@ public class GameManager : MonoBehaviour
 
     void Update()
     {
-        Debug.Log(state);
-
         if (state != State.MainMenu)
         {
             switch (state)
@@ -94,7 +92,13 @@ public class GameManager : MonoBehaviour
         }
     }
 
-    public void StartGame(string btnName)
+    public void StartGame(int sceneIndex)
+    {
+        state = State.Waiting;
+        SceneManager.LoadScene(sceneIndex);
+    }
+
+    public void SetDifficultyLevel(string btnName)
     {
         if (btnName == DifficultyLevel.Easy.ToString().ToLower())
         {
@@ -108,9 +112,6 @@ public class GameManager : MonoBehaviour
         {
             difficultyLevel = DifficultyLevel.Hard;
         }
-
-        state = State.Waiting;
-        SceneManager.LoadScene(1);
     }
 
     public void GameOver()
