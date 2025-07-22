@@ -5,15 +5,18 @@
     align-content: auto;
     flex-grow: 1;
     height: 100%;
-    max-width: 300px;
-    align-items: stretch;
+    max-width: 50%;
+    align-items: center;
     align-self: auto;
+    padding-top: 5%;
+    padding-bottom: 10%;
+    flex-basis: auto;
 }
 
 .game__title {
-    font-size: 50px;
+    font-size: 100px;
     -unity-font-style: bold;
-    margin-top: 30px;
+    margin-top: 0;
     margin-right: 0;
     margin-bottom: 0;
     margin-left: 0;
@@ -22,15 +25,23 @@
     padding-bottom: 0;
     padding-left: 0;
     flex-grow: 0;
-    align-self: auto;
+    align-self: stretch;
     justify-content: flex-start;
     -unity-text-align: lower-center;
     white-space: normal;
+    height: auto;
+    width: 100%;
+    align-items: stretch;
 }
 
-.btns__block {
-    max-width: 200px;
-    align-self: center;
+.menu-btns__block {
+    max-width: none;
+    align-self: stretch;
+    flex-grow: 0;
+    height: auto;
+    justify-content: space-between;
+    align-items: center;
+    min-height: 30%;
 }
 
 .menu__btn {
@@ -42,23 +53,27 @@
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
-    background-color: rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0.13);
     font-size: 30px;
-    margin-top: 0;
+    margin-top: 20px;
     margin-right: 0;
-    margin-bottom: 30px;
+    margin-bottom: 0;
     margin-left: 0;
     padding-top: 0;
     padding-right: 0;
     padding-bottom: 0;
     padding-left: 0;
-    -unity-text-align: upper-center;
+    -unity-text-align: middle-center;
+    flex-grow: 1;
+    flex-basis: auto;
+    min-height: auto;
+    min-width: 300px;
 }
 
-#difficult-title {
+.menu__title {
     -unity-font-style: bold;
     -unity-text-align: upper-center;
-    font-size: 25px;
+    font-size: 30px;
     padding-top: 0;
     padding-right: 0;
     padding-bottom: 0;
@@ -67,20 +82,6 @@
     margin-right: 0;
     margin-bottom: 20px;
     margin-left: 0;
-}
-
-#settings-title {
-    font-size: 45px;
-    -unity-font-style: bold;
-    -unity-text-align: upper-center;
-    margin-top: 0;
-    margin-right: 0;
-    margin-bottom: 0;
-    margin-left: 0;
-    padding-top: 0;
-    padding-right: 0;
-    padding-bottom: 0;
-    padding-left: 0;
 }
 
 .settings__container {
@@ -113,7 +114,7 @@
 
 .options__block__title {
     -unity-font-style: bold;
-    font-size: 25px;
+    font-size: 20px;
     -unity-text-align: upper-center;
 }
 

@@ -10,10 +10,13 @@ EditorBuildSettings:
     guid: b3f3cd8c36668834792534a334653116
   - enabled: 1
     path: Assets/Scenes/Arena1.unity
-    guid: a4b96ad7a65484fd4a83cb97540eee50
+    guid: fa52516449911d24eae860387253f191
   - enabled: 1
     path: Assets/Scenes/Arena2.unity
     guid: f8bc22f89a5aa924fb22431ec938040a
+  - enabled: 1
+    path: Assets/Scenes/Arena3.unity
+    guid: a4b96ad7a65484fd4a83cb97540eee50
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 438434ca39b7f204094808506a1c125d,
       type: 2}

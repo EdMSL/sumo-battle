@@ -20,6 +20,11 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: f693654c8a11d01478f8d1961f2ca02b
+    m_Address: Assets/UI Toolkit/Game Assets Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   m_ReadOnly: 1
   m_Settings: {fileID: 11400000, guid: 93bfa7edebf417e46affc45c7492e7c7, type: 2}
   m_SchemaSet:

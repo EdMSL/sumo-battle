@@ -98,6 +98,10 @@ MonoBehaviour:
     m_Localized: Difficulty level
     m_Metadata:
       m_Items: []
+  - m_Id: 2188047724773376
+    m_Localized: Arena
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

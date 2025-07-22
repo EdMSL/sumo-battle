@@ -95,6 +95,10 @@ MonoBehaviour:
     m_Key: difficulty-level
     m_Metadata:
       m_Items: []
+  - m_Id: 2188047724773376
+    m_Key: game-level
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
