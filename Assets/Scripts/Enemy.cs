@@ -24,7 +24,6 @@ public class Enemy : MonoBehaviour
             default:
                 break;
         }
-        Debug.Log(speed);
 
     }
 
