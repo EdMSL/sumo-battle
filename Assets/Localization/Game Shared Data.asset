@@ -99,6 +99,10 @@ MonoBehaviour:
     m_Key: game-level
     m_Metadata:
       m_Items: []
+  - m_Id: 3999451842441216
+    m_Key: player-skin
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

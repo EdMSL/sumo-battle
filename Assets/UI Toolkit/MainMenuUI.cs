@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
 using UnityEngine.SceneManagement;
@@ -11,12 +12,18 @@ public class MainMenuUI : MonoBehaviour
     private VisualElement _btnBlock;
     private VisualElement _difficultyContainer;
     private VisualElement _levelContainer;
+    private VisualElement _customizationContainer;
+    private VisualElement _levelButtonsBlock;
     private Image _gameTitle;
-    private Button _playButton;
-    private Button _settingsButton;
-    private Button _difficultyBackButton;
     private Button _acceptButton;
     private Button _cancelButton;
+    private Button _playButton;
+    private Button _settingsButton;
+    private Button _customizationBackButton;
+    private Button _customizationOkButton;
+    private Button _levelOkButton;
+    private Button _levelBackButton;
+    private Button _difficultyBackButton;
     private Button _difficultyEasyButton;
     private Button _difficultyNormalButton;
     private Button _difficultyHardButton;
@@ -24,6 +31,7 @@ public class MainMenuUI : MonoBehaviour
     private UIDocument uiDocument;
 
     private const int UI_DEFAULT_WIDTH = 1080;
+    private int selectedLevelIndex;
 
     private void OnEnable()
     {
@@ -34,33 +42,45 @@ public class MainMenuUI : MonoBehaviour
         _btnBlock = _menuContainer.Q("btns-block");
         _difficultyContainer = _menuContainer.Q("difficult-container");
         _levelContainer = _menuContainer.Q("level-container");
+        _customizationContainer = _menuContainer.Q("customization-container");
+
+        _cancelButton = _settingsContainer.Q<Button>("cancel-btn");
+        _acceptButton = _settingsContainer.Q<Button>("accept-btn");
 
         _playButton = _btnBlock.Q<Button>("play-btn");
         _settingsButton = _btnBlock.Q<Button>("settings-btn");
+        _customizationOkButton = _customizationContainer.Q<Button>("ok-btn");
+        _customizationBackButton = _customizationContainer.Q<Button>("back-btn");
+        _levelOkButton = _levelContainer.Q<Button>("ok-btn");
+        _levelBackButton = _levelContainer.Q<Button>("back-btn");
         _difficultyBackButton = _difficultyContainer.Q<Button>("back-btn");
-        _cancelButton = _settingsContainer.Q<Button>("cancel-btn");
-        _acceptButton = _settingsContainer.Q<Button>("accept-btn");
         _difficultyEasyButton = _difficultyContainer.Q<Button>("easy-btn");
         _difficultyNormalButton = _difficultyContainer.Q<Button>("normal-btn");
         _difficultyHardButton = _difficultyContainer.Q<Button>("hard-btn");
 
         _gameTitle = uiDocument.rootVisualElement.Q("game-title") as Image;
 
-        var buttonsBlock = _levelContainer.Q("btns-block");
+        _playButton.RegisterCallback<ClickEvent>(OnPlayBtnClick);
+        _settingsButton.RegisterCallback<ClickEvent>(OnSettingsBtnClick);
+        _acceptButton.RegisterCallback<ClickEvent>(OnCancelBtnClick);
+        _cancelButton.RegisterCallback<ClickEvent>(OnCancelBtnClick);
+
+        _customizationBackButton.RegisterCallback<ClickEvent>(OnCustomizationBackBtnClick);
+        _customizationOkButton.RegisterCallback<ClickEvent>(OnCustomizationOkBtnClick);
+
+        _levelButtonsBlock = _levelContainer.Q("level-btns-block");
 
         for (int i = 1; i < SceneManager.sceneCountInBuildSettings; i++)
         {
             var btn = new Button() { text = $"{LocalizationSettings.StringDatabase.GetLocalizedString("game-level")} {i}" };
             btn.AddToClassList("menu__btn");
             btn.RegisterCallback<ClickEvent>(OnLevelBtnClick);
-            buttonsBlock.Add(btn);
+            _levelButtonsBlock.Add(btn);
         }
+        _levelOkButton.RegisterCallback<ClickEvent>(OnLevelOkBtnClick);
+        _levelBackButton.RegisterCallback<ClickEvent>(OnLevelBackBtnClick);
 
-        _playButton.RegisterCallback<ClickEvent>(OnPlayBtnClick);
-        _difficultyBackButton.RegisterCallback<ClickEvent>(OnBackBtnClick);
-        _settingsButton.RegisterCallback<ClickEvent>(OnSettingsBtnClick);
-        _cancelButton.RegisterCallback<ClickEvent>(OnCancelBtnClick);
-        _acceptButton.RegisterCallback<ClickEvent>(OnCancelBtnClick);
+        _difficultyBackButton.RegisterCallback<ClickEvent>(OnDifficultyBackBtnClick);
         _difficultyEasyButton.RegisterCallback<ClickEvent>(OnDifficultyBtnClick);
         _difficultyNormalButton.RegisterCallback<ClickEvent>(OnDifficultyBtnClick);
         _difficultyHardButton.RegisterCallback<ClickEvent>(OnDifficultyBtnClick);
@@ -78,11 +98,35 @@ public class MainMenuUI : MonoBehaviour
         }
     }
 
+    private void OnCustomizationOkBtnClick(ClickEvent evt)
+    {
+        _customizationContainer.style.display = DisplayStyle.None;
+        _levelContainer.style.display = DisplayStyle.Flex;
+    }
+
+    private void OnCustomizationBackBtnClick(ClickEvent evt)
+    {
+        _customizationContainer.style.display = DisplayStyle.None;
+        _gameTitle.style.display = DisplayStyle.Flex;
+        _btnBlock.style.display = DisplayStyle.Flex;
+    }
+
+    private void OnLevelOkBtnClick(ClickEvent evt)
+    {
+        _levelContainer.style.display = DisplayStyle.None;
+        _difficultyContainer.style.display = DisplayStyle.Flex;
+    }
+
     private void OnLevelBtnClick(ClickEvent evt)
     {
-        var btn = (Button)evt.target;
+        var button = (Button)evt.target;
+        selectedLevelIndex = Int32.Parse(button.text.Split(' ')[1]);
+    }
 
-        GameManager.Instance.StartGame(Int32.Parse(btn.text.Split(' ')[1]));
+    private void OnLevelBackBtnClick(ClickEvent evt)
+    {
+        _levelContainer.style.display = DisplayStyle.None;
+        _customizationContainer.style.display = DisplayStyle.Flex;
     }
 
     private void OnDifficultyBtnClick(ClickEvent evt)
@@ -90,8 +134,13 @@ public class MainMenuUI : MonoBehaviour
         var button = (Button)evt.target;
         var btnName = button.name.Split('-')[0];
         GameManager.Instance.SetDifficultyLevel(btnName);
+        GameManager.Instance.StartGame(selectedLevelIndex);
+    }
+
+    private void OnDifficultyBackBtnClick(ClickEvent evt)
+    {
+        _btnBlock.style.display = DisplayStyle.Flex;
         _difficultyContainer.style.display = DisplayStyle.None;
-        _levelContainer.style.display = DisplayStyle.Flex;
     }
 
     private void OnCancelBtnClick(ClickEvent evt)
@@ -109,24 +158,24 @@ public class MainMenuUI : MonoBehaviour
     private void OnPlayBtnClick(ClickEvent evt)
     {
         _btnBlock.style.display = DisplayStyle.None;
-        _difficultyContainer.style.display = DisplayStyle.Flex;
-    }
-
-    private void OnBackBtnClick(ClickEvent evt)
-    {
-        _btnBlock.style.display = DisplayStyle.Flex;
-        _difficultyContainer.style.display = DisplayStyle.None;
+        _gameTitle.style.display = DisplayStyle.None;
+        _customizationContainer.style.display = DisplayStyle.Flex;
     }
 
     private void OnDisable()
     {
         _playButton.UnregisterCallback<ClickEvent>(OnPlayBtnClick);
-        _difficultyBackButton.UnregisterCallback<ClickEvent>(OnBackBtnClick);
+        _difficultyBackButton.UnregisterCallback<ClickEvent>(OnDifficultyBackBtnClick);
         _settingsButton.UnregisterCallback<ClickEvent>(OnSettingsBtnClick);
         _cancelButton.UnregisterCallback<ClickEvent>(OnCancelBtnClick);
         _acceptButton.UnregisterCallback<ClickEvent>(OnCancelBtnClick);
         _difficultyEasyButton.UnregisterCallback<ClickEvent>(OnDifficultyBtnClick);
         _difficultyNormalButton.UnregisterCallback<ClickEvent>(OnDifficultyBtnClick);
         _difficultyHardButton.UnregisterCallback<ClickEvent>(OnDifficultyBtnClick);
+        _customizationBackButton.UnregisterCallback<ClickEvent>(OnCustomizationBackBtnClick);
+        _customizationOkButton.UnregisterCallback<ClickEvent>(OnCustomizationOkBtnClick);
+        _levelBackButton.UnregisterCallback<ClickEvent>(OnLevelBackBtnClick);
+
+        _levelButtonsBlock.Query<Button>(className: "menu__btn").ForEach(elem => elem.UnregisterCallback<ClickEvent>(OnLevelBtnClick));
     }
 }
