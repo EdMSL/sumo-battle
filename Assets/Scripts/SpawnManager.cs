@@ -8,7 +8,10 @@ public class SpawnManager : MonoBehaviour
     public GameObject enemyPrefab;
     public GameObject powerupPrefab;
     public float spawnRangeBound = 9f;
-    private byte enemiesQuontity = 1;
+    public byte enemiesStartQuontity = 1;
+    public float enemySpeed = 0f;
+
+    private byte enemiesQuontity;
     [HideInInspector] public List<GameObject> enemiesList;
 
     private void Awake()
@@ -16,9 +19,36 @@ public class SpawnManager : MonoBehaviour
         if (Instance != null)
         {
             Debug.LogError("There is more than one DeliveryManager instance");
+            Destroy(gameObject);
+            return;
         }
 
         Instance = this;
+    }
+
+    private void Start()
+    {
+        if (enemiesStartQuontity == 0)
+        {
+            switch (GameManager.Instance.difficultyLevel)
+            {
+                case GameManager.DifficultyLevel.Easy:
+                    enemiesQuontity = 2;
+                    break;
+                case GameManager.DifficultyLevel.Normal:
+                    enemiesQuontity = 4;
+                    break;
+                case GameManager.DifficultyLevel.Hard:
+                    enemiesQuontity = 6;
+                    break;
+                default:
+                    break;
+            }
+        }
+        else
+        {
+            enemiesQuontity = enemiesStartQuontity;
+        }
     }
 
     void Update()
@@ -27,7 +57,11 @@ public class SpawnManager : MonoBehaviour
         {
             if (enemiesList.Count == 0)
             {
-                enemiesQuontity++;
+                if (GameManager.Instance.wave > 1)
+                {
+                    enemiesQuontity++;
+                }
+
                 SpawnEnemysWave(enemiesQuontity);
                 Instantiate(powerupPrefab, GetRandomSpawnPos(), powerupPrefab.transform.rotation);
                 GameManager.Instance.ChangeWave();
@@ -39,7 +73,28 @@ public class SpawnManager : MonoBehaviour
     {
         for (int i = 0; i < enemiesToSpawn; i++)
         {
-            enemiesList.Add(Instantiate(enemyPrefab, GetRandomSpawnPos(), enemyPrefab.transform.rotation));
+            var enemy = Instantiate(enemyPrefab, GetRandomSpawnPos(), enemyPrefab.transform.rotation);
+
+            if (enemySpeed == 0f)
+            {
+                switch (GameManager.Instance.difficultyLevel)
+                {
+                    case GameManager.DifficultyLevel.Easy:
+                        enemySpeed = 1f;
+                        break;
+                    case GameManager.DifficultyLevel.Normal:
+                        enemySpeed = 2f;
+                        break;
+                    case GameManager.DifficultyLevel.Hard:
+                        enemySpeed = 3f;
+                        break;
+                    default:
+                        break;
+                }
+            }
+
+            enemy.GetComponent<Enemy>().SetSpeed(enemySpeed);
+            enemiesList.Add(enemy);
         }
     }
 

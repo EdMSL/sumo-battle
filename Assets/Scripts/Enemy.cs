@@ -9,22 +9,6 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         enemyRb = gameObject.GetComponent<Rigidbody>();
-
-        switch (GameManager.Instance.difficultyLevel)
-        {
-            case GameManager.DifficultyLevel.Easy:
-                speed = 1f;
-                break;
-            case GameManager.DifficultyLevel.Normal:
-                speed = 2f;
-                break;
-            case GameManager.DifficultyLevel.Hard:
-                speed = 3f;
-                break;
-            default:
-                break;
-        }
-
     }
 
     void Update()
@@ -42,5 +26,10 @@ public class Enemy : MonoBehaviour
         {
             enemyRb.linearVelocity = Vector3.zero;
         }
+    }
+
+    public void SetSpeed(float speed)
+    {
+        this.speed = speed;
     }
 }
