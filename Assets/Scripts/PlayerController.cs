@@ -8,6 +8,7 @@ public class PlayerController : MonoBehaviour
     public static PlayerController Instance { get; private set; }
     public GameUI gameUI;
     public GameObject focalPoint;
+    public float noMovementTimer = 3.0f;
     public float powerupStrength = 10.0f;
     public bool isHavePowerup;
     public GameObject indicator;
@@ -15,6 +16,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody playerRb;
     private float speed = 10f;
+    private bool isMovementBlocked;
 
     public int lives { get; set; }
     public bool isOnGround { get; set; }
@@ -71,6 +73,23 @@ public class PlayerController : MonoBehaviour
                 indicator.gameObject.SetActive(false);
                 RecountLives();
             }
+        }
+    }
+
+    void FixedUpdate()
+    {
+        if (playerRb.linearVelocity.magnitude < 0.5f)
+        {
+            if (!isOnGround)
+            {
+                isMovementBlocked = true;
+            }
+            Debug.Log("Object is not moving.");
+            // Perform actions when no movement is detected
+        }
+        else
+        {
+            Debug.Log("Object is moving.");
         }
     }
 

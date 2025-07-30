@@ -316,8 +316,18 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1174155376718278505, guid: 57d66e0e45a0bbd41b4e25123a918aa1,
         type: 3}
+      propertyPath: enemySpeed
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1174155376718278505, guid: 57d66e0e45a0bbd41b4e25123a918aa1,
+        type: 3}
       propertyPath: spawnRangeBound
       value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1174155376718278505, guid: 57d66e0e45a0bbd41b4e25123a918aa1,
+        type: 3}
+      propertyPath: enemiesStartQuontity
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3111740471368052968, guid: 57d66e0e45a0bbd41b4e25123a918aa1,
         type: 3}
