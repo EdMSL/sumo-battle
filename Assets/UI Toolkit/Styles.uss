@@ -1,3 +1,8 @@
+
+:root {
+  --main-menu-btn-font-size: 30px;
+}
+
 .menu__container {
     flex-direction: column;
     width: auto;
@@ -54,7 +59,7 @@
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
     background-color: rgba(0, 0, 0, 0.13);
-    font-size: 30px;
+    font-size: var(--main-menu-btn-font-size);
     margin-top: 20px;
     margin-right: 0;
     margin-bottom: 0;

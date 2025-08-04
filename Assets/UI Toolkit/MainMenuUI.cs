@@ -30,8 +30,11 @@ public class MainMenuUI : MonoBehaviour
     private Button _difficultyHardButton;
 
     private UIDocument uiDocument;
+    private static readonly CustomStyleProperty<string> s_CustomColor = new("--main-menu-btn-font-size");
 
-    private const int UI_DEFAULT_WIDTH = 1080;
+    private string customColor { get; set; }
+
+    private const int UI_DEFAULT_HEIGHT = 1080;
     private int selectedLevelIndex;
 
     private void OnEnable()
@@ -89,17 +92,39 @@ public class MainMenuUI : MonoBehaviour
         _difficultyNormalButton.RegisterCallback<ClickEvent>(OnDifficultyBtnClick);
         _difficultyHardButton.RegisterCallback<ClickEvent>(OnDifficultyBtnClick);
 
+        uiDocument.rootVisualElement.RegisterCallback<CustomStyleResolvedEvent>(OnCustomStyleResolved);
+
         uiDocument.rootVisualElement.RegisterCallback<GeometryChangedEvent>(OnRootGeometryChange);
     }
 
     private void OnRootGeometryChange(GeometryChangedEvent evt)
     {
-        if (uiDocument.rootVisualElement.resolvedStyle.height != UI_DEFAULT_WIDTH)
+        if (uiDocument.rootVisualElement.resolvedStyle.height != UI_DEFAULT_HEIGHT)
         {
-            float ratio = Math.Abs(UI_DEFAULT_WIDTH / uiDocument.rootVisualElement.resolvedStyle.height);
-            Debug.Log(ratio);
-
+            float ratio = Math.Abs(UI_DEFAULT_HEIGHT / uiDocument.rootVisualElement.resolvedStyle.height);
+            customColor = "200px";
         }
+    }
+
+    private void OnCustomStyleResolved(CustomStyleResolvedEvent evt)
+    {
+        if (evt.customStyle.TryGetValue(s_CustomColor, out var value))
+        {
+            customColor = value;
+        }
+        else
+        {
+            customColor = "30px";
+        }
+
+        if (uiDocument.rootVisualElement.resolvedStyle.height != UI_DEFAULT_HEIGHT)
+        {
+            float ratio = Math.Abs(UI_DEFAULT_HEIGHT / uiDocument.rootVisualElement.resolvedStyle.height);
+        }
+        customColor = "100px";
+
+        // Debug.Log(customColor);
+
     }
 
     private void OnCustomizationOkBtnClick(ClickEvent evt)
