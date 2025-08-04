@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.InputSystem;
 using JSAM;
+using System.Collections.Generic;
 
 public class PlayerController : MonoBehaviour
 {
@@ -13,6 +14,7 @@ public class PlayerController : MonoBehaviour
     public bool isHavePowerup;
     public GameObject indicator;
     public Transform respawn;
+    public List<Transform> restorePoints;
 
     private Rigidbody playerRb;
     private float speed = 10f;
@@ -83,6 +85,7 @@ public class PlayerController : MonoBehaviour
             if (!isOnGround)
             {
                 isMovementBlocked = true;
+                RestorePosition();
             }
             Debug.Log("Object is not moving.");
             // Perform actions when no movement is detected
@@ -153,7 +156,8 @@ public class PlayerController : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isOnGround = true;
-            playerRb.linearDamping = 0.5f;
+            isMovementBlocked = false;
+            // playerRb.linearDamping = 0.5f;
         }
     }
 
@@ -162,7 +166,24 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Ground"))
         {
             isOnGround = false;
-            playerRb.linearDamping = 3f;
+            // playerRb.linearDamping = 3f;
         }
+    }
+
+    private void RestorePosition()
+    {
+        float maxDistance = 0f;
+        Vector3 newPosition = transform.position;
+
+        for (int i = 0; i < restorePoints.Count; i++)
+        {
+            if (maxDistance > Vector3.Distance(gameObject.transform.position, restorePoints[i].transform.position))
+            {
+                newPosition = restorePoints[i].position;
+            }
+        }
+        Debug.Log(newPosition);
+
+        // transform.position = maxDistance;
     }
 }
