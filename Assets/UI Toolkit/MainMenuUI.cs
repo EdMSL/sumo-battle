@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -67,6 +68,9 @@ public class MainMenuUI : MonoBehaviour
 
         _customizationBackButton.RegisterCallback<ClickEvent>(OnCustomizationBackBtnClick);
         _customizationOkButton.RegisterCallback<ClickEvent>(OnCustomizationOkBtnClick);
+
+        var localizedTexture = new LocalizedTexture { TableReference = "Game Assets", TableEntryReference = "title-img" };
+        _gameTitle.SetBinding("image", localizedTexture);
 
         _levelButtonsBlock = _levelContainer.Q("level-btns-block");
 
