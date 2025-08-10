@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Localization;
@@ -30,11 +31,6 @@ public class MainMenuUI : MonoBehaviour
     private Button _difficultyHardButton;
 
     private UIDocument uiDocument;
-    private static readonly CustomStyleProperty<string> s_CustomColor = new("--main-menu-btn-font-size");
-
-    private string customColor { get; set; }
-
-    private const int UI_DEFAULT_HEIGHT = 1080;
     private int selectedLevelIndex;
 
     private void OnEnable()
@@ -77,13 +73,6 @@ public class MainMenuUI : MonoBehaviour
 
         _levelButtonsBlock = _levelContainer.Q("level-btns-block");
 
-        for (int i = 1; i < SceneManager.sceneCountInBuildSettings; i++)
-        {
-            var btn = new Button() { text = $"{LocalizationSettings.StringDatabase.GetLocalizedString("game-level")} {i}" };
-            btn.AddToClassList("menu__btn");
-            btn.RegisterCallback<ClickEvent>(OnLevelBtnClick);
-            _levelButtonsBlock.Add(btn);
-        }
         _levelOkButton.RegisterCallback<ClickEvent>(OnLevelOkBtnClick);
         _levelBackButton.RegisterCallback<ClickEvent>(OnLevelBackBtnClick);
 
@@ -92,39 +81,43 @@ public class MainMenuUI : MonoBehaviour
         _difficultyNormalButton.RegisterCallback<ClickEvent>(OnDifficultyBtnClick);
         _difficultyHardButton.RegisterCallback<ClickEvent>(OnDifficultyBtnClick);
 
-        uiDocument.rootVisualElement.RegisterCallback<CustomStyleResolvedEvent>(OnCustomStyleResolved);
-
-        uiDocument.rootVisualElement.RegisterCallback<GeometryChangedEvent>(OnRootGeometryChange);
+        uiDocument.rootVisualElement.RegisterCallback<GeometryChangedEvent>(SetUISize);
     }
 
-    private void OnRootGeometryChange(GeometryChangedEvent evt)
+    IEnumerator Start()
     {
-        if (uiDocument.rootVisualElement.resolvedStyle.height != UI_DEFAULT_HEIGHT)
+        yield return LocalizationSettings.InitializationOperation;
+        for (int i = 1; i < SceneManager.sceneCountInBuildSettings; i++)
         {
-            float ratio = Math.Abs(UI_DEFAULT_HEIGHT / uiDocument.rootVisualElement.resolvedStyle.height);
-            customColor = "200px";
+            var btn = new Button() { text = $"{LocalizationSettings.StringDatabase.GetLocalizedString("game-level")} {i}" };
+            btn.AddToClassList("menu__btn");
+            btn.AddToClassList("main__btn");
+            btn.RegisterCallback<ClickEvent>(OnLevelBtnClick);
+            _levelButtonsBlock.Add(btn);
         }
     }
 
-    private void OnCustomStyleResolved(CustomStyleResolvedEvent evt)
+    private void SetUISize(GeometryChangedEvent evt)
     {
-        if (evt.customStyle.TryGetValue(s_CustomColor, out var value))
-        {
-            customColor = value;
-        }
-        else
-        {
-            customColor = "30px";
-        }
+        var root = uiDocument.rootVisualElement.Q("root");
+        root.ClearClassList();
 
-        if (uiDocument.rootVisualElement.resolvedStyle.height != UI_DEFAULT_HEIGHT)
+        if (Screen.height >= 2159)
         {
-            float ratio = Math.Abs(UI_DEFAULT_HEIGHT / uiDocument.rootVisualElement.resolvedStyle.height);
+            root.AddToClassList("ui_2160");
         }
-        customColor = "100px";
-
-        // Debug.Log(customColor);
-
+        else if (Screen.height >= 1439)
+        {
+            root.AddToClassList("ui_1440");
+        }
+        else if (Screen.height <= 580)
+        {
+            root.AddToClassList("ui_576");
+        }
+        else if (Screen.height <= 770)
+        {
+            root.AddToClassList("ui_768");
+        }
     }
 
     private void OnCustomizationOkBtnClick(ClickEvent evt)
