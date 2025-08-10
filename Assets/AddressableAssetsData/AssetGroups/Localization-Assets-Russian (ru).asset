@@ -15,7 +15,7 @@ MonoBehaviour:
   m_GroupName: Localization-Assets-Russian (ru)
   m_GUID: 9709d06d1afb3d04e882f6de8884f081
   m_SerializeEntries:
-  - m_GUID: f55c4a68e3979df4aaadb6c37195f77b
+  - m_GUID: 2b9c7e085f312424687ea031aa003c89
     m_Address: title_RU
     m_ReadOnly: 1
     m_SerializedLabels:

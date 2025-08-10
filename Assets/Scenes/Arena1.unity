@@ -1075,6 +1075,11 @@ PrefabInstance:
       value: 
       objectReference: {fileID: 11400000, guid: 5642ab0e1048018419662f68126975b3,
         type: 2}
+    - target: {fileID: 3874042357916367001, guid: cba36c2a354b20b43be3f7a791218a10,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4397124454413466573, guid: cba36c2a354b20b43be3f7a791218a10,
         type: 3}
       propertyPath: m_Name
@@ -1300,6 +1305,16 @@ PrefabInstance:
       propertyPath: focalPoint
       value: 
       objectReference: {fileID: 626983385}
+    - target: {fileID: 8579187246320239850, guid: 75c75b71f1adf3e47b2a8aaf93b3ee40,
+        type: 3}
+      propertyPath: baseHitStrength
+      value: 3.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 8579187246320239850, guid: 75c75b71f1adf3e47b2a8aaf93b3ee40,
+        type: 3}
+      propertyPath: noMowementMagnitude
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 8579187246320239850, guid: 75c75b71f1adf3e47b2a8aaf93b3ee40,
         type: 3}
       propertyPath: restorePoints.Array.size
