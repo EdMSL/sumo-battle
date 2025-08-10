@@ -1,55 +1,72 @@
-
 :root {
-  --main-menu-btn-font-size: 30px;
+    --text-s: 24px;
+    --text-m: 30px;
+    --text-l: 40px;
+    --text-xl: 60px;
+    --padding-s: 20px;
+    --padding-m: 40px;
+    --padding-l: 60px;
+    --padding-xl: 80px;
+    --indent-s: 30px;
+    --indent-m: 50px;
+    --indent-l: 80px;
+    --indent-xl: 100px;
+}
+
+.ui_576 {
+    --text-xl: 32px;
+    --padding-l: 27px;
+    --padding-xl: 43px;
+}
+
+.ui_768 {
+    --text-xl: 43px;
+    --padding-l: 36px;
+    --padding-xl: 57px;
+}
+
+.ui_1440 {
+    --text-xl: 80px;
+    --padding-l: 66px;
+    --padding-xl: 106px;
+}
+
+.ui_2160 {
+    --text-xl: 120px;
+    --padding-l: 100px;
+    --padding-xl: 160px;
 }
 
 .menu__container {
     flex-direction: column;
-    width: auto;
-    justify-content: space-between;
-    align-content: auto;
-    flex-grow: 1;
+    width: 50%;
+    flex-grow: 0;
     height: 100%;
-    max-width: 50%;
+    padding-top: 0;
+    padding-bottom: 6%;
+    flex-basis: auto;
+    justify-content: space-between;
     align-items: center;
     align-self: auto;
-    padding-top: 5%;
-    padding-bottom: 10%;
-    flex-basis: auto;
 }
 
 .game__title {
-    font-size: 100px;
-    -unity-font-style: bold;
-    margin-top: 0;
-    margin-right: 0;
-    margin-bottom: 0;
-    margin-left: 0;
-    padding-top: 0;
-    padding-right: 0;
-    padding-bottom: 0;
-    padding-left: 0;
-    flex-grow: 0;
-    align-self: stretch;
+    align-self: auto;
     justify-content: flex-start;
-    -unity-text-align: lower-center;
-    white-space: normal;
-    height: auto;
-    width: 100%;
-    align-items: stretch;
+    align-items: auto;
+    flex-grow: 0;
+    max-height: 60%;
 }
 
 .menu-btns__block {
-    max-width: none;
-    align-self: stretch;
-    flex-grow: 0;
+    align-self: center;
     height: auto;
-    justify-content: space-between;
-    align-items: center;
-    min-height: 30%;
+    justify-content: flex-start;
+    align-items: stretch;
+    flex-grow: 0;
 }
 
-.menu__btn {
+.main__btn {
     border-top-width: 0;
     border-right-width: 0;
     border-bottom-width: 0;
@@ -59,8 +76,8 @@
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
     background-color: rgba(0, 0, 0, 0.13);
-    font-size: var(--main-menu-btn-font-size);
-    margin-top: 20px;
+    font-size: 30px;
+    margin-top: 0;
     margin-right: 0;
     margin-bottom: 0;
     margin-left: 0;
@@ -69,11 +86,16 @@
     padding-bottom: 0;
     padding-left: 0;
     -unity-text-align: middle-center;
-    flex-grow: 1;
-    flex-basis: auto;
-    min-height: auto;
-    min-width: 300px;
-    align-self: auto;
+    -unity-font-style: bold;
+}
+
+.menu__btn {
+    margin-top: var(--indent-s);
+    font-size: var(--text-xl);
+    padding-top: var(--padding-l);
+    padding-right: var(--padding-xl);
+    padding-bottom: var(--padding-l);
+    padding-left: var(--padding-xl);
 }
 
 .menu__title {
@@ -104,29 +126,44 @@
     justify-content: flex-start;
     align-items: center;
     width: 50%;
-    height: 50%;
-    max-width: 500px;
-    max-height: 500px;
+    height: 70%;
+    max-width: none;
+    max-height: none;
     flex-direction: column;
     background-color: rgb(255, 255, 255);
-    padding-top: 10px;
-    padding-right: 10px;
-    padding-bottom: 20px;
-    padding-left: 10px;
+    padding-top: 2%;
+    padding-right: 2%;
+    padding-bottom: 2%;
+    padding-left: 2%;
 }
 
-.options__container {
+.options__list {
+    flex-grow: 1;
+    width: 50%;
 }
 
 .options__block__title {
     -unity-font-style: bold;
-    font-size: 20px;
+    font-size: var(--text-m);
     -unity-text-align: upper-center;
+}
+
+.options__block Slider, .options__block Toggle {
+    font-size: var(--text-s);
 }
 
 .control__btns__block {
     flex-direction: row;
     justify-content: space-between;
+    width: 70%;
+}
+
+.control__btns__block Button {
+    margin-top: var(--indent-s);
+    padding-top: var(--padding-s);
+    padding-bottom: var(--padding-s);
+    padding-right: var(--padding-l);
+    padding-left: var(--padding-l);
 }
 
 .hud__item {
@@ -152,6 +189,10 @@
     display: flex;
 }
 
+.popup__title {
+    font-size: var(--text-l);
+}
+
 .end-game__menu {
     -unity-text-align: upper-center;
     font-size: 30px;
@@ -173,7 +214,4 @@
     flex-shrink: 0;
     align-self: stretch;
     padding-top: 20px;
-}
-
-.end-game__btn {
 }
