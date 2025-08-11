@@ -81,7 +81,7 @@ public class MainMenuUI : MonoBehaviour
         _difficultyNormalButton.RegisterCallback<ClickEvent>(OnDifficultyBtnClick);
         _difficultyHardButton.RegisterCallback<ClickEvent>(OnDifficultyBtnClick);
 
-        uiDocument.rootVisualElement.RegisterCallback<GeometryChangedEvent>(SetUISize);
+        // uiDocument.rootVisualElement.RegisterCallback<GeometryChangedEvent>(SetUISize);
     }
 
     IEnumerator Start()
