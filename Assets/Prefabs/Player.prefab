@@ -154,10 +154,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gameUI: {fileID: 0}
   focalPoint: {fileID: 0}
+  noMovementTime: 3
+  noMowementMagnitude: 1
+  baseHitStrength: 3.5
   powerupStrength: 10
-  isHavePowerup: 0
+  linearDamping: 3
   indicator: {fileID: 1225233782438984347}
   respawn: {fileID: 0}
+  restorePoints:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   movement: {x: 0, y: 0}
 --- !u!82 &102652262216137454
 AudioSource:

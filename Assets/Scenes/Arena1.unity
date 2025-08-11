@@ -314,21 +314,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: Spawn Manager
       objectReference: {fileID: 0}
-    - target: {fileID: 1174155376718278505, guid: 57d66e0e45a0bbd41b4e25123a918aa1,
-        type: 3}
-      propertyPath: enemySpeed
-      value: 5
-      objectReference: {fileID: 0}
-    - target: {fileID: 1174155376718278505, guid: 57d66e0e45a0bbd41b4e25123a918aa1,
-        type: 3}
-      propertyPath: spawnRangeBound
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: 1174155376718278505, guid: 57d66e0e45a0bbd41b4e25123a918aa1,
-        type: 3}
-      propertyPath: enemiesStartQuontity
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 3111740471368052968, guid: 57d66e0e45a0bbd41b4e25123a918aa1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1014,11 +999,6 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 974312118854096179, guid: cba36c2a354b20b43be3f7a791218a10,
-        type: 3}
-      propertyPath: m_IsActive
-      value: 0
-      objectReference: {fileID: 0}
     - target: {fileID: 1712726176798937009, guid: cba36c2a354b20b43be3f7a791218a10,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1068,17 +1048,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 3049444729546626087, guid: cba36c2a354b20b43be3f7a791218a10,
-        type: 3}
-      propertyPath: audio
-      value: 
-      objectReference: {fileID: 11400000, guid: 5642ab0e1048018419662f68126975b3,
-        type: 2}
-    - target: {fileID: 3874042357916367001, guid: cba36c2a354b20b43be3f7a791218a10,
-        type: 3}
-      propertyPath: m_Enabled
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4397124454413466573, guid: cba36c2a354b20b43be3f7a791218a10,
         type: 3}
@@ -1305,21 +1274,6 @@ PrefabInstance:
       propertyPath: focalPoint
       value: 
       objectReference: {fileID: 626983385}
-    - target: {fileID: 8579187246320239850, guid: 75c75b71f1adf3e47b2a8aaf93b3ee40,
-        type: 3}
-      propertyPath: baseHitStrength
-      value: 3.5
-      objectReference: {fileID: 0}
-    - target: {fileID: 8579187246320239850, guid: 75c75b71f1adf3e47b2a8aaf93b3ee40,
-        type: 3}
-      propertyPath: noMowementMagnitude
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 8579187246320239850, guid: 75c75b71f1adf3e47b2a8aaf93b3ee40,
-        type: 3}
-      propertyPath: restorePoints.Array.size
-      value: 4
-      objectReference: {fileID: 0}
     - target: {fileID: 8579187246320239850, guid: 75c75b71f1adf3e47b2a8aaf93b3ee40,
         type: 3}
       propertyPath: 'restorePoints.Array.data[0]'

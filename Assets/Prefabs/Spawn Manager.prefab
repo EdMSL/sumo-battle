@@ -48,5 +48,7 @@ MonoBehaviour:
     type: 3}
   powerupPrefab: {fileID: 4110984330760250481, guid: 6b20bbbcee34632488a0590726b70c28,
     type: 3}
-  spawnRangeBound: 13
+  spawnRangeBound: 8
+  enemiesStartQuontity: 0
+  enemySpeed: 5
   enemiesList: []
