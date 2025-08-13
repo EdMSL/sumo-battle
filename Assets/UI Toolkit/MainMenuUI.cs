@@ -63,7 +63,7 @@ public class MainMenuUI : MonoBehaviour
         _playButton.RegisterCallback<ClickEvent>(OnPlayBtnClick);
         _settingsButton.RegisterCallback<ClickEvent>(OnSettingsBtnClick);
         _acceptButton.RegisterCallback<ClickEvent>(OnCancelBtnClick);
-        _cancelButton.RegisterCallback<ClickEvent>(OnCancelBtnClick);
+        _cancelButton.RegisterCallback<ClickEvent>(OnSettingsBtnClick);
 
         _customizationBackButton.RegisterCallback<ClickEvent>(OnCustomizationBackBtnClick);
         _customizationOkButton.RegisterCallback<ClickEvent>(OnCustomizationOkBtnClick);
@@ -80,8 +80,6 @@ public class MainMenuUI : MonoBehaviour
         _difficultyEasyButton.RegisterCallback<ClickEvent>(OnDifficultyBtnClick);
         _difficultyNormalButton.RegisterCallback<ClickEvent>(OnDifficultyBtnClick);
         _difficultyHardButton.RegisterCallback<ClickEvent>(OnDifficultyBtnClick);
-
-        // uiDocument.rootVisualElement.RegisterCallback<GeometryChangedEvent>(SetUISize);
     }
 
     IEnumerator Start()
@@ -173,8 +171,16 @@ public class MainMenuUI : MonoBehaviour
 
     private void OnSettingsBtnClick(ClickEvent evt)
     {
-        _btnBlock.style.display = DisplayStyle.None;
-        _settingsContainer.style.display = DisplayStyle.Flex;
+        if (_settingsContainer.ClassListContains("settings__container-show"))
+        {
+            _settingsContainer.RemoveFromClassList("settings__container-show");
+            _settingsContainer.AddToClassList("settings__container-hidden");
+        }
+        else
+        {
+            _settingsContainer.RemoveFromClassList("settings__container-hidden");
+            _settingsContainer.AddToClassList("settings__container-show");
+        }
     }
 
     private void OnPlayBtnClick(ClickEvent evt)
