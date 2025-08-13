@@ -13,30 +13,6 @@
     --indent-xl: 100px;
 }
 
-.ui_576 {
-    --text-xl: 32px;
-    --padding-l: 27px;
-    --padding-xl: 43px;
-}
-
-.ui_768 {
-    --text-xl: 43px;
-    --padding-l: 36px;
-    --padding-xl: 57px;
-}
-
-.ui_1440 {
-    --text-xl: 80px;
-    --padding-l: 66px;
-    --padding-xl: 106px;
-}
-
-.ui_2160 {
-    --text-xl: 120px;
-    --padding-l: 100px;
-    --padding-xl: 160px;
-}
-
 .menu__container {
     flex-direction: column;
     width: 50%;
