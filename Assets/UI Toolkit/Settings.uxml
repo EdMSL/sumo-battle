@@ -1,7 +1,8 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <Style src="project://database/Assets/UI%20Toolkit/Styles.uss?fileID=7433441132597879392&amp;guid=6c2a7a29e6f6b5749a27053048a177da&amp;type=3#Styles" />
+    <Style src="project://database/Assets/UI%20Toolkit/Settings.uss?fileID=7433441132597879392&amp;guid=fa6d5a6e9b4aba046889be3b10d15527&amp;type=3#Settings" />
     <ui:VisualElement name="settings-block" class="settings__block">
-        <ui:Label text="Label" name="settings-title" class="menu__title popup__title">
+        <ui:Label text="Label" name="settings-title" class="settings__title">
             <Bindings>
                 <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(131489529856)" />
             </Bindings>

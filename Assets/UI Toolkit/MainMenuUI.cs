@@ -10,7 +10,8 @@ using UnityEngine.UIElements;
 public class MainMenuUI : MonoBehaviour
 {
     private VisualElement _menuContainer;
-    private VisualElement _settingsContainer;
+    private VisualElement _settingsWindow;
+    private VisualElement _settingsWindowContent;
     private VisualElement _btnBlock;
     private VisualElement _difficultyContainer;
     private VisualElement _levelContainer;
@@ -38,14 +39,15 @@ public class MainMenuUI : MonoBehaviour
         uiDocument = GetComponent<UIDocument>();
 
         _menuContainer = uiDocument.rootVisualElement.Q("menu-container");
-        _settingsContainer = uiDocument.rootVisualElement.Q("settings-container");
+        _settingsWindow = uiDocument.rootVisualElement.Q("settings-window");
+        _settingsWindowContent = _settingsWindow.Q("popup-content");
         _btnBlock = _menuContainer.Q("btns-block");
         _difficultyContainer = _menuContainer.Q("difficult-container");
         _levelContainer = _menuContainer.Q("level-container");
         _customizationContainer = _menuContainer.Q("customization-container");
 
-        _cancelButton = _settingsContainer.Q<Button>("cancel-btn");
-        _acceptButton = _settingsContainer.Q<Button>("accept-btn");
+        _cancelButton = _settingsWindow.Q<Button>("cancel-btn");
+        _acceptButton = _settingsWindow.Q<Button>("accept-btn");
 
         _playButton = _btnBlock.Q<Button>("play-btn");
         _settingsButton = _btnBlock.Q<Button>("settings-btn");
@@ -62,7 +64,7 @@ public class MainMenuUI : MonoBehaviour
 
         _playButton.RegisterCallback<ClickEvent>(OnPlayBtnClick);
         _settingsButton.RegisterCallback<ClickEvent>(OnSettingsBtnClick);
-        _acceptButton.RegisterCallback<ClickEvent>(OnCancelBtnClick);
+        _acceptButton.RegisterCallback<ClickEvent>(OnSettingsBtnClick);
         _cancelButton.RegisterCallback<ClickEvent>(OnSettingsBtnClick);
 
         _customizationBackButton.RegisterCallback<ClickEvent>(OnCustomizationBackBtnClick);
@@ -165,22 +167,35 @@ public class MainMenuUI : MonoBehaviour
 
     private void OnCancelBtnClick(ClickEvent evt)
     {
-        _settingsContainer.style.display = DisplayStyle.None;
+        _settingsWindow.style.display = DisplayStyle.None;
         _btnBlock.style.display = DisplayStyle.Flex;
     }
 
     private void OnSettingsBtnClick(ClickEvent evt)
     {
-        if (_settingsContainer.ClassListContains("settings__container-show"))
+        if (_settingsWindow.ClassListContains("popup-show"))
         {
-            _settingsContainer.RemoveFromClassList("settings__container-show");
-            _settingsContainer.AddToClassList("settings__container-hidden");
+            StartCoroutine(UIDelay());
+
         }
         else
         {
-            _settingsContainer.RemoveFromClassList("settings__container-hidden");
-            _settingsContainer.AddToClassList("settings__container-show");
+            _settingsWindow.RemoveFromClassList("popup-hidden");
+            _settingsWindowContent.RemoveFromClassList("animation__hide");
+            _settingsWindow.AddToClassList("popup-show");
+            _settingsWindowContent.AddToClassList("animation__show");
         }
+    }
+
+    IEnumerator UIDelay()
+    {
+        _settingsWindowContent.AddToClassList("animation__hide");
+        _settingsWindowContent.RemoveFromClassList("animation__show");
+
+        yield return new WaitForSeconds(0.3f);
+
+        _settingsWindow.RemoveFromClassList("popup-show");
+        _settingsWindow.AddToClassList("popup-hidden");
     }
 
     private void OnPlayBtnClick(ClickEvent evt)

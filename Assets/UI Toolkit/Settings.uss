@@ -1,0 +1,41 @@
+.settings__block {
+    justify-content: flex-start;
+    align-items: center;
+    width: auto;
+    height: auto;
+    max-width: none;
+    max-height: none;
+    flex-direction: column;
+    background-color: rgb(255, 255, 255);
+    padding-top: var(--padding-m);
+    padding-right: var(--padding-m);
+    padding-bottom: var(--padding-m);
+    padding-left: var(--padding-m);
+    flex-grow: 1;
+}
+
+.settings__title {
+    font-size: var(--text-l);
+    -unity-font-style: bold;
+    -unity-text-align: upper-center;
+    margin-bottom: var(--indent-s);
+}
+
+.options__list {
+    flex-grow: 1;
+    width: 50%;
+}
+
+.options__block__title {
+    -unity-font-style: bold;
+    font-size: var(--text-m);
+    -unity-text-align: upper-center;
+}
+
+.options__block Slider {
+    font-size: var(--text-s);
+}
+
+.options__block Toggle {
+    font-size: var(--text-s);
+}
