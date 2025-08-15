@@ -6,6 +6,7 @@ using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
+using JSAM;
 
 public class MainMenuUI : MonoBehaviour
 {
@@ -122,12 +123,16 @@ public class MainMenuUI : MonoBehaviour
 
     private void OnCustomizationOkBtnClick(ClickEvent evt)
     {
+        AudioManager.PlaySound(GameAudioLibrarySounds.click);
+
         _customizationContainer.style.display = DisplayStyle.None;
         _levelContainer.style.display = DisplayStyle.Flex;
     }
 
     private void OnCustomizationBackBtnClick(ClickEvent evt)
     {
+        AudioManager.PlaySound(GameAudioLibrarySounds.click);
+
         _customizationContainer.style.display = DisplayStyle.None;
         _gameTitle.style.display = DisplayStyle.Flex;
         _btnBlock.style.display = DisplayStyle.Flex;
@@ -135,24 +140,32 @@ public class MainMenuUI : MonoBehaviour
 
     private void OnLevelOkBtnClick(ClickEvent evt)
     {
+        AudioManager.PlaySound(GameAudioLibrarySounds.click);
+
         _levelContainer.style.display = DisplayStyle.None;
         _difficultyContainer.style.display = DisplayStyle.Flex;
     }
 
     private void OnLevelBtnClick(ClickEvent evt)
     {
+        AudioManager.PlaySound(GameAudioLibrarySounds.click);
+
         var button = (Button)evt.target;
         selectedLevelIndex = Int32.Parse(button.text.Split(' ')[1]);
     }
 
     private void OnLevelBackBtnClick(ClickEvent evt)
     {
+        AudioManager.PlaySound(GameAudioLibrarySounds.click);
+
         _levelContainer.style.display = DisplayStyle.None;
         _customizationContainer.style.display = DisplayStyle.Flex;
     }
 
     private void OnDifficultyBtnClick(ClickEvent evt)
     {
+        AudioManager.PlaySound(GameAudioLibrarySounds.click);
+
         var button = (Button)evt.target;
         var btnName = button.name.Split('-')[0];
         GameManager.Instance.SetDifficultyLevel(btnName);
@@ -161,18 +174,24 @@ public class MainMenuUI : MonoBehaviour
 
     private void OnDifficultyBackBtnClick(ClickEvent evt)
     {
+        AudioManager.PlaySound(GameAudioLibrarySounds.click);
+
         _btnBlock.style.display = DisplayStyle.Flex;
         _difficultyContainer.style.display = DisplayStyle.None;
     }
 
     private void OnCancelBtnClick(ClickEvent evt)
     {
+        AudioManager.PlaySound(GameAudioLibrarySounds.click);
+
         _settingsWindow.style.display = DisplayStyle.None;
         _btnBlock.style.display = DisplayStyle.Flex;
     }
 
     private void OnSettingsBtnClick(ClickEvent evt)
     {
+        AudioManager.PlaySound(GameAudioLibrarySounds.click);
+
         if (_settingsWindow.ClassListContains("popup-show"))
         {
             StartCoroutine(UIDelay());
@@ -200,6 +219,8 @@ public class MainMenuUI : MonoBehaviour
 
     private void OnPlayBtnClick(ClickEvent evt)
     {
+        AudioManager.PlaySound(GameAudioLibrarySounds.click);
+
         _btnBlock.style.display = DisplayStyle.None;
         _gameTitle.style.display = DisplayStyle.None;
         _customizationContainer.style.display = DisplayStyle.Flex;
@@ -208,17 +229,21 @@ public class MainMenuUI : MonoBehaviour
     private void OnDisable()
     {
         _playButton.UnregisterCallback<ClickEvent>(OnPlayBtnClick);
-        _difficultyBackButton.UnregisterCallback<ClickEvent>(OnDifficultyBackBtnClick);
+
         _settingsButton.UnregisterCallback<ClickEvent>(OnSettingsBtnClick);
         _cancelButton.UnregisterCallback<ClickEvent>(OnCancelBtnClick);
         _acceptButton.UnregisterCallback<ClickEvent>(OnCancelBtnClick);
+
+        _customizationOkButton.UnregisterCallback<ClickEvent>(OnCustomizationOkBtnClick);
+        _customizationBackButton.UnregisterCallback<ClickEvent>(OnCustomizationBackBtnClick);
+
         _difficultyEasyButton.UnregisterCallback<ClickEvent>(OnDifficultyBtnClick);
         _difficultyNormalButton.UnregisterCallback<ClickEvent>(OnDifficultyBtnClick);
         _difficultyHardButton.UnregisterCallback<ClickEvent>(OnDifficultyBtnClick);
-        _customizationBackButton.UnregisterCallback<ClickEvent>(OnCustomizationBackBtnClick);
-        _customizationOkButton.UnregisterCallback<ClickEvent>(OnCustomizationOkBtnClick);
-        _levelBackButton.UnregisterCallback<ClickEvent>(OnLevelBackBtnClick);
+        _difficultyBackButton.UnregisterCallback<ClickEvent>(OnDifficultyBackBtnClick);
 
         _levelButtonsBlock.Query<Button>(className: "menu__btn").ForEach(elem => elem.UnregisterCallback<ClickEvent>(OnLevelBtnClick));
+        _levelOkButton.UnregisterCallback<ClickEvent>(OnLevelOkBtnClick);
+        _levelBackButton.UnregisterCallback<ClickEvent>(OnLevelBackBtnClick);
     }
 }

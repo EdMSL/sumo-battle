@@ -76,8 +76,8 @@
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="settings-window" class="popup popup-hidden">
-            <ui:VisualElement name="popup-overlay" class="popup__overlay" style="flex-grow: 1; background-color: rgba(0, 0, 0, 0.61);" />
-            <ui:VisualElement name="popup-content" class="popup__content animation__hide" style="width: 50%; height: 70%;">
+            <ui:VisualElement name="popup-overlay" class="popup__overlay" />
+            <ui:VisualElement name="popup-content" class="popup__content" style="width: 50%; height: 70%;">
                 <ui:Instance template="Settings" name="settings" style="flex-grow: 1;" />
             </ui:VisualElement>
         </ui:VisualElement>

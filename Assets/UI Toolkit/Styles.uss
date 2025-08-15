@@ -19,7 +19,7 @@
     flex-grow: 0;
     height: 100%;
     padding-top: 0;
-    padding-bottom: var(--indent-m);
+    padding-bottom: var(--indent-l);
     flex-basis: auto;
     justify-content: space-between;
     align-items: center;
@@ -158,6 +158,7 @@
 .popup__content {
     position: absolute;
     flex-grow: 1;
+    translate: 0 -1050px;
     transition-property: translate;
     transition-duration: 300ms;
     transition-timing-function: ease-out-back;

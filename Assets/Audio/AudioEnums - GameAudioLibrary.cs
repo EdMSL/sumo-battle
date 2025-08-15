@@ -2,7 +2,8 @@
         powerup,
         knock,
         die,
-        heavyknock
+        heavyknock,
+        click
     }
     public enum GameAudioLibraryMusic {
         GameMusic,
