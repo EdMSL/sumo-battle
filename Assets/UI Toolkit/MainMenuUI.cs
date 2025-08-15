@@ -10,6 +10,8 @@ using JSAM;
 
 public class MainMenuUI : MonoBehaviour
 {
+    [SerializeField] private Transform styleMenu;
+
     private VisualElement _menuContainer;
     private VisualElement _settingsWindow;
     private VisualElement _settingsWindowContent;
@@ -17,6 +19,8 @@ public class MainMenuUI : MonoBehaviour
     private VisualElement _difficultyContainer;
     private VisualElement _levelContainer;
     private VisualElement _customizationContainer;
+    private VisualElement _customizationRadioButtonGroup;
+    private VisualElement _customizationSkinsList;
     private VisualElement _levelButtonsBlock;
     private Image _gameTitle;
     private Button _acceptButton;
@@ -52,6 +56,8 @@ public class MainMenuUI : MonoBehaviour
 
         _playButton = _btnBlock.Q<Button>("play-btn");
         _settingsButton = _btnBlock.Q<Button>("settings-btn");
+        _customizationRadioButtonGroup = _customizationContainer.Q<VisualElement>("RadioButtonGroup");
+        _customizationSkinsList = _customizationContainer.Q<VisualElement>("skins-list");
         _customizationOkButton = _customizationContainer.Q<Button>("ok-btn");
         _customizationBackButton = _customizationContainer.Q<Button>("back-btn");
         _levelOkButton = _levelContainer.Q<Button>("ok-btn");
@@ -88,6 +94,7 @@ public class MainMenuUI : MonoBehaviour
     IEnumerator Start()
     {
         yield return LocalizationSettings.InitializationOperation;
+
         for (int i = 1; i < SceneManager.sceneCountInBuildSettings; i++)
         {
             var btn = new Button() { text = $"{LocalizationSettings.StringDatabase.GetLocalizedString("game-level")} {i}" };
@@ -96,28 +103,35 @@ public class MainMenuUI : MonoBehaviour
             btn.RegisterCallback<ClickEvent>(OnLevelBtnClick);
             _levelButtonsBlock.Add(btn);
         }
+
+        // styleMenu.gameObject.SetActive(false);
     }
 
-    private void SetUISize(GeometryChangedEvent evt)
+    private void OnPlayBtnClick(ClickEvent evt)
     {
-        var root = uiDocument.rootVisualElement.Q("root");
-        root.ClearClassList();
+        AudioManager.PlaySound(GameAudioLibrarySounds.click);
 
-        if (Screen.height >= 2159)
+        _btnBlock.style.display = DisplayStyle.None;
+        _gameTitle.style.display = DisplayStyle.None;
+        _customizationContainer.style.display = DisplayStyle.Flex;
+        styleMenu.gameObject.SetActive(true);
+    }
+
+    private void OnSettingsBtnClick(ClickEvent evt)
+    {
+        AudioManager.PlaySound(GameAudioLibrarySounds.click);
+
+        if (_settingsWindow.ClassListContains("popup-show"))
         {
-            root.AddToClassList("ui_2160");
+            StartCoroutine(UIDelay());
+
         }
-        else if (Screen.height >= 1439)
+        else
         {
-            root.AddToClassList("ui_1440");
-        }
-        else if (Screen.height <= 580)
-        {
-            root.AddToClassList("ui_576");
-        }
-        else if (Screen.height <= 770)
-        {
-            root.AddToClassList("ui_768");
+            _settingsWindow.RemoveFromClassList("popup-hidden");
+            _settingsWindowContent.RemoveFromClassList("animation__hide");
+            _settingsWindow.AddToClassList("popup-show");
+            _settingsWindowContent.AddToClassList("animation__show");
         }
     }
 
@@ -127,6 +141,9 @@ public class MainMenuUI : MonoBehaviour
 
         _customizationContainer.style.display = DisplayStyle.None;
         _levelContainer.style.display = DisplayStyle.Flex;
+
+        styleMenu.gameObject.SetActive(false);
+
     }
 
     private void OnCustomizationBackBtnClick(ClickEvent evt)
@@ -136,6 +153,9 @@ public class MainMenuUI : MonoBehaviour
         _customizationContainer.style.display = DisplayStyle.None;
         _gameTitle.style.display = DisplayStyle.Flex;
         _btnBlock.style.display = DisplayStyle.Flex;
+
+        styleMenu.gameObject.SetActive(false);
+
     }
 
     private void OnLevelOkBtnClick(ClickEvent evt)
@@ -152,6 +172,8 @@ public class MainMenuUI : MonoBehaviour
 
         var button = (Button)evt.target;
         selectedLevelIndex = Int32.Parse(button.text.Split(' ')[1]);
+
+        styleMenu.gameObject.SetActive(true);
     }
 
     private void OnLevelBackBtnClick(ClickEvent evt)
@@ -188,24 +210,6 @@ public class MainMenuUI : MonoBehaviour
         _btnBlock.style.display = DisplayStyle.Flex;
     }
 
-    private void OnSettingsBtnClick(ClickEvent evt)
-    {
-        AudioManager.PlaySound(GameAudioLibrarySounds.click);
-
-        if (_settingsWindow.ClassListContains("popup-show"))
-        {
-            StartCoroutine(UIDelay());
-
-        }
-        else
-        {
-            _settingsWindow.RemoveFromClassList("popup-hidden");
-            _settingsWindowContent.RemoveFromClassList("animation__hide");
-            _settingsWindow.AddToClassList("popup-show");
-            _settingsWindowContent.AddToClassList("animation__show");
-        }
-    }
-
     IEnumerator UIDelay()
     {
         _settingsWindowContent.AddToClassList("animation__hide");
@@ -215,15 +219,6 @@ public class MainMenuUI : MonoBehaviour
 
         _settingsWindow.RemoveFromClassList("popup-show");
         _settingsWindow.AddToClassList("popup-hidden");
-    }
-
-    private void OnPlayBtnClick(ClickEvent evt)
-    {
-        AudioManager.PlaySound(GameAudioLibrarySounds.click);
-
-        _btnBlock.style.display = DisplayStyle.None;
-        _gameTitle.style.display = DisplayStyle.None;
-        _customizationContainer.style.display = DisplayStyle.Flex;
     }
 
     private void OnDisable()

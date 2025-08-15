@@ -18,7 +18,7 @@
     width: 50%;
     flex-grow: 0;
     height: 100%;
-    padding-top: 0;
+    padding-top: var(--indent-l);
     padding-bottom: var(--indent-l);
     flex-basis: auto;
     justify-content: space-between;
@@ -32,6 +32,11 @@
     align-items: auto;
     flex-grow: 0;
     max-height: 60%;
+}
+
+.menu__block {
+    width: 100%;
+    align-items: center;
 }
 
 .menu-btns__block {
@@ -77,7 +82,7 @@
 .menu__title {
     -unity-font-style: bold;
     -unity-text-align: upper-center;
-    font-size: 30px;
+    font-size: var(--text-l);
     padding-top: 0;
     padding-right: 0;
     padding-bottom: 0;
@@ -182,4 +187,22 @@
 
 .animation__show {
     translate: 0 0;
+}
+
+.skins__list {
+    flex-direction: row;
+    flex-grow: 1;
+    justify-content: space-between;
+}
+
+.skins__list_item {
+    width: 30%;
+    height: 200px;
+    background-color: rgb(241, 62, 62);
+    flex-shrink: 0;
+    margin-right: var(--indent-m);
+}
+
+#skins-block .unity-radio-button__checkmark-background {
+    background-color: rgb(60, 241, 64);
 }
