@@ -17,15 +17,15 @@
                 </ui:Button>
             </ui:VisualElement>
             <ui:VisualElement name="customization-container" class="menu__block" style="display: flex; justify-content: space-between; flex-grow: 1;">
-                <ui:VisualElement name="cutomization-top-block" style="flex-grow: 1; align-items: stretch; align-self: stretch;">
+                <ui:VisualElement name="cutomization-top-block" style="flex-grow: 1; align-self: stretch;">
                     <ui:Label text="Label" name="customization-title" class="menu__title">
                         <Bindings>
                             <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(3999451842441216)" />
                         </Bindings>
                     </ui:Label>
-                    <ui:ScrollView name="skins-block">
-                        <ui:RadioButtonGroup label="Radio Button Group" choices="skin 1,skin 2,skin 3" value="0" focusable="true" />
-                        <ui:VisualElement name="skins-list" class="skins__list" style="display: flex;">
+                    <ui:ScrollView name="skins-block" vertical-scroller-visibility="Hidden" horizontal-scroller-visibility="Hidden" mode="Horizontal" touch-scroll-type="Clamped">
+                        <ui:RadioButtonGroup label="Radio Button Group" choices="skin 1,skin 2,skin 3,skin 4,skin 5" value="0" focusable="true" class="skins__list" />
+                        <ui:VisualElement name="skins-list" class="skins__list" style="display: none;">
                             <ui:VisualElement name="skin-1" class="skins__list_item" />
                             <ui:VisualElement name="skin-2" class="skins__list_item" />
                             <ui:VisualElement name="skin-3" class="skins__list_item" />
