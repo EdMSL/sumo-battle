@@ -25,9 +25,9 @@
                     </ui:Label>
                     <ui:ScrollView name="skins-block" vertical-scroller-visibility="Hidden" horizontal-scroller-visibility="Hidden" mode="Horizontal" touch-scroll-type="Clamped">
                         <ui:RadioButtonGroup label="Radio Button Group" value="0" focusable="true" name="skins-list" class="skins__list">
-                            <ui:RadioButton label="Radio Button" value="false" name="RadioButton" class="skins__item" />
-                            <ui:RadioButton label="Radio Button" class="skins__item" />
-                            <ui:RadioButton label="Radio Button" class="skins__item" />
+                            <ui:RadioButton label="Radio Button" value="false" name="RadioButton" class="skins__item" style="background-image: url(&quot;project://database/Assets/Materials/Textures/Enemy.png?fileID=2800000&amp;guid=bbc54c0e722a346408cd09eef6dc0cd6&amp;type=3#Enemy&quot;);" />
+                            <ui:RadioButton label="Radio Button" class="skins__item" style="background-image: url(&quot;project://database/Assets/Course%20Library/Textures/PolygonPrototype_Texture_Grid_08.png?fileID=2800000&amp;guid=1d12fa396a3563b41b9ae11b0fb0b986&amp;type=3#PolygonPrototype_Texture_Grid_08&quot;);" />
+                            <ui:RadioButton label="Radio Button" class="skins__item" style="background-image: url(&quot;project://database/Assets/Materials/Skins/Textures/8%20ball.jpg?fileID=2800000&amp;guid=415a87c903390c84592b4ad26ec2a48c&amp;type=3#8 ball&quot;);" />
                         </ui:RadioButtonGroup>
                         <ui:VisualElement name="skins-list" class="skins__list" style="display: flex;" />
                     </ui:ScrollView>

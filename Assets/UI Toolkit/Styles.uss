@@ -246,6 +246,7 @@
 .skins__item {
     width: 300px;
     height: 250px;
+    margin-right: var(--indent-m);
 }
 
 .skins__item > Label {

@@ -7,7 +7,6 @@ using UnityEngine.Localization.Settings;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using JSAM;
-using System.Linq;
 
 public class MainMenuUI : MonoBehaviour
 {
@@ -22,7 +21,6 @@ public class MainMenuUI : MonoBehaviour
     private VisualElement _difficultyContainer;
     private VisualElement _levelContainer;
     private VisualElement _customizationContainer;
-    private VisualElement _customizationRadioButtonGroup;
     private RadioButtonGroup _customizationSkinsList;
     private VisualElement _levelButtonsBlock;
     private Image _gameTitle;
@@ -59,7 +57,6 @@ public class MainMenuUI : MonoBehaviour
 
         _playButton = _btnBlock.Q<Button>("play-btn");
         _settingsButton = _btnBlock.Q<Button>("settings-btn");
-        // _customizationRadioButtonGroup = _customizationContainer.Q<VisualElement>("skins-list");
         _customizationSkinsList = _customizationContainer.Q<RadioButtonGroup>("skins-list");
         _customizationOkButton = _customizationContainer.Q<Button>("ok-btn");
         _customizationBackButton = _customizationContainer.Q<Button>("back-btn");
@@ -115,17 +112,10 @@ public class MainMenuUI : MonoBehaviour
             var skinElement = new RadioButton() { };
             skinElement.AddToClassList("skins__item");
             skinElement.style.backgroundImage = skinsList.Skins[i].image;
-            // var btn = new Button() { text = $"{LocalizationSettings.StringDatabase.GetLocalizedString("game-level")} {i}" };
-            // btn.AddToClassList("menu__btn");
-            // btn.AddToClassList("main__btn");
-            // skinElement.RegisterCallback<ClickEvent>(OnSkinRadiobuttonChange);
             _customizationSkinsList.Add(skinElement);
         }
 
         _customizationSkinsList.value = 0;
-        // _customizationSkinsList[0].ch
-
-        // styleMenu.gameObject.SetActive(false);
     }
 
     private void OnPlayBtnClick(ClickEvent evt)
@@ -145,7 +135,6 @@ public class MainMenuUI : MonoBehaviour
         if (_settingsWindow.ClassListContains("popup-show"))
         {
             StartCoroutine(UIDelay());
-
         }
         else
         {
@@ -261,6 +250,7 @@ public class MainMenuUI : MonoBehaviour
 
         _customizationOkButton.UnregisterCallback<ClickEvent>(OnCustomizationOkBtnClick);
         _customizationBackButton.UnregisterCallback<ClickEvent>(OnCustomizationBackBtnClick);
+        _customizationSkinsList.UnregisterValueChangedCallback(OnSkinRadiobuttonChange);
 
         _difficultyEasyButton.UnregisterCallback<ClickEvent>(OnDifficultyBtnClick);
         _difficultyNormalButton.UnregisterCallback<ClickEvent>(OnDifficultyBtnClick);

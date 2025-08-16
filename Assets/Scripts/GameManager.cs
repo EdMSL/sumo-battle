@@ -26,6 +26,7 @@ public class GameManager : MonoBehaviour
     public float waitingTime = 1f;
 
     public DifficultyLevel difficultyLevel { get; private set; } = DifficultyLevel.Normal;
+    public Material playerSkin;
 
     public int score { get; private set; }
     public State state { get; private set; }
@@ -113,6 +114,11 @@ public class GameManager : MonoBehaviour
         {
             difficultyLevel = DifficultyLevel.Hard;
         }
+    }
+
+    public void SetPlayerSkin(Material skin)
+    {
+        playerSkin = skin;
     }
 
     public void GameOver()
