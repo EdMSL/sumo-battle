@@ -7,10 +7,13 @@ using UnityEngine.Localization.Settings;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using JSAM;
+using System.Linq;
 
 public class MainMenuUI : MonoBehaviour
 {
     [SerializeField] private Transform styleMenu;
+    [SerializeField] private ListOfSkins skinsList;
+    [SerializeField] private MeshRenderer playerMR;
 
     private VisualElement _menuContainer;
     private VisualElement _settingsWindow;
@@ -20,7 +23,7 @@ public class MainMenuUI : MonoBehaviour
     private VisualElement _levelContainer;
     private VisualElement _customizationContainer;
     private VisualElement _customizationRadioButtonGroup;
-    private VisualElement _customizationSkinsList;
+    private RadioButtonGroup _customizationSkinsList;
     private VisualElement _levelButtonsBlock;
     private Image _gameTitle;
     private Button _acceptButton;
@@ -56,8 +59,8 @@ public class MainMenuUI : MonoBehaviour
 
         _playButton = _btnBlock.Q<Button>("play-btn");
         _settingsButton = _btnBlock.Q<Button>("settings-btn");
-        _customizationRadioButtonGroup = _customizationContainer.Q<VisualElement>("RadioButtonGroup");
-        _customizationSkinsList = _customizationContainer.Q<VisualElement>("skins-list");
+        // _customizationRadioButtonGroup = _customizationContainer.Q<VisualElement>("skins-list");
+        _customizationSkinsList = _customizationContainer.Q<RadioButtonGroup>("skins-list");
         _customizationOkButton = _customizationContainer.Q<Button>("ok-btn");
         _customizationBackButton = _customizationContainer.Q<Button>("back-btn");
         _levelOkButton = _levelContainer.Q<Button>("ok-btn");
@@ -74,6 +77,7 @@ public class MainMenuUI : MonoBehaviour
         _acceptButton.RegisterCallback<ClickEvent>(OnSettingsBtnClick);
         _cancelButton.RegisterCallback<ClickEvent>(OnSettingsBtnClick);
 
+        _customizationSkinsList.RegisterValueChangedCallback(OnSkinRadiobuttonChange);
         _customizationBackButton.RegisterCallback<ClickEvent>(OnCustomizationBackBtnClick);
         _customizationOkButton.RegisterCallback<ClickEvent>(OnCustomizationOkBtnClick);
 
@@ -104,6 +108,23 @@ public class MainMenuUI : MonoBehaviour
             _levelButtonsBlock.Add(btn);
         }
 
+        _customizationSkinsList.Clear();
+
+        for (int i = 0; i < skinsList.Skins.Count; i++)
+        {
+            var skinElement = new RadioButton() { };
+            skinElement.AddToClassList("skins__item");
+            skinElement.style.backgroundImage = skinsList.Skins[i].image;
+            // var btn = new Button() { text = $"{LocalizationSettings.StringDatabase.GetLocalizedString("game-level")} {i}" };
+            // btn.AddToClassList("menu__btn");
+            // btn.AddToClassList("main__btn");
+            // skinElement.RegisterCallback<ClickEvent>(OnSkinRadiobuttonChange);
+            _customizationSkinsList.Add(skinElement);
+        }
+
+        _customizationSkinsList.value = 0;
+        // _customizationSkinsList[0].ch
+
         // styleMenu.gameObject.SetActive(false);
     }
 
@@ -132,6 +153,15 @@ public class MainMenuUI : MonoBehaviour
             _settingsWindowContent.RemoveFromClassList("animation__hide");
             _settingsWindow.AddToClassList("popup-show");
             _settingsWindowContent.AddToClassList("animation__show");
+        }
+    }
+
+    private void OnSkinRadiobuttonChange(ChangeEvent<int> evt)
+    {
+        if (evt.newValue >= 0)
+        {
+            GameManager.Instance.SetPlayerSkin(skinsList.Skins[evt.newValue].material);
+            playerMR.material = skinsList.Skins[evt.newValue].material;
         }
     }
 
@@ -172,8 +202,6 @@ public class MainMenuUI : MonoBehaviour
 
         var button = (Button)evt.target;
         selectedLevelIndex = Int32.Parse(button.text.Split(' ')[1]);
-
-        styleMenu.gameObject.SetActive(true);
     }
 
     private void OnLevelBackBtnClick(ClickEvent evt)
@@ -182,6 +210,8 @@ public class MainMenuUI : MonoBehaviour
 
         _levelContainer.style.display = DisplayStyle.None;
         _customizationContainer.style.display = DisplayStyle.Flex;
+
+        styleMenu.gameObject.SetActive(true);
     }
 
     private void OnDifficultyBtnClick(ClickEvent evt)

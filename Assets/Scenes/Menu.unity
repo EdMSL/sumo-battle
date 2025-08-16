@@ -977,6 +977,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   styleMenu: {fileID: 1498277557}
+  skinsList: {fileID: 11400000, guid: dfc7725e7309cb54799bbfbe40381f58, type: 2}
+  playerMR: {fileID: 5674150342907936029}
 --- !u!114 &2023321838
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1143,6 +1145,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7346698235303918089, guid: f9e693c02dd2e244aa0084f57f5436fc,
+        type: 3}
+      propertyPath: 'm_Materials.Array.data[0]'
+      value: 
+      objectReference: {fileID: 2100000, guid: 40ad934209bc47d40a52bc428c2e1925, type: 2}
     - target: {fileID: 7716696988991531599, guid: f9e693c02dd2e244aa0084f57f5436fc,
         type: 3}
       propertyPath: m_Name
@@ -1156,6 +1163,12 @@ PrefabInstance:
 --- !u!4 &5674150342907936028 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3890210268003397622, guid: f9e693c02dd2e244aa0084f57f5436fc,
+    type: 3}
+  m_PrefabInstance: {fileID: 5674150342907936027}
+  m_PrefabAsset: {fileID: 0}
+--- !u!23 &5674150342907936029 stripped
+MeshRenderer:
+  m_CorrespondingSourceObject: {fileID: 7346698235303918089, guid: f9e693c02dd2e244aa0084f57f5436fc,
     type: 3}
   m_PrefabInstance: {fileID: 5674150342907936027}
   m_PrefabAsset: {fileID: 0}

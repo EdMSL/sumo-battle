@@ -19,6 +19,7 @@ public class PlayerController : MonoBehaviour
     public List<Transform> restorePoints;
 
     private Rigidbody playerRb;
+    private MeshRenderer playerMr;
     private float speed = 10f;
     private bool isMovementBlocked;
     private float movementBlockedTimer;
@@ -36,6 +37,7 @@ public class PlayerController : MonoBehaviour
     void Start()
     {
         playerRb = gameObject.GetComponent<Rigidbody>();
+        playerMr = gameObject.GetComponent<MeshRenderer>();
         playerRb.linearDamping = linearDamping;
 
         switch (GameManager.Instance.difficultyLevel)
@@ -57,6 +59,7 @@ public class PlayerController : MonoBehaviour
         }
 
         gameUI.livesCounter.text = lives.ToString();
+        SetSkin(GameManager.Instance.playerSkin);
     }
 
     void Update()
@@ -206,5 +209,10 @@ public class PlayerController : MonoBehaviour
         Debug.Log(newPosition);
 
         transform.position = newPosition;
+    }
+
+    public void SetSkin(Material skin)
+    {
+        playerMr.material = skin;
     }
 }

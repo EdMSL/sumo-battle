@@ -24,14 +24,12 @@
                         </Bindings>
                     </ui:Label>
                     <ui:ScrollView name="skins-block" vertical-scroller-visibility="Hidden" horizontal-scroller-visibility="Hidden" mode="Horizontal" touch-scroll-type="Clamped">
-                        <ui:RadioButtonGroup label="Radio Button Group" choices="skin 1,skin 2,skin 3,skin 4,skin 5" value="0" focusable="true" class="skins__list" />
-                        <ui:VisualElement name="skins-list" class="skins__list" style="display: none;">
-                            <ui:VisualElement name="skin-1" class="skins__list_item" />
-                            <ui:VisualElement name="skin-2" class="skins__list_item" />
-                            <ui:VisualElement name="skin-3" class="skins__list_item" />
-                            <ui:VisualElement name="skin-3" class="skins__list_item" />
-                            <ui:VisualElement name="skin-3" class="skins__list_item" />
-                        </ui:VisualElement>
+                        <ui:RadioButtonGroup label="Radio Button Group" value="0" focusable="true" name="skins-list" class="skins__list">
+                            <ui:RadioButton label="Radio Button" value="false" name="RadioButton" class="skins__item" />
+                            <ui:RadioButton label="Radio Button" class="skins__item" />
+                            <ui:RadioButton label="Radio Button" class="skins__item" />
+                        </ui:RadioButtonGroup>
+                        <ui:VisualElement name="skins-list" class="skins__list" style="display: flex;" />
                     </ui:ScrollView>
                 </ui:VisualElement>
                 <ui:VisualElement name="btns-block" class="control__btns__block">
