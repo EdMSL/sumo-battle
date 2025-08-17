@@ -50,8 +50,7 @@
         "Obj/": true,
         "ProjectSettings/": true,
         "temp/": true,
-        "Temp/": true,
-        "**/*.csproj": true
+        "Temp/": true
     },
     "dotnet.defaultSolution": "Prototype 4 - Sumo Battle.sln",
     "editor.tabSize": 4,
