@@ -16,20 +16,19 @@
                     </Bindings>
                 </ui:Button>
             </ui:VisualElement>
-            <ui:VisualElement name="customization-container" class="menu__block" style="display: flex; justify-content: space-between; flex-grow: 1;">
-                <ui:VisualElement name="cutomization-top-block" style="flex-grow: 1; align-self: stretch;">
+            <ui:VisualElement name="customization-container" class="menu-screen__container" style="display: none;">
+                <ui:VisualElement name="cutomization-top-block" class="menu__top-block">
                     <ui:Label text="Label" name="customization-title" class="menu__title">
                         <Bindings>
                             <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(3999451842441216)" />
                         </Bindings>
                     </ui:Label>
                     <ui:ScrollView name="skins-block" vertical-scroller-visibility="Hidden" horizontal-scroller-visibility="Hidden" mode="Horizontal" touch-scroll-type="Clamped">
-                        <ui:RadioButtonGroup label="Radio Button Group" value="0" focusable="true" name="skins-list" class="skins__list">
-                            <ui:RadioButton label="Radio Button" value="false" name="RadioButton" class="skins__item" style="background-image: url(&quot;project://database/Assets/Materials/Textures/Enemy.png?fileID=2800000&amp;guid=bbc54c0e722a346408cd09eef6dc0cd6&amp;type=3#Enemy&quot;);" />
-                            <ui:RadioButton label="Radio Button" class="skins__item" style="background-image: url(&quot;project://database/Assets/Course%20Library/Textures/PolygonPrototype_Texture_Grid_08.png?fileID=2800000&amp;guid=1d12fa396a3563b41b9ae11b0fb0b986&amp;type=3#PolygonPrototype_Texture_Grid_08&quot;);" />
-                            <ui:RadioButton label="Radio Button" class="skins__item" style="background-image: url(&quot;project://database/Assets/Materials/Skins/Textures/8%20ball.jpg?fileID=2800000&amp;guid=415a87c903390c84592b4ad26ec2a48c&amp;type=3#8 ball&quot;);" />
+                        <ui:RadioButtonGroup label="Radio Button Group" value="0" focusable="true" name="skins-list" class="list">
+                            <ui:RadioButton label="Radio Button" value="false" class="skins__item list__item" style="background-image: url(&quot;project://database/Assets/Materials/Textures/Enemy.png?fileID=2800000&amp;guid=bbc54c0e722a346408cd09eef6dc0cd6&amp;type=3#Enemy&quot;);" />
+                            <ui:RadioButton label="Radio Button" class="skins__item list__item" style="background-image: url(&quot;project://database/Assets/Course%20Library/Textures/PolygonPrototype_Texture_Grid_08.png?fileID=2800000&amp;guid=1d12fa396a3563b41b9ae11b0fb0b986&amp;type=3#PolygonPrototype_Texture_Grid_08&quot;);" />
+                            <ui:RadioButton label="Radio Button" class="skins__item list__item" style="background-image: url(&quot;project://database/Assets/Materials/Skins/Textures/8%20ball.jpg?fileID=2800000&amp;guid=415a87c903390c84592b4ad26ec2a48c&amp;type=3#8 ball&quot;);" />
                         </ui:RadioButtonGroup>
-                        <ui:VisualElement name="skins-list" class="skins__list" style="display: flex;" />
                     </ui:ScrollView>
                 </ui:VisualElement>
                 <ui:VisualElement name="btns-block" class="control__btns__block">
@@ -38,26 +37,32 @@
                             <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(34371501490176)" />
                         </Bindings>
                     </ui:Button>
-                    <ui:Button text="OK" name="ok-btn" class="main__btn" />
+                    <ui:Button text="OK" name="ok-btn" class="main__btn last-child" />
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="level-container" class="menu__block" style="display: none;">
-                <ui:Label text="Label" name="level-title" class="menu__title">
-                    <Bindings>
-                        <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(2188047724773376)" />
-                    </Bindings>
-                </ui:Label>
-                <ui:VisualElement name="level-btns-block" style="flex-grow: 1;" />
+            <ui:VisualElement name="level-container" class="menu-screen__container" style="display: flex;">
+                <ui:VisualElement name="level-top-block" class="menu__top-block">
+                    <ui:Label text="Label" name="level-title" class="menu__title">
+                        <Bindings>
+                            <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(2188047724773376)" />
+                        </Bindings>
+                    </ui:Label>
+                    <ui:RadioButtonGroup label="Radio Button Group" name="levels-list" value="0" class="list">
+                        <ui:RadioButton label="Radio Button" value="false" class="list__item levels__item" />
+                        <ui:RadioButton label="Radio Button" class="list__item levels__item" style="background-image: url(&quot;project://database/Assets/Materials/Textures/level%203.jpg?fileID=2800000&amp;guid=6f86369bf17066747b9bab760effb736&amp;type=3#level 3&quot;);" />
+                        <ui:RadioButton label="Radio Button" class="list__item levels__item" style="background-image: url(&quot;project://database/Assets/Materials/Textures/level%201.jpg?fileID=2800000&amp;guid=13b79adf7923c2e46b66dad69b7d2951&amp;type=3#level 1&quot;);" />
+                    </ui:RadioButtonGroup>
+                </ui:VisualElement>
                 <ui:VisualElement name="btns-block" class="control__btns__block">
                     <ui:Button text="Button" name="back-btn" class="main__btn">
                         <Bindings>
                             <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(34371501490176)" />
                         </Bindings>
                     </ui:Button>
-                    <ui:Button text="OK" name="ok-btn" class="main__btn" />
+                    <ui:Button text="OK" name="ok-btn" class="main__btn last-child" />
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="difficult-container" class="menu__block" style="display: none;">
+            <ui:VisualElement name="difficult-container" class="menu-screen__container" style="display: none;">
                 <ui:Label text="Label" name="difficult-title" class="menu__title">
                     <Bindings>
                         <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(1485044524609536)" />

@@ -1,10 +1,8 @@
 using System;
 using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
-using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
 using JSAM;
 
@@ -12,6 +10,7 @@ public class MainMenuUI : MonoBehaviour
 {
     [SerializeField] private Transform styleMenu;
     [SerializeField] private ListOfSkins skinsList;
+    [SerializeField] private ListOfLevels levelsList;
     [SerializeField] private MeshRenderer playerMR;
 
     private VisualElement _menuContainer;
@@ -22,7 +21,7 @@ public class MainMenuUI : MonoBehaviour
     private VisualElement _levelContainer;
     private VisualElement _customizationContainer;
     private RadioButtonGroup _customizationSkinsList;
-    private VisualElement _levelButtonsBlock;
+    private RadioButtonGroup _levelsList;
     private Image _gameTitle;
     private Button _acceptButton;
     private Button _cancelButton;
@@ -60,6 +59,7 @@ public class MainMenuUI : MonoBehaviour
         _customizationSkinsList = _customizationContainer.Q<RadioButtonGroup>("skins-list");
         _customizationOkButton = _customizationContainer.Q<Button>("ok-btn");
         _customizationBackButton = _customizationContainer.Q<Button>("back-btn");
+        _levelsList = _levelContainer.Q<RadioButtonGroup>("levels-list");
         _levelOkButton = _levelContainer.Q<Button>("ok-btn");
         _levelBackButton = _levelContainer.Q<Button>("back-btn");
         _difficultyBackButton = _difficultyContainer.Q<Button>("back-btn");
@@ -81,8 +81,7 @@ public class MainMenuUI : MonoBehaviour
         var localizedTexture = new LocalizedTexture { TableReference = "Game Assets", TableEntryReference = "title-img" };
         _gameTitle.SetBinding("image", localizedTexture);
 
-        _levelButtonsBlock = _levelContainer.Q("level-btns-block");
-
+        _levelsList.RegisterValueChangedCallback(OnLevelRadiobuttonChange);
         _levelOkButton.RegisterCallback<ClickEvent>(OnLevelOkBtnClick);
         _levelBackButton.RegisterCallback<ClickEvent>(OnLevelBackBtnClick);
 
@@ -96,21 +95,25 @@ public class MainMenuUI : MonoBehaviour
     {
         yield return LocalizationSettings.InitializationOperation;
 
-        for (int i = 1; i < SceneManager.sceneCountInBuildSettings; i++)
+        _levelsList.Clear();
+
+        for (int i = 0; i < levelsList.Levels.Count; i++)
         {
-            var btn = new Button() { text = $"{LocalizationSettings.StringDatabase.GetLocalizedString("game-level")} {i}" };
-            btn.AddToClassList("menu__btn");
-            btn.AddToClassList("main__btn");
-            btn.RegisterCallback<ClickEvent>(OnLevelBtnClick);
-            _levelButtonsBlock.Add(btn);
+            var levelElement = new RadioButton() { };
+            levelElement.AddToClassList("list__item");
+            levelElement.AddToClassList("levels__item");
+            levelElement.style.backgroundImage = levelsList.Levels[i].image;
+            _levelsList.Add(levelElement);
         }
+
+        _levelsList.value = 0;
 
         _customizationSkinsList.Clear();
 
         for (int i = 0; i < skinsList.Skins.Count; i++)
         {
             var skinElement = new RadioButton() { };
-            skinElement.AddToClassList("skins__item");
+            skinElement.AddToClassList("list__item");
             skinElement.style.backgroundImage = skinsList.Skins[i].image;
             _customizationSkinsList.Add(skinElement);
         }
@@ -147,6 +150,8 @@ public class MainMenuUI : MonoBehaviour
 
     private void OnSkinRadiobuttonChange(ChangeEvent<int> evt)
     {
+        AudioManager.PlaySound(GameAudioLibrarySounds.click);
+
         if (evt.newValue >= 0)
         {
             GameManager.Instance.SetPlayerSkin(skinsList.Skins[evt.newValue].material);
@@ -177,20 +182,22 @@ public class MainMenuUI : MonoBehaviour
 
     }
 
+    private void OnLevelRadiobuttonChange(ChangeEvent<int> evt)
+    {
+        AudioManager.PlaySound(GameAudioLibrarySounds.click);
+
+        if (evt.newValue >= 0)
+        {
+            selectedLevelIndex = evt.newValue + 1;
+        }
+    }
+
     private void OnLevelOkBtnClick(ClickEvent evt)
     {
         AudioManager.PlaySound(GameAudioLibrarySounds.click);
 
         _levelContainer.style.display = DisplayStyle.None;
         _difficultyContainer.style.display = DisplayStyle.Flex;
-    }
-
-    private void OnLevelBtnClick(ClickEvent evt)
-    {
-        AudioManager.PlaySound(GameAudioLibrarySounds.click);
-
-        var button = (Button)evt.target;
-        selectedLevelIndex = Int32.Parse(button.text.Split(' ')[1]);
     }
 
     private void OnLevelBackBtnClick(ClickEvent evt)
@@ -257,7 +264,7 @@ public class MainMenuUI : MonoBehaviour
         _difficultyHardButton.UnregisterCallback<ClickEvent>(OnDifficultyBtnClick);
         _difficultyBackButton.UnregisterCallback<ClickEvent>(OnDifficultyBackBtnClick);
 
-        _levelButtonsBlock.Query<Button>(className: "menu__btn").ForEach(elem => elem.UnregisterCallback<ClickEvent>(OnLevelBtnClick));
+        _levelsList.UnregisterValueChangedCallback(OnLevelRadiobuttonChange);
         _levelOkButton.UnregisterCallback<ClickEvent>(OnLevelOkBtnClick);
         _levelBackButton.UnregisterCallback<ClickEvent>(OnLevelBackBtnClick);
     }

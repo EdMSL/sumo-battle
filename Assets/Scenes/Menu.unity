@@ -832,7 +832,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1498277557
 Transform:
   m_ObjectHideFlags: 0
@@ -978,6 +978,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   styleMenu: {fileID: 1498277557}
   skinsList: {fileID: 11400000, guid: dfc7725e7309cb54799bbfbe40381f58, type: 2}
+  levelsList: {fileID: 11400000, guid: f7679a38744053e42af7fa2c3dd14e98, type: 2}
   playerMR: {fileID: 5674150342907936029}
 --- !u!114 &2023321838
 MonoBehaviour:
