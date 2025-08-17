@@ -90,7 +90,7 @@
 .menu__title {
     -unity-font-style: bold;
     -unity-text-align: upper-center;
-    font-size: var(--text-l);
+    font-size: var(--text-xl);
     padding-top: 0;
     padding-right: 0;
     padding-bottom: 0;
@@ -99,6 +99,14 @@
     margin-right: 0;
     margin-bottom: 20px;
     margin-left: 0;
+}
+
+.buttons__block-vertical {
+    flex-grow: 1;
+}
+
+.buttons__block-vertical > .first-child {
+    margin-top: 0;
 }
 
 .control__btns__block {
@@ -267,4 +275,13 @@
 .levels__item {
     background-image: url("project://database/Assets/Materials/Textures/level%202.jpg?fileID=2800000&guid=811f150c3b44b7c4c89480e7cb50f986&type=3#level 2");
     background-size: contain;
+}
+
+.difficulty__btn {
+    padding: var(--padding-l);
+    margin-top: var(--indent-m);
+}
+
+.difficulty__btn .last-child {
+    margin-top: auto;
 }

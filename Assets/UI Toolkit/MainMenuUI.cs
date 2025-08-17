@@ -5,6 +5,7 @@ using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 using UnityEngine.UIElements;
 using JSAM;
+using AlpaSunFade;
 
 public class MainMenuUI : MonoBehaviour
 {
@@ -12,6 +13,8 @@ public class MainMenuUI : MonoBehaviour
     [SerializeField] private ListOfSkins skinsList;
     [SerializeField] private ListOfLevels levelsList;
     [SerializeField] private MeshRenderer playerMR;
+    [SerializeField] TransitionPanel transitionPanelScript;
+    [SerializeField] float fadeDuration = 3f;
 
     private VisualElement _menuContainer;
     private VisualElement _settingsWindow;
@@ -37,6 +40,7 @@ public class MainMenuUI : MonoBehaviour
     private Button _difficultyHardButton;
 
     private UIDocument uiDocument;
+    private UIDocument transitionPanel;
     private int selectedLevelIndex;
 
     private void OnEnable()
@@ -81,6 +85,7 @@ public class MainMenuUI : MonoBehaviour
         var localizedTexture = new LocalizedTexture { TableReference = "Game Assets", TableEntryReference = "title-img" };
         _gameTitle.SetBinding("image", localizedTexture);
 
+
         _levelsList.RegisterValueChangedCallback(OnLevelRadiobuttonChange);
         _levelOkButton.RegisterCallback<ClickEvent>(OnLevelOkBtnClick);
         _levelBackButton.RegisterCallback<ClickEvent>(OnLevelBackBtnClick);
@@ -94,6 +99,9 @@ public class MainMenuUI : MonoBehaviour
     IEnumerator Start()
     {
         yield return LocalizationSettings.InitializationOperation;
+
+        transitionPanel = transitionPanelScript.GetComponent<UIDocument>();
+        transitionPanel.sortingOrder = 0;
 
         _levelsList.Clear();
 
@@ -214,10 +222,13 @@ public class MainMenuUI : MonoBehaviour
     {
         AudioManager.PlaySound(GameAudioLibrarySounds.click);
 
-        var button = (Button)evt.target;
-        var btnName = button.name.Split('-')[0];
-        GameManager.Instance.SetDifficultyLevel(btnName);
-        GameManager.Instance.StartGame(selectedLevelIndex);
+        // var button = (Button)evt.target;
+        // var btnName = button.name.Split('-')[0];
+        // GameManager.Instance.SetDifficultyLevel(btnName);
+        // GameManager.Instance.StartGame(selectedLevelIndex);
+        transitionPanel.sortingOrder = 1;
+
+        transitionPanelScript.StartTransition(true, 0, fadeDuration);
     }
 
     private void OnDifficultyBackBtnClick(ClickEvent evt)

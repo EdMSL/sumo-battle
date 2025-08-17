@@ -1,0 +1,18 @@
+fileFormatVersion: 2
+guid: b61aef0b7561df248baf2ddef143a2ef
+MonoImporter:
+  externalObjects: {}
+  serializedVersion: 2
+  defaultReferences: []
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
+AssetOrigin:
+  serializedVersion: 1
+  productId: 216148
+  packageName: Transition Fade With UI Toolkit
+  packageVersion: 1.2.0
+  assetPath: Assets/AlpaSun Fade/Scripts/StaticCoroutines.cs
+  uploadId: 599811

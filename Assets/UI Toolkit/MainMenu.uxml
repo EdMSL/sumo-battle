@@ -40,7 +40,7 @@
                     <ui:Button text="OK" name="ok-btn" class="main__btn last-child" />
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="level-container" class="menu-screen__container" style="display: flex;">
+            <ui:VisualElement name="level-container" class="menu-screen__container" style="display: none;">
                 <ui:VisualElement name="level-top-block" class="menu__top-block">
                     <ui:Label text="Label" name="level-title" class="menu__title">
                         <Bindings>
@@ -62,32 +62,34 @@
                     <ui:Button text="OK" name="ok-btn" class="main__btn last-child" />
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="difficult-container" class="menu-screen__container" style="display: none;">
+            <ui:VisualElement name="difficult-container" class="menu-screen__container" style="display: flex;">
                 <ui:Label text="Label" name="difficult-title" class="menu__title">
                     <Bindings>
                         <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(1485044524609536)" />
                     </Bindings>
                 </ui:Label>
-                <ui:Button text="Button" name="easy-btn" class="main__btn menu__btn">
-                    <Bindings>
-                        <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(25080031805440)" />
-                    </Bindings>
-                </ui:Button>
-                <ui:Button text="Button" name="normal-btn" class="main__btn menu__btn">
-                    <Bindings>
-                        <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(25157462851584)" />
-                    </Bindings>
-                </ui:Button>
-                <ui:Button text="Button" name="hard-btn" class="main__btn menu__btn">
-                    <Bindings>
-                        <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(25173317320704)" />
-                    </Bindings>
-                </ui:Button>
-                <ui:Button text="Button" name="back-btn" class="main__btn menu__btn">
-                    <Bindings>
-                        <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(34371501490176)" />
-                    </Bindings>
-                </ui:Button>
+                <ui:VisualElement name="butons-block" class="buttons__block-vertical">
+                    <ui:Button text="Button" name="easy-btn" class="main__btn difficulty__btn first-child">
+                        <Bindings>
+                            <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(25080031805440)" />
+                        </Bindings>
+                    </ui:Button>
+                    <ui:Button text="Button" name="normal-btn" class="main__btn difficulty__btn">
+                        <Bindings>
+                            <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(25157462851584)" />
+                        </Bindings>
+                    </ui:Button>
+                    <ui:Button text="Button" name="hard-btn" class="main__btn difficulty__btn">
+                        <Bindings>
+                            <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(25173317320704)" />
+                        </Bindings>
+                    </ui:Button>
+                    <ui:Button text="Button" name="back-btn" class="main__btn last-child difficulty__btn" style="margin-top: auto;">
+                        <Bindings>
+                            <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(34371501490176)" />
+                        </Bindings>
+                    </ui:Button>
+                </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="settings-window" class="popup popup-hidden">
