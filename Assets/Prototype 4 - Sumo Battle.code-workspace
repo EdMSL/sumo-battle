@@ -2,9 +2,13 @@
     "folders": [
         {
             "path": ".."
+        },
+        {
+            "path": "G:/Unity Projects/Chaos Kitchen"
         }
     ],
     "settings": {
+        "dotnet.defaultSolution": "Prototype 4 - Sumo Battle.sln",
         "files.exclude": {
             "**/*.csproj": true
         }
