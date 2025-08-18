@@ -6,6 +6,7 @@ using UnityEngine.Localization.Settings;
 using UnityEngine.UIElements;
 using JSAM;
 using AlpaSunFade;
+using System.Collections.Generic;
 
 public class MainMenuUI : MonoBehaviour
 {
@@ -73,6 +74,8 @@ public class MainMenuUI : MonoBehaviour
 
         _gameTitle = uiDocument.rootVisualElement.Q("game-title") as Image;
 
+        transitionPanel = transitionPanelScript.GetComponent<UIDocument>();
+
         _playButton.RegisterCallback<ClickEvent>(OnPlayBtnClick);
         _settingsButton.RegisterCallback<ClickEvent>(OnSettingsBtnClick);
         _acceptButton.RegisterCallback<ClickEvent>(OnSettingsBtnClick);
@@ -84,7 +87,6 @@ public class MainMenuUI : MonoBehaviour
 
         var localizedTexture = new LocalizedTexture { TableReference = "Game Assets", TableEntryReference = "title-img" };
         _gameTitle.SetBinding("image", localizedTexture);
-
 
         _levelsList.RegisterValueChangedCallback(OnLevelRadiobuttonChange);
         _levelOkButton.RegisterCallback<ClickEvent>(OnLevelOkBtnClick);
@@ -98,9 +100,10 @@ public class MainMenuUI : MonoBehaviour
 
     IEnumerator Start()
     {
+        SwitchUIElementsOnStart();
+
         yield return LocalizationSettings.InitializationOperation;
 
-        transitionPanel = transitionPanelScript.GetComponent<UIDocument>();
         transitionPanel.sortingOrder = 0;
 
         _levelsList.Clear();
@@ -127,6 +130,17 @@ public class MainMenuUI : MonoBehaviour
         }
 
         _customizationSkinsList.value = 0;
+    }
+
+    private IEnumerator StartGame(string btnName)
+    {
+        transitionPanel.sortingOrder = 1;
+        transitionPanelScript.StartTransition(true, 0, fadeDuration);
+
+        yield return new WaitForSeconds(fadeDuration);
+
+        GameManager.Instance.SetDifficultyLevel(btnName);
+        GameManager.Instance.StartGame(selectedLevelIndex);
     }
 
     private void OnPlayBtnClick(ClickEvent evt)
@@ -222,13 +236,10 @@ public class MainMenuUI : MonoBehaviour
     {
         AudioManager.PlaySound(GameAudioLibrarySounds.click);
 
-        // var button = (Button)evt.target;
-        // var btnName = button.name.Split('-')[0];
-        // GameManager.Instance.SetDifficultyLevel(btnName);
-        // GameManager.Instance.StartGame(selectedLevelIndex);
-        transitionPanel.sortingOrder = 1;
+        var button = (Button)evt.target;
+        var btnName = button.name.Split('-')[0];
 
-        transitionPanelScript.StartTransition(true, 0, fadeDuration);
+        StartCoroutine(StartGame(btnName));
     }
 
     private void OnDifficultyBackBtnClick(ClickEvent evt)
@@ -256,6 +267,19 @@ public class MainMenuUI : MonoBehaviour
 
         _settingsWindow.RemoveFromClassList("popup-show");
         _settingsWindow.AddToClassList("popup-hidden");
+    }
+
+    private void SwitchUIElementsOnStart()
+    {
+        _btnBlock.style.display = DisplayStyle.Flex;
+        _gameTitle.style.display = DisplayStyle.Flex;
+        _customizationContainer.style.display = DisplayStyle.None;
+        _levelContainer.style.display = DisplayStyle.None;
+        _difficultyContainer.style.display = DisplayStyle.None;
+
+        List<VisualElement> popups = uiDocument.rootVisualElement.Query(className: "popup").ToList();
+        popups.ForEach(elem => elem.style.display = DisplayStyle.None);
+        styleMenu.gameObject.SetActive(false);
     }
 
     private void OnDisable()
