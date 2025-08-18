@@ -123,8 +123,8 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        Time.timeScale = 0;
-        gameUI.menuContainer.style.display = DisplayStyle.Flex;
+        // Time.timeScale = 0;
+        // gameUI.menuContainer.style.display = DisplayStyle.Flex;
     }
 
     public void RepeatGame()

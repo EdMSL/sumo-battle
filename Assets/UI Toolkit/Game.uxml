@@ -24,37 +24,60 @@
         <ui:VisualElement name="countdown-container" class="popup">
             <ui:Label text="3" name="countdown-text" style="font-size: 40px; -unity-font-style: bold; color: rgb(255, 255, 255); display: flex;" />
         </ui:VisualElement>
-        <ui:VisualElement name="menu-container" class="popup popup-hidden" style="flex-grow: 1;">
-            <ui:VisualElement name="end-game-menu" class="end-game__menu" style="justify-content: flex-start; align-items: center; display: flex;">
-                <ui:Label text="Label" name="end-game-title" class="end-game__title">
-                    <Bindings>
-                        <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(1191566724919296)" />
-                    </Bindings>
-                </ui:Label>
-                <ui:Label text="Label" name="end-game-text">
-                    <Bindings>
-                        <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(1191739735764992)" />
-                    </Bindings>
-                </ui:Label>
-                <ui:VisualElement name="end-game-btns" class="end-game__btns" style="justify-content: space-around;">
-                    <ui:Button text="Button" name="btn-no" class="end-game__btn">
-                        <Bindings>
-                            <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(789118621777920)" />
-                        </Bindings>
-                    </ui:Button>
-                    <ui:Button text="Button" name="btn-yes" class="end-game__btn">
-                        <Bindings>
-                            <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(789094227705856)" />
-                        </Bindings>
-                    </ui:Button>
+        <ui:VisualElement name="game-menu-window" class="popup popup-hidden">
+            <ui:VisualElement name="popup-overlay" class="popup__overlay" />
+            <ui:VisualElement name="popup-content" class="popup__content animation__hide" style="width: 50%; height: 80%;">
+                <ui:VisualElement name="main-menu-container" class="game-menu__container">
+                    <ui:Image name="game-title" enabled="true" class="game__title" style="--unity-image: url(&quot;project://database/Assets/Materials/title_EN.png?fileID=2800000&amp;guid=4b54da4efdd5777419103f62ce0efdcb&amp;type=3#title_EN&quot;); display: flex;" />
+                    <ui:VisualElement name="menu-btns-block" class="menu-btns__block buttons__block-vertical" style="flex-grow: 1;">
+                        <ui:Button text="Button" name="continue-btn" class="main__btn game-menu-btn">
+                            <Bindings>
+                                <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(12100804385009664)" />
+                            </Bindings>
+                        </ui:Button>
+                        <ui:Button text="Button" name="settings-btn" class="main__btn game-menu-btn">
+                            <Bindings>
+                                <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(131489529856)" />
+                            </Bindings>
+                        </ui:Button>
+                        <ui:Button text="Button" name="gotomenu-btn" class="main__btn game-menu-btn last-child">
+                            <Bindings>
+                                <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(12096281931247616)" />
+                            </Bindings>
+                        </ui:Button>
+                    </ui:VisualElement>
                 </ui:VisualElement>
+                <ui:Instance template="Settings" name="settings-container" style="flex-grow: 1; display: none;" />
             </ui:VisualElement>
         </ui:VisualElement>
-    </ui:VisualElement>
-    <ui:VisualElement name="settings-window" class="popup popup-hidden">
-        <ui:VisualElement name="popup-overlay" class="popup__overlay" />
-        <ui:VisualElement name="popup-content" class="popup__content" style="width: 50%; height: 70%;">
-            <ui:Instance template="Settings" name="settings" style="flex-grow: 1;" />
+        <ui:VisualElement name="end-game-window" class="popup popup-hidden">
+            <ui:VisualElement name="popup-overlay" class="popup__overlay" />
+            <ui:VisualElement name="popup-content" class="popup__content" style="width: 50%; height: 70%;">
+                <ui:VisualElement name="end-game-menu" style="justify-content: flex-start; align-items: center; display: flex;">
+                    <ui:Label text="Label" name="end-game-title" class="end-game__title">
+                        <Bindings>
+                            <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(1191566724919296)" />
+                        </Bindings>
+                    </ui:Label>
+                    <ui:Label text="Label" name="end-game-text">
+                        <Bindings>
+                            <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(1191739735764992)" />
+                        </Bindings>
+                    </ui:Label>
+                    <ui:VisualElement name="end-game-btns" class="end-game__btns" style="justify-content: space-around;">
+                        <ui:Button text="Button" name="btn-no" class="end-game__btn">
+                            <Bindings>
+                                <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(789118621777920)" />
+                            </Bindings>
+                        </ui:Button>
+                        <ui:Button text="Button" name="btn-yes" class="end-game__btn">
+                            <Bindings>
+                                <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(789094227705856)" />
+                            </Bindings>
+                        </ui:Button>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
         </ui:VisualElement>
     </ui:VisualElement>
 </ui:UXML>

@@ -6,13 +6,18 @@ using JSAM;
 
 public class GameUI : MonoBehaviour
 {
-    private VisualElement _settingsWindow;
+    private VisualElement _gameMenuWindow;
+    private VisualElement _gameMenuWindowContent;
+    private Button _gameMenuContinueGameBtn;
+    private Button _gameMenuSettingsGameBtn;
+    private Button _gameMenuGoToMenuGameBtn;
+    private VisualElement _endGameWindow;
+    // private VisualElement _settingsWindow;
     private Button _settingsAcceptButton;
     private Button _settingsCancelButton;
-    private VisualElement _settingsWindowContent;
+    private VisualElement _settingsContainer;
     private VisualElement _playerContainer;
     public VisualElement countdownContainer;
-    public VisualElement menuContainer;
     public Label livesCounter;
     public Label waveCounter;
     public Label countdownText;
@@ -25,14 +30,21 @@ public class GameUI : MonoBehaviour
     {
         var uiDocument = GetComponent<UIDocument>();
 
-        _settingsWindow = uiDocument.rootVisualElement.Q("settings-window");
-        _settingsWindowContent = _settingsWindow.Q("popup-content");
+        _gameMenuWindow = uiDocument.rootVisualElement.Q("game-menu-window");
+        _gameMenuWindowContent = _gameMenuWindow.Q("popup-content");
+        _gameMenuContinueGameBtn = _gameMenuWindowContent.Q<Button>("continue-btn");
+        _gameMenuSettingsGameBtn = _gameMenuWindowContent.Q<Button>("settings-btn");
+        _gameMenuGoToMenuGameBtn = _gameMenuWindowContent.Q<Button>("gotomenu-btn");
+
+        // _settingsWindow = uiDocument.rootVisualElement.Q("settings-window");
+        // _settingsContainer = _gameMenuWindowContent.Q("popup-content");
 
         _playerContainer = uiDocument.rootVisualElement.Query<VisualElement>("hud-container");
 
         _playerContainer = uiDocument.rootVisualElement.Q("hud-container");
         countdownContainer = uiDocument.rootVisualElement.Q("countdown-container");
-        menuContainer = uiDocument.rootVisualElement.Q("menu-container");
+
+        _endGameWindow = uiDocument.rootVisualElement.Q("end-game-window");
 
         livesCounter = _playerContainer.Q("lives-block").Q<Label>(className: "hud__counter");
         waveCounter = _playerContainer.Q("wave-block").Q<Label>(className: "hud__counter");
@@ -40,22 +52,45 @@ public class GameUI : MonoBehaviour
 
         menuTestBtn = uiDocument.rootVisualElement.Q<Button>("menu-test-btn");
 
-        _settingsCancelButton = _settingsWindow.Q<Button>("cancel-btn");
-        _settingsAcceptButton = _settingsWindow.Q<Button>("accept-btn");
+        // _settingsCancelButton = _settingsWindow.Q<Button>("cancel-btn");
+        // _settingsAcceptButton = _settingsWindow.Q<Button>("accept-btn");
 
-        repeatGameBtn = menuContainer.Q<Button>("btn-yes");
-        goToMenuBtn = menuContainer.Q<Button>("btn-no");
+        repeatGameBtn = _endGameWindow.Q<Button>("btn-yes");
+        goToMenuBtn = _endGameWindow.Q<Button>("btn-no");
+
+        _gameMenuContinueGameBtn.RegisterCallback<ClickEvent>(OnTestBtnClick);
+        _gameMenuSettingsGameBtn.RegisterCallback<ClickEvent>(OnSettingsBtnClick);
+        _gameMenuGoToMenuGameBtn.RegisterCallback<ClickEvent>(OnGoToMenuBtnClick);
 
         repeatGameBtn.RegisterCallback<ClickEvent>(OnRepeatGameBtnClick);
         goToMenuBtn.RegisterCallback<ClickEvent>(OnGoToMenuBtnClick);
 
-        menuTestBtn.RegisterCallback<ClickEvent>(OnSettingsBtnClick);
+        menuTestBtn.RegisterCallback<ClickEvent>(OnTestBtnClick);
 
-        _settingsAcceptButton.RegisterCallback<ClickEvent>(OnSettingsBtnClick);
-        _settingsCancelButton.RegisterCallback<ClickEvent>(OnSettingsBtnClick);
+        // _settingsAcceptButton.RegisterCallback<ClickEvent>(OnSettingsBtnClick);
+        // _settingsCancelButton.RegisterCallback<ClickEvent>(OnSettingsBtnClick);
 
         livesCounter.text = PlayerController.Instance.lives.ToString();
         waveCounter.text = GameManager.Instance.wave.ToString();
+    }
+
+    private void OnTestBtnClick(ClickEvent evt)
+    {
+        AudioManager.PlaySound(GameAudioLibrarySounds.click);
+
+        if (_gameMenuWindow.ClassListContains("popup-show"))
+        {
+            StartCoroutine(UIDelay());
+        }
+        else
+        {
+            Time.timeScale = 0f;
+
+            _gameMenuWindow.RemoveFromClassList("popup-hidden");
+            _gameMenuWindowContent.RemoveFromClassList("animation__hide");
+            _gameMenuWindow.AddToClassList("popup-show");
+            _gameMenuWindowContent.AddToClassList("animation__show");
+        }
     }
 
     private void OnGoToMenuBtnClick(ClickEvent evt)
@@ -71,28 +106,18 @@ public class GameUI : MonoBehaviour
     private void OnSettingsBtnClick(ClickEvent evt)
     {
         AudioManager.PlaySound(GameAudioLibrarySounds.click);
-
-        if (_settingsWindow.ClassListContains("popup-show"))
-        {
-            StartCoroutine(UIDelay());
-        }
-        else
-        {
-            _settingsWindow.RemoveFromClassList("popup-hidden");
-            _settingsWindowContent.RemoveFromClassList("animation__hide");
-            _settingsWindow.AddToClassList("popup-show");
-            _settingsWindowContent.AddToClassList("animation__show");
-        }
     }
 
     IEnumerator UIDelay()
     {
-        _settingsWindowContent.AddToClassList("animation__hide");
-        _settingsWindowContent.RemoveFromClassList("animation__show");
+        Time.timeScale = 1f;
+
+        _gameMenuWindowContent.AddToClassList("animation__hide");
+        _gameMenuWindowContent.RemoveFromClassList("animation__show");
 
         yield return new WaitForSeconds(0.3f);
 
-        _settingsWindow.RemoveFromClassList("popup-show");
-        _settingsWindow.AddToClassList("popup-hidden");
+        _gameMenuWindow.RemoveFromClassList("popup-show");
+        _gameMenuWindow.AddToClassList("popup-hidden");
     }
 }

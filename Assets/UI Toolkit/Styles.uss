@@ -200,6 +200,7 @@
 }
 
 .popup-show .popup__content {
+    background-color: rgb(255, 255, 255);
 }
 
 .animation__hide {
@@ -284,4 +285,33 @@
 
 .difficulty__btn .last-child {
     margin-top: auto;
+}
+
+.game-menu-btn {
+    font-size: var(--text-l);
+    padding-top: var(--padding-m);
+    padding-right: var(--padding-xl);
+    padding-bottom: var(--padding-m);
+    padding-left: var(--padding-xl);
+    margin-top: var(--indent-m);
+}
+
+.game-menu__container {
+    padding-top: var(--padding-s);
+    padding-right: var(--padding-m);
+    padding-bottom: var(--padding-m);
+    padding-left: var(--padding-m);
+}
+
+.game-menu__container .game__title {
+    flex-grow: 1;
+    max-height: none;
+}
+
+.game-menu__container .buttons__block-vertical {
+    flex-shrink: 0;
+}
+
+.game-menu__container .buttons__block-vertical .game-menu-btn.last-child {
+    /* margin-top: auto; */
 }
