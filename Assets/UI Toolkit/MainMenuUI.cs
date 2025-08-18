@@ -27,8 +27,8 @@ public class MainMenuUI : MonoBehaviour
     private RadioButtonGroup _customizationSkinsList;
     private RadioButtonGroup _levelsList;
     private Image _gameTitle;
-    private Button _acceptButton;
-    private Button _cancelButton;
+    private Button _settingsAcceptButton;
+    private Button _settingsCancelButton;
     private Button _playButton;
     private Button _settingsButton;
     private Button _customizationBackButton;
@@ -56,8 +56,8 @@ public class MainMenuUI : MonoBehaviour
         _levelContainer = _menuContainer.Q("level-container");
         _customizationContainer = _menuContainer.Q("customization-container");
 
-        _cancelButton = _settingsWindow.Q<Button>("cancel-btn");
-        _acceptButton = _settingsWindow.Q<Button>("accept-btn");
+        _settingsCancelButton = _settingsWindow.Q<Button>("cancel-btn");
+        _settingsAcceptButton = _settingsWindow.Q<Button>("accept-btn");
 
         _playButton = _btnBlock.Q<Button>("play-btn");
         _settingsButton = _btnBlock.Q<Button>("settings-btn");
@@ -78,8 +78,8 @@ public class MainMenuUI : MonoBehaviour
 
         _playButton.RegisterCallback<ClickEvent>(OnPlayBtnClick);
         _settingsButton.RegisterCallback<ClickEvent>(OnSettingsBtnClick);
-        _acceptButton.RegisterCallback<ClickEvent>(OnSettingsBtnClick);
-        _cancelButton.RegisterCallback<ClickEvent>(OnSettingsBtnClick);
+        _settingsAcceptButton.RegisterCallback<ClickEvent>(OnSettingsBtnClick);
+        _settingsCancelButton.RegisterCallback<ClickEvent>(OnSettingsBtnClick);
 
         _customizationSkinsList.RegisterValueChangedCallback(OnSkinRadiobuttonChange);
         _customizationBackButton.RegisterCallback<ClickEvent>(OnCustomizationBackBtnClick);
@@ -276,9 +276,6 @@ public class MainMenuUI : MonoBehaviour
         _customizationContainer.style.display = DisplayStyle.None;
         _levelContainer.style.display = DisplayStyle.None;
         _difficultyContainer.style.display = DisplayStyle.None;
-
-        List<VisualElement> popups = uiDocument.rootVisualElement.Query(className: "popup").ToList();
-        popups.ForEach(elem => elem.style.display = DisplayStyle.None);
         styleMenu.gameObject.SetActive(false);
     }
 
@@ -287,8 +284,8 @@ public class MainMenuUI : MonoBehaviour
         _playButton.UnregisterCallback<ClickEvent>(OnPlayBtnClick);
 
         _settingsButton.UnregisterCallback<ClickEvent>(OnSettingsBtnClick);
-        _cancelButton.UnregisterCallback<ClickEvent>(OnCancelBtnClick);
-        _acceptButton.UnregisterCallback<ClickEvent>(OnCancelBtnClick);
+        _settingsCancelButton.UnregisterCallback<ClickEvent>(OnCancelBtnClick);
+        _settingsAcceptButton.UnregisterCallback<ClickEvent>(OnCancelBtnClick);
 
         _customizationOkButton.UnregisterCallback<ClickEvent>(OnCustomizationOkBtnClick);
         _customizationBackButton.UnregisterCallback<ClickEvent>(OnCustomizationBackBtnClick);

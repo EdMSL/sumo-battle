@@ -1,0 +1,9 @@
+<ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
+    <ui:Template name="Settings" src="project://database/Assets/UI%20Toolkit/Settings.uxml?fileID=9197481963319205126&amp;guid=2118abaa7f2944543b218e79948ca8a9&amp;type=3#Settings" />
+    <ui:VisualElement name="settings-window" class="popup popup-hidden">
+        <ui:VisualElement name="popup-overlay" class="popup__overlay" />
+        <ui:VisualElement name="popup-content" class="popup__content" style="width: 50%; height: 70%;">
+            <ui:Instance template="Settings" name="settings" style="flex-grow: 1;" />
+        </ui:VisualElement>
+    </ui:VisualElement>
+</ui:UXML>

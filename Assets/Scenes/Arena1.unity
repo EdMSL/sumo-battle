@@ -1367,6 +1367,11 @@ PrefabInstance:
       propertyPath: gameUI
       value: 
       objectReference: {fileID: 1834242936}
+    - target: {fileID: 6655313657716774005, guid: f9960affb18906d48a5c367e6270040a,
+        type: 3}
+      propertyPath: playerSkin
+      value: 
+      objectReference: {fileID: 2100000, guid: 35b47156c92fe53408ca5634dc6d70c3, type: 2}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
