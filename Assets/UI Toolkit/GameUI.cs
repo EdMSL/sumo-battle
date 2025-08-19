@@ -3,9 +3,12 @@ using System.Collections;
 using UnityEngine;
 using UnityEngine.UIElements;
 using JSAM;
+using AlpaSunFade;
 
 public class GameUI : MonoBehaviour
 {
+    [SerializeField] TransitionPanel transitionPanelScript;
+
     private VisualElement _gameMenuWindow;
     private VisualElement _gameMenuWindowContent;
     private VisualElement _mainMenuContainer;
@@ -24,6 +27,8 @@ public class GameUI : MonoBehaviour
     public Button repeatGameBtn;
     public Button goToMenuBtn;
 
+    private UIDocument transitionPanel;
+
     private void OnEnable()
     {
         var uiDocument = GetComponent<UIDocument>();
@@ -40,18 +45,21 @@ public class GameUI : MonoBehaviour
         _settingsAcceptButton = _settingsContainer.Q<Button>("accept-btn");
         _settingsCancelButton = _settingsContainer.Q<Button>("cancel-btn");
 
+        countdownContainer = uiDocument.rootVisualElement.Q("countdown-container");
+        countdownText = countdownContainer.Q<Label>("countdown-text");
+
         _playerContainer = uiDocument.rootVisualElement.Query<VisualElement>("hud-container");
         _playerContainer = uiDocument.rootVisualElement.Q("hud-container");
-        countdownContainer = uiDocument.rootVisualElement.Q("countdown-container");
 
         _endGameWindow = uiDocument.rootVisualElement.Q("end-game-window");
 
         livesCounter = _playerContainer.Q("lives-block").Q<Label>(className: "hud__counter");
         waveCounter = _playerContainer.Q("wave-block").Q<Label>(className: "hud__counter");
-        countdownText = countdownContainer.Q<Label>("countdown-text");
 
         repeatGameBtn = _endGameWindow.Q<Button>("btn-yes");
         goToMenuBtn = _endGameWindow.Q<Button>("btn-no");
+
+        transitionPanel = transitionPanelScript.GetComponent<UIDocument>();
 
         _mainMenuResumeGameBtn.RegisterCallback((ClickEvent evt) => { GameManager.Instance.TogglePauseGame(); });
         _mainMenuSettingsGameBtn.RegisterCallback<ClickEvent>(OnSettingsBtnClick);
@@ -70,8 +78,17 @@ public class GameUI : MonoBehaviour
 
     private void Start()
     {
+        GameManager.Instance.OnCountdawnStart += GameManager_OnCountdawnStart;
         GameManager.Instance.OnGamePaused += GameManager_OnGamePaused;
         GameManager.Instance.OnGameUnpaused += GameManager_OnGameUnpaused;
+
+        /// Не работает как надо!
+        transitionPanelScript.StartTransition(false, 0.1f, 3f);
+    }
+
+    private void GameManager_OnCountdawnStart(object sender, EventArgs e)
+    {
+        transitionPanel.sortingOrder = 0;
     }
 
     private void GameManager_OnGamePaused(object sender, System.EventArgs e)

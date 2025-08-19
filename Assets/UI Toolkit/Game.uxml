@@ -20,7 +20,7 @@
                 <ui:Label text="0" name="wave-counter" class="hud__counter" />
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="countdown-container" class="popup">
+        <ui:VisualElement name="countdown-container" class="countdown__container hide">
             <ui:Label text="3" name="countdown-text" style="font-size: 40px; -unity-font-style: bold; color: rgb(255, 255, 255); display: flex;" />
         </ui:VisualElement>
         <ui:VisualElement name="game-menu-window" class="popup popup-hidden">
@@ -46,7 +46,7 @@
                         </ui:Button>
                     </ui:VisualElement>
                 </ui:VisualElement>
-                <ui:Instance template="Settings" name="settings-container" style="flex-grow: 1; display: none;" />
+                <ui:Instance template="Settings" name="settings-container" class="hide" style="flex-grow: 1;" />
             </ui:VisualElement>
         </ui:VisualElement>
         <ui:VisualElement name="end-game-window" class="popup popup-hidden">

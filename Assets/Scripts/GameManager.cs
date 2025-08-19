@@ -10,6 +10,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
 
+    public event EventHandler OnCountdawnStart;
     public event EventHandler OnGamePaused;
     public event EventHandler OnGameUnpaused;
 
@@ -86,6 +87,7 @@ public class GameManager : MonoBehaviour
                     if (!isCountdownStarted)
                     {
                         isCountdownStarted = true;
+                        OnCountdawnStart?.Invoke(this, EventArgs.Empty);
                         StartCoroutine(GamePrepare());
                     }
 
@@ -160,7 +162,8 @@ public class GameManager : MonoBehaviour
     IEnumerator GamePrepare()
     {
         gameUI = FindAnyObjectByType<GameUI>();
-        gameUI.countdownContainer.style.display = DisplayStyle.Flex;
+        gameUI.countdownContainer.ToggleInClassList("hide");
+
         gameUI.countdownText.text = "3";
 
         yield return new WaitForSeconds(1f);
@@ -178,7 +181,7 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(1f);
 
         state = State.GameProcess;
-        gameUI.countdownContainer.style.display = DisplayStyle.None;
+        gameUI.countdownContainer.ToggleInClassList("hide");
     }
 
     private void ResetCounters()

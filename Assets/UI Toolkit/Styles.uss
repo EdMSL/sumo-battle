@@ -321,5 +321,12 @@
 }
 
 .game-menu__container .buttons__block-vertical .game-menu-btn.last-child {
-    /* margin-top: auto; */
+}
+
+.countdown__container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center;
 }
