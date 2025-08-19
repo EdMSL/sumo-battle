@@ -1,5 +1,7 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using UnityEngine;
+using UnityEngine.InputSystem;
 using UnityEngine.Localization.Settings;
 using UnityEngine.SceneManagement;
 using UnityEngine.UIElements;
@@ -7,6 +9,9 @@ using UnityEngine.UIElements;
 public class GameManager : MonoBehaviour
 {
     public static GameManager Instance { get; private set; }
+
+    public event EventHandler OnGamePaused;
+    public event EventHandler OnGameUnpaused;
 
     public enum State
     {
@@ -36,6 +41,7 @@ public class GameManager : MonoBehaviour
     private float gameTimer;
     private bool isCountdownStarted = false;
     private GameUI gameUI;
+    private bool isGamePaused = false;
 
     private void Awake()
     {
@@ -179,5 +185,31 @@ public class GameManager : MonoBehaviour
     {
         wave = 0;
         score = 0;
+    }
+
+    public void OnGamePauseAction(InputAction.CallbackContext context)
+    {
+        if (context.performed)
+        {
+            TogglePauseGame();
+        }
+    }
+
+    public void TogglePauseGame()
+    {
+        isGamePaused = !isGamePaused;
+
+        if (isGamePaused)
+        {
+            Time.timeScale = 0f;
+
+            OnGamePaused?.Invoke(this, EventArgs.Empty);
+        }
+        else
+        {
+            Time.timeScale = 1f;
+
+            OnGameUnpaused?.Invoke(this, EventArgs.Empty);
+        }
     }
 }

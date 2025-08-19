@@ -2,7 +2,6 @@
     <ui:Template name="Settings" src="project://database/Assets/UI%20Toolkit/Settings.uxml?fileID=9197481963319205126&amp;guid=2118abaa7f2944543b218e79948ca8a9&amp;type=3#Settings" />
     <Style src="project://database/Assets/UI%20Toolkit/Styles.uss?fileID=7433441132597879392&amp;guid=6c2a7a29e6f6b5749a27053048a177da&amp;type=3#Styles" />
     <ui:VisualElement name="root" style="flex-grow: 1;">
-        <ui:Button text="Button" name="menu-test-btn" style="position: absolute; width: 100px; height: 100px;" />
         <ui:VisualElement name="hud-container" class="hud__counter" style="display: flex;">
             <ui:VisualElement name="lives-block" class="hud__item">
                 <ui:Label text="Label" name="lives-text">

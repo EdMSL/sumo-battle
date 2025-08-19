@@ -8,7 +8,7 @@ public class GameUI : MonoBehaviour
 {
     private VisualElement _gameMenuWindow;
     private VisualElement _gameMenuWindowContent;
-    private Button _gameMenuContinueGameBtn;
+    private Button _gameMenuResumeGameBtn;
     private Button _gameMenuSettingsGameBtn;
     private Button _gameMenuGoToMenuGameBtn;
     private VisualElement _endGameWindow;
@@ -24,15 +24,13 @@ public class GameUI : MonoBehaviour
     public Button repeatGameBtn;
     public Button goToMenuBtn;
 
-    public Button menuTestBtn;
-
     private void OnEnable()
     {
         var uiDocument = GetComponent<UIDocument>();
 
         _gameMenuWindow = uiDocument.rootVisualElement.Q("game-menu-window");
         _gameMenuWindowContent = _gameMenuWindow.Q("popup-content");
-        _gameMenuContinueGameBtn = _gameMenuWindowContent.Q<Button>("continue-btn");
+        _gameMenuResumeGameBtn = _gameMenuWindowContent.Q<Button>("continue-btn");
         _gameMenuSettingsGameBtn = _gameMenuWindowContent.Q<Button>("settings-btn");
         _gameMenuGoToMenuGameBtn = _gameMenuWindowContent.Q<Button>("gotomenu-btn");
 
@@ -50,22 +48,18 @@ public class GameUI : MonoBehaviour
         waveCounter = _playerContainer.Q("wave-block").Q<Label>(className: "hud__counter");
         countdownText = countdownContainer.Q<Label>("countdown-text");
 
-        menuTestBtn = uiDocument.rootVisualElement.Q<Button>("menu-test-btn");
-
         // _settingsCancelButton = _settingsWindow.Q<Button>("cancel-btn");
         // _settingsAcceptButton = _settingsWindow.Q<Button>("accept-btn");
 
         repeatGameBtn = _endGameWindow.Q<Button>("btn-yes");
         goToMenuBtn = _endGameWindow.Q<Button>("btn-no");
 
-        _gameMenuContinueGameBtn.RegisterCallback<ClickEvent>(OnTestBtnClick);
+        _gameMenuResumeGameBtn.RegisterCallback((ClickEvent evt) => { GameManager.Instance.TogglePauseGame(); });
         _gameMenuSettingsGameBtn.RegisterCallback<ClickEvent>(OnSettingsBtnClick);
         _gameMenuGoToMenuGameBtn.RegisterCallback<ClickEvent>(OnGoToMenuBtnClick);
 
         repeatGameBtn.RegisterCallback<ClickEvent>(OnRepeatGameBtnClick);
         goToMenuBtn.RegisterCallback<ClickEvent>(OnGoToMenuBtnClick);
-
-        menuTestBtn.RegisterCallback<ClickEvent>(OnTestBtnClick);
 
         // _settingsAcceptButton.RegisterCallback<ClickEvent>(OnSettingsBtnClick);
         // _settingsCancelButton.RegisterCallback<ClickEvent>(OnSettingsBtnClick);
@@ -74,15 +68,27 @@ public class GameUI : MonoBehaviour
         waveCounter.text = GameManager.Instance.wave.ToString();
     }
 
-    private void OnTestBtnClick(ClickEvent evt)
+    private void Start()
+    {
+        GameManager.Instance.OnGamePaused += GameManager_OnGamePaused;
+        GameManager.Instance.OnGameUnpaused += GameManager_OnGameUnpaused;
+    }
+
+    private void GameManager_OnGamePaused(object sender, System.EventArgs e)
+    {
+        SwitchMainMenu(true);
+    }
+
+    private void GameManager_OnGameUnpaused(object sender, System.EventArgs e)
+    {
+        SwitchMainMenu(false);
+    }
+
+    private void SwitchMainMenu(bool isOpen)
     {
         AudioManager.PlaySound(GameAudioLibrarySounds.click);
 
-        if (_gameMenuWindow.ClassListContains("popup-show"))
-        {
-            StartCoroutine(UIDelay());
-        }
-        else
+        if (isOpen)
         {
             Time.timeScale = 0f;
 
@@ -91,15 +97,23 @@ public class GameUI : MonoBehaviour
             _gameMenuWindow.AddToClassList("popup-show");
             _gameMenuWindowContent.AddToClassList("animation__show");
         }
+        else
+        {
+            StartCoroutine(UIDelay());
+        }
     }
 
     private void OnGoToMenuBtnClick(ClickEvent evt)
     {
+        AudioManager.PlaySound(GameAudioLibrarySounds.click);
+
         GameManager.Instance.EndGame();
     }
 
     private void OnRepeatGameBtnClick(ClickEvent evt)
     {
+        AudioManager.PlaySound(GameAudioLibrarySounds.click);
+
         GameManager.Instance.RepeatGame();
     }
 
@@ -115,7 +129,7 @@ public class GameUI : MonoBehaviour
         _gameMenuWindowContent.AddToClassList("animation__hide");
         _gameMenuWindowContent.RemoveFromClassList("animation__show");
 
-        yield return new WaitForSeconds(0.3f);
+        yield return new WaitForSecondsRealtime(0.3f);
 
         _gameMenuWindow.RemoveFromClassList("popup-show");
         _gameMenuWindow.AddToClassList("popup-hidden");

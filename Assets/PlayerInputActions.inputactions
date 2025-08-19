@@ -14,6 +14,15 @@
                     "processors": "",
                     "interactions": "",
                     "initialStateCheck": true
+                },
+                {
+                    "name": "Menu",
+                    "type": "Button",
+                    "id": "51a5ae8c-f7a6-4269-b1af-6d4021d91f38",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
                 }
             ],
             "bindings": [
@@ -71,27 +80,10 @@
                     "action": "Move",
                     "isComposite": false,
                     "isPartOfComposite": true
-                }
-            ]
-        },
-        {
-            "name": "UI",
-            "id": "bb0e5a8e-cb23-4f64-a2b5-afe42ce618ca",
-            "actions": [
-                {
-                    "name": "Menu",
-                    "type": "Button",
-                    "id": "817310a2-8bab-45a0-9d93-ee03f7bbf498",
-                    "expectedControlType": "",
-                    "processors": "",
-                    "interactions": "",
-                    "initialStateCheck": false
-                }
-            ],
-            "bindings": [
+                },
                 {
                     "name": "",
-                    "id": "525428dc-1c09-4875-941d-283ec78744e6",
+                    "id": "2ca5e7fa-c332-4a3d-93d1-69582f8e2e61",
                     "path": "<Keyboard>/tab",
                     "interactions": "",
                     "processors": "",
