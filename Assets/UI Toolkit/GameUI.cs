@@ -8,14 +8,14 @@ public class GameUI : MonoBehaviour
 {
     private VisualElement _gameMenuWindow;
     private VisualElement _gameMenuWindowContent;
-    private Button _gameMenuResumeGameBtn;
-    private Button _gameMenuSettingsGameBtn;
-    private Button _gameMenuGoToMenuGameBtn;
+    private VisualElement _mainMenuContainer;
+    private Button _mainMenuResumeGameBtn;
+    private Button _mainMenuSettingsGameBtn;
+    private Button _mainMenuGoToMenuGameBtn;
+    private VisualElement _settingsContainer;
     private VisualElement _endGameWindow;
-    // private VisualElement _settingsWindow;
     private Button _settingsAcceptButton;
     private Button _settingsCancelButton;
-    private VisualElement _settingsContainer;
     private VisualElement _playerContainer;
     public VisualElement countdownContainer;
     public Label livesCounter;
@@ -30,15 +30,17 @@ public class GameUI : MonoBehaviour
 
         _gameMenuWindow = uiDocument.rootVisualElement.Q("game-menu-window");
         _gameMenuWindowContent = _gameMenuWindow.Q("popup-content");
-        _gameMenuResumeGameBtn = _gameMenuWindowContent.Q<Button>("continue-btn");
-        _gameMenuSettingsGameBtn = _gameMenuWindowContent.Q<Button>("settings-btn");
-        _gameMenuGoToMenuGameBtn = _gameMenuWindowContent.Q<Button>("gotomenu-btn");
 
-        // _settingsWindow = uiDocument.rootVisualElement.Q("settings-window");
-        // _settingsContainer = _gameMenuWindowContent.Q("popup-content");
+        _mainMenuContainer = _gameMenuWindowContent.Q("main-menu-container");
+        _mainMenuResumeGameBtn = _mainMenuContainer.Q<Button>("continue-btn");
+        _mainMenuSettingsGameBtn = _mainMenuContainer.Q<Button>("settings-btn");
+        _mainMenuGoToMenuGameBtn = _mainMenuContainer.Q<Button>("gotomenu-btn");
+
+        _settingsContainer = _gameMenuWindowContent.Q("settings-container");
+        _settingsAcceptButton = _settingsContainer.Q<Button>("accept-btn");
+        _settingsCancelButton = _settingsContainer.Q<Button>("cancel-btn");
 
         _playerContainer = uiDocument.rootVisualElement.Query<VisualElement>("hud-container");
-
         _playerContainer = uiDocument.rootVisualElement.Q("hud-container");
         countdownContainer = uiDocument.rootVisualElement.Q("countdown-container");
 
@@ -48,21 +50,19 @@ public class GameUI : MonoBehaviour
         waveCounter = _playerContainer.Q("wave-block").Q<Label>(className: "hud__counter");
         countdownText = countdownContainer.Q<Label>("countdown-text");
 
-        // _settingsCancelButton = _settingsWindow.Q<Button>("cancel-btn");
-        // _settingsAcceptButton = _settingsWindow.Q<Button>("accept-btn");
-
         repeatGameBtn = _endGameWindow.Q<Button>("btn-yes");
         goToMenuBtn = _endGameWindow.Q<Button>("btn-no");
 
-        _gameMenuResumeGameBtn.RegisterCallback((ClickEvent evt) => { GameManager.Instance.TogglePauseGame(); });
-        _gameMenuSettingsGameBtn.RegisterCallback<ClickEvent>(OnSettingsBtnClick);
-        _gameMenuGoToMenuGameBtn.RegisterCallback<ClickEvent>(OnGoToMenuBtnClick);
+        _mainMenuResumeGameBtn.RegisterCallback((ClickEvent evt) => { GameManager.Instance.TogglePauseGame(); });
+        _mainMenuSettingsGameBtn.RegisterCallback<ClickEvent>(OnSettingsBtnClick);
+        _mainMenuGoToMenuGameBtn.RegisterCallback<ClickEvent>(OnGoToMenuBtnClick);
+
+        _settingsAcceptButton.RegisterCallback<ClickEvent>(OnSettingsBtnClick);
+        _settingsCancelButton.RegisterCallback<ClickEvent>(OnSettingsBtnClick);
 
         repeatGameBtn.RegisterCallback<ClickEvent>(OnRepeatGameBtnClick);
         goToMenuBtn.RegisterCallback<ClickEvent>(OnGoToMenuBtnClick);
 
-        // _settingsAcceptButton.RegisterCallback<ClickEvent>(OnSettingsBtnClick);
-        // _settingsCancelButton.RegisterCallback<ClickEvent>(OnSettingsBtnClick);
 
         livesCounter.text = PlayerController.Instance.lives.ToString();
         waveCounter.text = GameManager.Instance.wave.ToString();
@@ -120,6 +120,14 @@ public class GameUI : MonoBehaviour
     private void OnSettingsBtnClick(ClickEvent evt)
     {
         AudioManager.PlaySound(GameAudioLibrarySounds.click);
+
+        ToggleSettingMenu();
+    }
+
+    private void ToggleSettingMenu()
+    {
+        _settingsContainer.ToggleInClassList("hide");
+        _mainMenuContainer.ToggleInClassList("hide");
     }
 
     IEnumerator UIDelay()
