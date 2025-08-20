@@ -44,4 +44,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 89b6ca7d0059a0a4984a052db56d44cf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gameUI: {fileID: 0}
+  waitingTime: 2
+  playerSkin: {fileID: 2100000, guid: 35b47156c92fe53408ca5634dc6d70c3, type: 2}

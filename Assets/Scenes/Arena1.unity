@@ -999,6 +999,21 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 6631212189729463131, guid: 37c8d43690670cd479a98957930fb800,
+        type: 3}
+      propertyPath: transitionColor.b
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631212189729463131, guid: 37c8d43690670cd479a98957930fb800,
+        type: 3}
+      propertyPath: transitionColor.g
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6631212189729463131, guid: 37c8d43690670cd479a98957930fb800,
+        type: 3}
+      propertyPath: transitionColor.r
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7128707872838151350, guid: 37c8d43690670cd479a98957930fb800,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -1457,17 +1472,17 @@ PrefabInstance:
     - target: {fileID: 2540405818111158776, guid: f9960affb18906d48a5c367e6270040a,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 389.69266
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2540405818111158776, guid: f9960affb18906d48a5c367e6270040a,
         type: 3}
       propertyPath: m_LocalPosition.y
-      value: 465.50836
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2540405818111158776, guid: f9960affb18906d48a5c367e6270040a,
         type: 3}
       propertyPath: m_LocalPosition.z
-      value: -157.86255
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 2540405818111158776, guid: f9960affb18906d48a5c367e6270040a,
         type: 3}
@@ -1509,16 +1524,6 @@ PrefabInstance:
       propertyPath: gameUI
       value: 
       objectReference: {fileID: 1834242936}
-    - target: {fileID: 6655313657716774005, guid: f9960affb18906d48a5c367e6270040a,
-        type: 3}
-      propertyPath: playerSkin
-      value: 
-      objectReference: {fileID: 2100000, guid: 35b47156c92fe53408ca5634dc6d70c3, type: 2}
-    - target: {fileID: 6655313657716774005, guid: f9960affb18906d48a5c367e6270040a,
-        type: 3}
-      propertyPath: waitingTime
-      value: 3
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

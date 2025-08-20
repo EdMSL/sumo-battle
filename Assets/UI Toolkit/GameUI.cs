@@ -70,10 +70,6 @@ public class GameUI : MonoBehaviour
 
         repeatGameBtn.RegisterCallback<ClickEvent>(OnRepeatGameBtnClick);
         goToMenuBtn.RegisterCallback<ClickEvent>(OnGoToMenuBtnClick);
-
-
-        livesCounter.text = PlayerController.Instance.lives.ToString();
-        waveCounter.text = GameManager.Instance.wave.ToString();
     }
 
     private void Start()
@@ -82,8 +78,11 @@ public class GameUI : MonoBehaviour
         GameManager.Instance.OnGamePaused += GameManager_OnGamePaused;
         GameManager.Instance.OnGameUnpaused += GameManager_OnGameUnpaused;
 
-        /// Не работает как надо!
-        transitionPanelScript.StartTransition(false, 0.1f, 3f);
+        livesCounter.text = PlayerController.Instance.lives.ToString();
+        waveCounter.text = GameManager.Instance.wave.ToString();
+
+        /// Нормально работает только с задержкой начала (иначе отклбючается сразу же) и продолжительностью, помноженной на 2.
+        transitionPanelScript.StartTransition(false, 0.1f, GameManager.Instance.waitingTime * 2);
     }
 
     private void GameManager_OnCountdawnStart(object sender, EventArgs e)
