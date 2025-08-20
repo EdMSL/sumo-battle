@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public event EventHandler OnCountdawnStart;
     public event EventHandler OnGamePaused;
     public event EventHandler OnGameUnpaused;
+    public event EventHandler OnGameOver;
 
     public enum State
     {
@@ -31,13 +32,11 @@ public class GameManager : MonoBehaviour
 
     public float waitingTime = 1f;
 
-    public DifficultyLevel difficultyLevel { get; private set; } = DifficultyLevel.Normal;
+    public DifficultyLevel difficultyLevel { get; private set; } = DifficultyLevel.Hard;
     public Material playerSkin;
-
-    public int score { get; private set; }
     public State state { get; private set; }
+    public int score { get; private set; }
     public int wave { get; private set; }
-    public int lives { get; private set; }
 
     private float gameTimer;
     private bool isCountdownStarted = false;
@@ -131,8 +130,8 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
-        // Time.timeScale = 0;
-        // gameUI.menuContainer.style.display = DisplayStyle.Flex;
+        state = State.GameOver;
+        OnGameOver?.Invoke(this, EventArgs.Empty);
     }
 
     public void RepeatGame()
@@ -141,15 +140,13 @@ public class GameManager : MonoBehaviour
         isCountdownStarted = false;
         state = State.Waiting;
         ResetCounters();
-
-        Time.timeScale = 1;
         SceneManager.LoadScene(1);
     }
 
     public void EndGame()
     {
         Destroy(gameObject);
-        Time.timeScale = 1;
+        state = State.MainMenu;
         SceneManager.LoadScene(0);
     }
 
@@ -192,7 +189,7 @@ public class GameManager : MonoBehaviour
 
     public void OnGamePauseAction(InputAction.CallbackContext context)
     {
-        if (context.performed)
+        if (context.performed && state != State.GameOver && state != State.MainMenu)
         {
             TogglePauseGame();
         }

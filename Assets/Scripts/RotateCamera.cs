@@ -24,7 +24,10 @@ public class RotateCamera : MonoBehaviour
 
     void Update()
     {
-        float horizontalInput = PlayerController.Instance.movement.x;
-        transform.Rotate(Vector3.up, rotationSpeed * horizontalInput * Time.deltaTime);
+        if (GameManager.Instance.state == GameManager.State.GameProcess)
+        {
+            float horizontalInput = PlayerController.Instance.movement.x;
+            transform.Rotate(Vector3.up, rotationSpeed * horizontalInput * Time.deltaTime);
+        }
     }
 }

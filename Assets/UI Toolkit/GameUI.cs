@@ -17,21 +17,24 @@ public class GameUI : MonoBehaviour
     private Button _mainMenuGoToMenuGameBtn;
     private VisualElement _settingsContainer;
     private VisualElement _endGameWindow;
+    private VisualElement _endGameWindowContent;
+    private VisualElement _endGameContainer;
     private Button _settingsAcceptButton;
     private Button _settingsCancelButton;
-    private VisualElement _playerContainer;
+    private VisualElement _hudContainer;
     public VisualElement countdownContainer;
     public Label livesCounter;
     public Label waveCounter;
     public Label countdownText;
-    public Button repeatGameBtn;
-    public Button goToMenuBtn;
+    public Button _endGameRepeatBtn;
+    public Button _endGameGoToMenuBtn;
 
     private UIDocument transitionPanel;
 
     private void OnEnable()
     {
         var uiDocument = GetComponent<UIDocument>();
+        transitionPanel = transitionPanelScript.GetComponent<UIDocument>();
 
         _gameMenuWindow = uiDocument.rootVisualElement.Q("game-menu-window");
         _gameMenuWindowContent = _gameMenuWindow.Q("popup-content");
@@ -48,18 +51,18 @@ public class GameUI : MonoBehaviour
         countdownContainer = uiDocument.rootVisualElement.Q("countdown-container");
         countdownText = countdownContainer.Q<Label>("countdown-text");
 
-        _playerContainer = uiDocument.rootVisualElement.Query<VisualElement>("hud-container");
-        _playerContainer = uiDocument.rootVisualElement.Q("hud-container");
+        _hudContainer = uiDocument.rootVisualElement.Query<VisualElement>("hud-container");
+        _hudContainer = uiDocument.rootVisualElement.Q("hud-container");
+
+        livesCounter = _hudContainer.Q("lives-block").Q<Label>(className: "hud__counter");
+        waveCounter = _hudContainer.Q("wave-block").Q<Label>(className: "hud__counter");
 
         _endGameWindow = uiDocument.rootVisualElement.Q("end-game-window");
+        _endGameWindowContent = _endGameWindow.Q("popup-content");
 
-        livesCounter = _playerContainer.Q("lives-block").Q<Label>(className: "hud__counter");
-        waveCounter = _playerContainer.Q("wave-block").Q<Label>(className: "hud__counter");
-
-        repeatGameBtn = _endGameWindow.Q<Button>("btn-yes");
-        goToMenuBtn = _endGameWindow.Q<Button>("btn-no");
-
-        transitionPanel = transitionPanelScript.GetComponent<UIDocument>();
+        _endGameContainer = _endGameWindow.Q("end-game-container");
+        _endGameRepeatBtn = _endGameContainer.Q<Button>("btn-yes");
+        _endGameGoToMenuBtn = _endGameContainer.Q<Button>("btn-no");
 
         _mainMenuResumeGameBtn.RegisterCallback((ClickEvent evt) => { GameManager.Instance.TogglePauseGame(); });
         _mainMenuSettingsGameBtn.RegisterCallback<ClickEvent>(OnSettingsBtnClick);
@@ -68,8 +71,8 @@ public class GameUI : MonoBehaviour
         _settingsAcceptButton.RegisterCallback<ClickEvent>(OnSettingsBtnClick);
         _settingsCancelButton.RegisterCallback<ClickEvent>(OnSettingsBtnClick);
 
-        repeatGameBtn.RegisterCallback<ClickEvent>(OnRepeatGameBtnClick);
-        goToMenuBtn.RegisterCallback<ClickEvent>(OnGoToMenuBtnClick);
+        _endGameRepeatBtn.RegisterCallback<ClickEvent>(OnRepeatGameBtnClick);
+        _endGameGoToMenuBtn.RegisterCallback<ClickEvent>(OnGoToMenuBtnClick);
     }
 
     private void Start()
@@ -77,6 +80,7 @@ public class GameUI : MonoBehaviour
         GameManager.Instance.OnCountdawnStart += GameManager_OnCountdawnStart;
         GameManager.Instance.OnGamePaused += GameManager_OnGamePaused;
         GameManager.Instance.OnGameUnpaused += GameManager_OnGameUnpaused;
+        GameManager.Instance.OnGameOver += GameManager_OnGameOver;
 
         livesCounter.text = PlayerController.Instance.lives.ToString();
         waveCounter.text = GameManager.Instance.wave.ToString();
@@ -85,9 +89,17 @@ public class GameUI : MonoBehaviour
         transitionPanelScript.StartTransition(false, 0.1f, GameManager.Instance.waitingTime * 2);
     }
 
+    private void GameManager_OnGameOver(object sender, EventArgs e)
+    {
+        _endGameWindow.RemoveFromClassList("popup-hidden");
+        _endGameWindowContent.RemoveFromClassList("animation__hide");
+        _endGameWindow.AddToClassList("popup-show");
+        _endGameWindowContent.AddToClassList("animation__show");
+    }
+
     private void GameManager_OnCountdawnStart(object sender, EventArgs e)
     {
-        transitionPanel.sortingOrder = 0;
+        transitionPanel.gameObject.SetActive(false);
     }
 
     private void GameManager_OnGamePaused(object sender, System.EventArgs e)

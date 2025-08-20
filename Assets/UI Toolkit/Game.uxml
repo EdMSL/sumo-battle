@@ -51,8 +51,8 @@
         </ui:VisualElement>
         <ui:VisualElement name="end-game-window" class="popup popup-hidden">
             <ui:VisualElement name="popup-overlay" class="popup__overlay" />
-            <ui:VisualElement name="popup-content" class="popup__content" style="width: 50%; height: 70%;">
-                <ui:VisualElement name="end-game-menu" style="justify-content: flex-start; align-items: center; display: flex;">
+            <ui:VisualElement name="popup-content" class="popup__content animation__hide" style="width: 30%; height: 30%;">
+                <ui:VisualElement name="end-game-container" class="end-game__container">
                     <ui:Label text="Label" name="end-game-title" class="end-game__title">
                         <Bindings>
                             <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(1191566724919296)" />
@@ -63,13 +63,13 @@
                             <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(1191739735764992)" />
                         </Bindings>
                     </ui:Label>
-                    <ui:VisualElement name="end-game-btns" class="end-game__btns" style="justify-content: space-around;">
-                        <ui:Button text="Button" name="btn-no" class="end-game__btn">
+                    <ui:VisualElement name="end-game-btns" class="end-game__btns">
+                        <ui:Button text="Button" name="btn-no" class="main__btn">
                             <Bindings>
                                 <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(789118621777920)" />
                             </Bindings>
                         </ui:Button>
-                        <ui:Button text="Button" name="btn-yes" class="end-game__btn">
+                        <ui:Button text="Button" name="btn-yes" class="main__btn last-child">
                             <Bindings>
                                 <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(789094227705856)" />
                             </Bindings>

@@ -135,7 +135,8 @@ public class MainMenuUI : MonoBehaviour
     private IEnumerator StartGame(string btnName)
     {
         transitionPanel.sortingOrder = 1;
-        transitionPanelScript.StartTransition(true, 0, fadeDuration);
+        /// Нормально работает только с задержкой начала (иначе отклбючается сразу же) и продолжительностью, помноженной на 2.
+        transitionPanelScript.StartTransition(true, 0.1f, fadeDuration * 2);
 
         yield return new WaitForSeconds(fadeDuration);
 

@@ -13,18 +13,21 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        Vector3 lookDirection = (PlayerController.Instance.transform.position - transform.position).normalized;
-
-        enemyRb.AddForce(lookDirection * speed);
-
-        if (transform.position.y < bottomBound)
+        if (GameManager.Instance.state == GameManager.State.GameProcess)
         {
-            SpawnManager.Instance.DestroyEnemy(gameObject);
-        }
+            Vector3 lookDirection = (PlayerController.Instance.transform.position - transform.position).normalized;
 
-        if (PlayerController.Instance.transform.position.y < -1f)
-        {
-            enemyRb.linearVelocity = Vector3.zero;
+            enemyRb.AddForce(lookDirection * speed);
+
+            if (transform.position.y < bottomBound)
+            {
+                SpawnManager.Instance.DestroyEnemy(gameObject);
+            }
+
+            if (PlayerController.Instance.transform.position.y < -1f)
+            {
+                enemyRb.linearVelocity = Vector3.zero;
+            }
         }
     }
 
