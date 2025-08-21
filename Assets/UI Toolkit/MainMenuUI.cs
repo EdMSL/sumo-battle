@@ -104,7 +104,7 @@ public class MainMenuUI : MonoBehaviour
 
         yield return LocalizationSettings.InitializationOperation;
 
-        transitionPanel.sortingOrder = 0;
+        transitionPanel.gameObject.SetActive(false);
 
         _levelsList.Clear();
 
@@ -134,6 +134,7 @@ public class MainMenuUI : MonoBehaviour
 
     private IEnumerator StartGame(string btnName)
     {
+        transitionPanel.gameObject.SetActive(true);
         transitionPanel.sortingOrder = 1;
         /// Нормально работает только с задержкой начала (иначе отклбючается сразу же) и продолжительностью, помноженной на 2.
         transitionPanelScript.StartTransition(true, 0.1f, fadeDuration * 2);
