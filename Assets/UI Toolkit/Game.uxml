@@ -20,6 +20,16 @@
                 <ui:Label text="0" name="wave-counter" class="hud__counter" />
             </ui:VisualElement>
         </ui:VisualElement>
+        <ui:VisualElement name="mobile-controls" class="controls__container">
+            <ui:VisualElement name="turn-controls" class="controls__block">
+                <ui:VisualElement name="left-control" class="controls__btn" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=-1008301579157283121&amp;guid=3707709186531364eb5dcafe1de9f5c9&amp;type=3#arrow-left@2x&quot;);" />
+                <ui:VisualElement name="right-control" class="controls__btn" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=-1087164816274819069&amp;guid=3707709186531364eb5dcafe1de9f5c9&amp;type=3#arrow-right@2x&quot;);" />
+            </ui:VisualElement>
+            <ui:VisualElement name="speed-controls" class="controls__block controls__block-vertical">
+                <ui:VisualElement name="up-control" class="controls__btn" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=6936960519852013934&amp;guid=3707709186531364eb5dcafe1de9f5c9&amp;type=3#arrow-up@2x&quot;);" />
+                <ui:VisualElement name="down-control" class="controls__btn" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=-1304905567622442630&amp;guid=3707709186531364eb5dcafe1de9f5c9&amp;type=3#arrow-down@2x&quot;);" />
+            </ui:VisualElement>
+        </ui:VisualElement>
         <ui:VisualElement name="countdown-container" class="countdown__container hide">
             <ui:Label text="3" name="countdown-text" style="font-size: 40px; -unity-font-style: bold; color: rgb(255, 255, 255); display: flex;" />
         </ui:VisualElement>

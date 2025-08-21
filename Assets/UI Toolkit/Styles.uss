@@ -348,3 +348,28 @@
 .end-game__btns > Button.last-child {
     margin-right: 0;
 }
+
+.controls__container {
+    margin-top: auto;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-bottom: var(--indent-m);
+}
+
+.controls__block {
+    flex-direction: row;
+    align-items: center;
+    margin-left: var(--indent-xl);
+    margin-right: var(--indent-xl);
+}
+
+.controls__block-vertical {
+    flex-direction: column;
+}
+
+.controls__btn {
+    width: 100px;
+    height: 100px;
+    margin-left: var(--indent-s);
+    margin-right: var(--indent-s);
+}
