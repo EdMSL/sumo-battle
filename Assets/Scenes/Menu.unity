@@ -528,6 +528,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: Transition Panel
       objectReference: {fileID: 0}
+    - target: {fileID: 7128707872838151352, guid: 37c8d43690670cd479a98957930fb800,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7128707872838151353, guid: 37c8d43690670cd479a98957930fb800,
         type: 3}
       propertyPath: m_SortingOrder
