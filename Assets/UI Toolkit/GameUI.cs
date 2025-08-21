@@ -22,6 +22,7 @@ public class GameUI : MonoBehaviour
     private Button _settingsAcceptButton;
     private Button _settingsCancelButton;
     private VisualElement _hudContainer;
+    private VisualElement _mobileControlsContainer;
     public VisualElement countdownContainer;
     public Label livesCounter;
     public Label waveCounter;
@@ -51,8 +52,9 @@ public class GameUI : MonoBehaviour
         countdownContainer = uiDocument.rootVisualElement.Q("countdown-container");
         countdownText = countdownContainer.Q<Label>("countdown-text");
 
-        _hudContainer = uiDocument.rootVisualElement.Query<VisualElement>("hud-container");
         _hudContainer = uiDocument.rootVisualElement.Q("hud-container");
+
+        _mobileControlsContainer = uiDocument.rootVisualElement.Q("mobile-controls");
 
         livesCounter = _hudContainer.Q("lives-block").Q<Label>(className: "hud__counter");
         waveCounter = _hudContainer.Q("wave-block").Q<Label>(className: "hud__counter");
@@ -81,6 +83,11 @@ public class GameUI : MonoBehaviour
         GameManager.Instance.OnGamePaused += GameManager_OnGamePaused;
         GameManager.Instance.OnGameUnpaused += GameManager_OnGameUnpaused;
         GameManager.Instance.OnGameOver += GameManager_OnGameOver;
+
+        if (!Platform.IsMobileBrowser())
+        {
+            _mobileControlsContainer.AddToClassList("hide");
+        }
 
         livesCounter.text = PlayerController.Instance.lives.ToString();
         waveCounter.text = GameManager.Instance.wave.ToString();
