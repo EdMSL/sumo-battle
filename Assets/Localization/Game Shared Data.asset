@@ -111,6 +111,30 @@ MonoBehaviour:
     m_Key: continue
     m_Metadata:
       m_Items: []
+  - m_Id: 13811656490315776
+    m_Key: music
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13811791240720384
+    m_Key: sound
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13811852766965760
+    m_Key: music-volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13812204639711232
+    m_Key: sound-volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14122293724540928
+    m_Key: master-volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14175526375485440
+    m_Key: settings-shadows
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

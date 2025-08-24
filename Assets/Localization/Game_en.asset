@@ -114,6 +114,30 @@ MonoBehaviour:
     m_Localized: Continue
     m_Metadata:
       m_Items: []
+  - m_Id: 13811656490315776
+    m_Localized: Music
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13811791240720384
+    m_Localized: Sound
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13811852766965760
+    m_Localized: Music volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13812204639711232
+    m_Localized: Sound volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14122293724540928
+    m_Localized: Master volume
+    m_Metadata:
+      m_Items: []
+  - m_Id: 14175526375485440
+    m_Localized: Shadows
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

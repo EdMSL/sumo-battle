@@ -35,7 +35,7 @@ MonoBehaviour:
   soundGroup: {fileID: 6132096652975807252, guid: a1c2ae3536f80044684b7d1d327ebc9d,
     type: 2}
   voiceGroup: {fileID: 0}
-  saveVolumeToPlayerPrefs: 1
+  saveVolumeToPlayerPrefs: 0
   masterVolumeKey: JSAM_MASTER_VOL
   masterMutedKey: JSAM_MASTER_MUTE
   musicVolumeKey: JSAM_MUSIC_VOL

@@ -15,8 +15,31 @@
                             <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(348055499112448)" />
                         </Bindings>
                     </ui:Label>
-                    <ui:Slider label="Slider" value="42" high-value="100" />
-                    <ui:Toggle label="Toggle" />
+                    <ui:Slider label="Slider" value="1" high-value="1" name="master-volume" low-value="0">
+                        <Bindings>
+                            <UnityEngine.Localization.LocalizedString property="label" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(14122293724540928)" />
+                        </Bindings>
+                    </ui:Slider>
+                    <ui:Toggle label="Toggle" name="sound-switcher" value="true">
+                        <Bindings>
+                            <UnityEngine.Localization.LocalizedString property="label" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(13811791240720384)" />
+                        </Bindings>
+                    </ui:Toggle>
+                    <ui:Slider label="Slider" value="1" high-value="1" name="sound-volume" low-value="0">
+                        <Bindings>
+                            <UnityEngine.Localization.LocalizedString property="label" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(13812204639711232)" />
+                        </Bindings>
+                    </ui:Slider>
+                    <ui:Toggle label="Toggle" name="music-switcher" value="true">
+                        <Bindings>
+                            <UnityEngine.Localization.LocalizedString property="label" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(13811656490315776)" />
+                        </Bindings>
+                    </ui:Toggle>
+                    <ui:Slider label="Slider" value="1" high-value="1" name="music-volume" low-value="0">
+                        <Bindings>
+                            <UnityEngine.Localization.LocalizedString property="label" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(13811852766965760)" />
+                        </Bindings>
+                    </ui:Slider>
                 </ui:VisualElement>
                 <ui:VisualElement name="options-block" class="options__block" style="flex-grow: 1;">
                     <ui:Label text="Label" name="options-block-title" class="options__block__title">
@@ -24,17 +47,11 @@
                             <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(368872052162560)" />
                         </Bindings>
                     </ui:Label>
-                    <ui:Slider label="Slider" value="42" high-value="100" class="dgdf" />
-                    <ui:Toggle label="Toggle" />
-                </ui:VisualElement>
-                <ui:VisualElement name="options-block" class="options__block" style="flex-grow: 1;">
-                    <ui:Label text="Label" name="options-block-title" class="options__block__title">
+                    <ui:Toggle label="Toggle" name="shadows-switcher" value="true">
                         <Bindings>
-                            <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(368915626786816)" />
+                            <UnityEngine.Localization.LocalizedString property="label" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(14175526375485440)" />
                         </Bindings>
-                    </ui:Label>
-                    <ui:Slider label="Slider" value="42" high-value="100" />
-                    <ui:Toggle label="Toggle" />
+                    </ui:Toggle>
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:ScrollView>
