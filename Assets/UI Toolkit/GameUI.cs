@@ -23,12 +23,17 @@ public class GameUI : MonoBehaviour
     private Button _settingsCancelButton;
     private VisualElement _hudContainer;
     private VisualElement _mobileControlsContainer;
+    private VisualElement _leftControl;
+    private VisualElement _rightControl;
+    private VisualElement _upControl;
+    private VisualElement _downControl;
+    private Button _endGameGoToMenuBtn;
+    private Button _endGameRepeatBtn;
     public VisualElement countdownContainer;
     public Label livesCounter;
     public Label waveCounter;
     public Label countdownText;
-    public Button _endGameRepeatBtn;
-    public Button _endGameGoToMenuBtn;
+    public OnScreenControlTrigger PauseTrigger;
 
     private void OnEnable()
     {
@@ -52,6 +57,16 @@ public class GameUI : MonoBehaviour
         _hudContainer = uiDocument.rootVisualElement.Q("hud-container");
 
         _mobileControlsContainer = uiDocument.rootVisualElement.Q("mobile-controls");
+
+        if (Platform.IsMobileBrowser())
+        {
+            _leftControl = _mobileControlsContainer.Q("left-control");
+            _rightControl = _mobileControlsContainer.Q("right-control");
+            _upControl = _mobileControlsContainer.Q("up-control");
+            _downControl = _mobileControlsContainer.Q("down-control");
+
+            _upControl.RegisterCallback<ClickEvent>(OnUpControlClick);
+        }
 
         livesCounter = _hudContainer.Q("lives-block").Q<Label>(className: "hud__counter");
         waveCounter = _hudContainer.Q("wave-block").Q<Label>(className: "hud__counter");
@@ -109,6 +124,11 @@ public class GameUI : MonoBehaviour
 
         /// Нормально работает только с задержкой начала (иначе отклбючается сразу же) и продолжительностью, помноженной на 2.
         transitionPanelScript.StartTransition(false, 0.1f, GameManager.Instance.waitingTime * 2);
+    }
+
+    private void OnUpControlClick(ClickEvent evt)
+    {
+        PauseTrigger.Trigger();
     }
 
     private void GameManager_OnGameOver(object sender, EventArgs e)
