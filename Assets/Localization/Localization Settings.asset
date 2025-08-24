@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Localization Settings
   m_EditorClassIdentifier: 
   m_StartupSelectors:
-  - rid: 6964575296969244953
+  - rid: 5258421980102744
   - rid: 6964575296969244954
   - rid: 6964575296969244955
   m_AvailableLocales:
@@ -33,11 +33,11 @@ MonoBehaviour:
     RefIds:
     - rid: -2
       type: {class: , ns: , asm: }
-    - rid: 6964575296969244953
-      type: {class: CommandLineLocaleSelector, ns: UnityEngine.Localization.Settings,
+    - rid: 5258421980102744
+      type: {class: PlayerPrefLocaleSelector, ns: UnityEngine.Localization.Settings,
         asm: Unity.Localization}
       data:
-        m_CommandLineArgument: -language=
+        m_PlayerPreferenceKey: selected-locale
     - rid: 6964575296969244954
       type: {class: SystemLocaleSelector, ns: UnityEngine.Localization.Settings, asm: Unity.Localization}
       data: 
@@ -55,7 +55,7 @@ MonoBehaviour:
         asm: Unity.Localization}
       data:
         m_DefaultTableReference:
-          m_TableCollectionName: 
+          m_TableCollectionName: Game Assets
         m_CustomTableProvider:
           rid: -2
         m_CustomTablePostprocessor:

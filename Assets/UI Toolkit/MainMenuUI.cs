@@ -7,6 +7,7 @@ using UnityEngine.UIElements;
 using JSAM;
 using AlpaSunFade;
 using System.Collections.Generic;
+using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class MainMenuUI : MonoBehaviour
 {
@@ -43,6 +44,8 @@ public class MainMenuUI : MonoBehaviour
     private UIDocument uiDocument;
     private UIDocument transitionPanel;
     private int selectedLevelIndex;
+    private AsyncOperationHandle<Locale> m_InitializeOperation;
+    private int localeSelected;
 
     private void OnEnable()
     {
@@ -103,6 +106,19 @@ public class MainMenuUI : MonoBehaviour
         SwitchUIElementsOnStart();
 
         yield return LocalizationSettings.InitializationOperation;
+
+        m_InitializeOperation = LocalizationSettings.SelectedLocaleAsync;
+        if (m_InitializeOperation.IsDone)
+        {
+            for (int i = 0; i < LocalizationSettings.AvailableLocales.Locales.Count; i++)
+            {
+                var locale = LocalizationSettings.AvailableLocales.Locales[i];
+                if (LocalizationSettings.SelectedLocale == locale)
+                {
+                    localeSelected = i;
+                }
+            }
+        }
 
         transitionPanel.gameObject.SetActive(false);
 
