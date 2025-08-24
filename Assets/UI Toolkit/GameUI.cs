@@ -30,12 +30,9 @@ public class GameUI : MonoBehaviour
     public Button _endGameRepeatBtn;
     public Button _endGameGoToMenuBtn;
 
-    private UIDocument transitionPanel;
-
     private void OnEnable()
     {
         var uiDocument = GetComponent<UIDocument>();
-        transitionPanel = transitionPanelScript.GetComponent<UIDocument>();
 
         _gameMenuWindow = uiDocument.rootVisualElement.Q("game-menu-window");
         _gameMenuWindowContent = _gameMenuWindow.Q("popup-content");
@@ -106,15 +103,18 @@ public class GameUI : MonoBehaviour
 
     private void GameManager_OnCountdawnStart(object sender, EventArgs e)
     {
-        transitionPanel.gameObject.SetActive(false);
+        if (transitionPanelScript != null)
+        {
+            transitionPanelScript.gameObject.SetActive(false);
+        }
     }
 
-    private void GameManager_OnGamePaused(object sender, System.EventArgs e)
+    private void GameManager_OnGamePaused(object sender, EventArgs e)
     {
         SwitchMainMenu(true);
     }
 
-    private void GameManager_OnGameUnpaused(object sender, System.EventArgs e)
+    private void GameManager_OnGameUnpaused(object sender, EventArgs e)
     {
         SwitchMainMenu(false);
     }
