@@ -32,6 +32,17 @@ public class GameSettingsManager : MonoBehaviour
         shadowsSwitcher.RegisterValueChangedCallback(ToggleShadows);
     }
 
+    private void OnDisable()
+    {
+        masterVolumeSlider.UnregisterValueChangedCallback(ChangeVolume);
+        soundVolumeSlider.UnregisterValueChangedCallback(ChangeVolume);
+        musicVolumeSlider.UnregisterValueChangedCallback(ChangeVolume);
+
+        soundSwitcher.UnregisterValueChangedCallback(Mute);
+        musicSwitcher.UnregisterValueChangedCallback(Mute);
+        shadowsSwitcher.UnregisterValueChangedCallback(ToggleShadows);
+    }
+
     private void ToggleShadows(ChangeEvent<bool> evt)
     {
         QualitySettings.shadows = evt.newValue ? ShadowQuality.HardOnly : ShadowQuality.Disable;

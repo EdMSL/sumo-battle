@@ -63,7 +63,7 @@ public class GameUI : MonoBehaviour
         _endGameRepeatBtn = _endGameContainer.Q<Button>("btn-yes");
         _endGameGoToMenuBtn = _endGameContainer.Q<Button>("btn-no");
 
-        _mainMenuResumeGameBtn.RegisterCallback((ClickEvent evt) => { GameManager.Instance.TogglePauseGame(); });
+        _mainMenuResumeGameBtn.RegisterCallback<ClickEvent>(OnResumeBtnClick);
         _mainMenuSettingsGameBtn.RegisterCallback<ClickEvent>(OnSettingsBtnClick);
         _mainMenuGoToMenuGameBtn.RegisterCallback<ClickEvent>(OnGoToMenuBtnClick);
 
@@ -72,6 +72,19 @@ public class GameUI : MonoBehaviour
 
         _endGameRepeatBtn.RegisterCallback<ClickEvent>(OnRepeatGameBtnClick);
         _endGameGoToMenuBtn.RegisterCallback<ClickEvent>(OnGoToMenuBtnClick);
+    }
+
+    private void OnDisable()
+    {
+        _mainMenuResumeGameBtn.UnregisterCallback<ClickEvent>(OnResumeBtnClick);
+        _mainMenuSettingsGameBtn.UnregisterCallback<ClickEvent>(OnSettingsBtnClick);
+        _mainMenuGoToMenuGameBtn.UnregisterCallback<ClickEvent>(OnGoToMenuBtnClick);
+
+        _settingsAcceptButton.UnregisterCallback<ClickEvent>(OnSettingsBtnClick);
+        _settingsCancelButton.UnregisterCallback<ClickEvent>(OnSettingsBtnClick);
+
+        _endGameRepeatBtn.UnregisterCallback<ClickEvent>(OnRepeatGameBtnClick);
+        _endGameGoToMenuBtn.UnregisterCallback<ClickEvent>(OnGoToMenuBtnClick);
     }
 
     private void Start()
@@ -150,6 +163,11 @@ public class GameUI : MonoBehaviour
         AudioManager.PlaySound(GameAudioLibrarySounds.click);
 
         GameManager.Instance.RepeatGame();
+    }
+
+    private void OnResumeBtnClick(ClickEvent evt)
+    {
+        GameManager.Instance.TogglePauseGame();
     }
 
     private void OnSettingsBtnClick(ClickEvent evt)
