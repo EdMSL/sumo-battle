@@ -85,6 +85,11 @@ public class GameUI : MonoBehaviour
 
         _endGameRepeatBtn.UnregisterCallback<ClickEvent>(OnRepeatGameBtnClick);
         _endGameGoToMenuBtn.UnregisterCallback<ClickEvent>(OnGoToMenuBtnClick);
+
+        GameManager.Instance.OnCountdawnStart -= GameManager_OnCountdawnStart;
+        GameManager.Instance.OnGamePaused -= GameManager_OnGamePaused;
+        GameManager.Instance.OnGameUnpaused -= GameManager_OnGameUnpaused;
+        GameManager.Instance.OnGameOver -= GameManager_OnGameOver;
     }
 
     private void Start()

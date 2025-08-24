@@ -158,7 +158,11 @@ public class GameManager : MonoBehaviour
 
     IEnumerator GamePrepare()
     {
-        gameUI = FindAnyObjectByType<GameUI>();
+        if (!gameUI)
+        {
+            gameUI = FindAnyObjectByType<GameUI>();
+        }
+
         gameUI.countdownContainer.ToggleInClassList("hide");
 
         gameUI.countdownText.text = "3";
@@ -198,6 +202,11 @@ public class GameManager : MonoBehaviour
     public void TogglePauseGame()
     {
         isGamePaused = !isGamePaused;
+
+        if (!gameUI)
+        {
+            gameUI = FindAnyObjectByType<GameUI>();
+        }
 
         if (isGamePaused)
         {

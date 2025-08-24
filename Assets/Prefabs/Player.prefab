@@ -306,6 +306,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: 38e391e9-5756-4c43-8b35-e6ba6d3d8836
     m_ActionName: 'Player/Move[/Keyboard/w,/Keyboard/s,/Keyboard/a,/Keyboard/d]'
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: 51a5ae8c-f7a6-4269-b1af-6d4021d91f38
+    m_ActionName: 'Player/Menu[/Keyboard/tab]'
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player

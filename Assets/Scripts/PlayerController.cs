@@ -3,11 +3,11 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using JSAM;
 using System.Collections.Generic;
+using System.Linq;
 
 public class PlayerController : MonoBehaviour
 {
     public static PlayerController Instance { get; private set; }
-    public GameUI gameUI;
     public GameObject focalPoint;
     public float noMovementTime = 3.0f;
     public float noMowementMagnitude = 0.5f;
@@ -24,9 +24,12 @@ public class PlayerController : MonoBehaviour
     private bool isMovementBlocked;
     private float movementBlockedTimer;
     private bool isHavePowerup;
+    private InputAction menuAction;
+    private GameUI gameUI;
 
     public int lives { get; set; }
     public bool isOnGround { get; set; }
+
     [HideInInspector] public Vector2 movement;
 
     private void Awake()
@@ -38,7 +41,16 @@ public class PlayerController : MonoBehaviour
     {
         playerRb = gameObject.GetComponent<Rigidbody>();
         playerMr = gameObject.GetComponent<MeshRenderer>();
+        gameUI = FindAnyObjectByType<GameUI>();
         playerRb.linearDamping = linearDamping;
+
+        menuAction = gameObject.GetComponent<PlayerInput>().actions.actionMaps.First().FindAction("Menu");
+
+        if (menuAction != null)
+        {
+            menuAction.performed += GameManager_OnTogglePause;
+        }
+
 
         switch (GameManager.Instance.difficultyLevel)
         {
@@ -60,6 +72,16 @@ public class PlayerController : MonoBehaviour
 
         gameUI.livesCounter.text = lives.ToString();
         SetSkin(GameManager.Instance.playerSkin);
+    }
+
+    private void OnDisable()
+    {
+
+        if (menuAction != null)
+        {
+            menuAction.performed -= GameManager_OnTogglePause;
+        }
+
     }
 
     void Update()
@@ -214,5 +236,10 @@ public class PlayerController : MonoBehaviour
     public void SetSkin(Material skin)
     {
         playerMr.material = skin;
+    }
+
+    private void GameManager_OnTogglePause(InputAction.CallbackContext context)
+    {
+        GameManager.Instance.TogglePauseGame();
     }
 }
