@@ -1183,6 +1183,10 @@ GameObject:
   - component: {fileID: 1834242934}
   - component: {fileID: 1834242936}
   - component: {fileID: 1834242938}
+  - component: {fileID: 1834242942}
+  - component: {fileID: 1834242941}
+  - component: {fileID: 1834242940}
+  - component: {fileID: 1834242939}
   m_Layer: 5
   m_Name: UIDocument
   m_TagString: Untagged
@@ -1238,7 +1242,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   transitionPanelScript: {fileID: 1819464601}
-  PauseTrigger: {fileID: 1834242938}
+  PauseControlTrigger: {fileID: 1834242938}
+  UpControlTrigger: {fileID: 1834242942}
+  DownControlTrigger: {fileID: 1834242941}
+  LeftControlTrigger: {fileID: 1834242940}
+  RightControlTrigger: {fileID: 1834242939}
 --- !u!114 &1834242938
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1252,6 +1260,62 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   ControlPath: <Keyboard>/tab
+  Value: 1
+--- !u!114 &1834242939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1834242933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d12e162b512b2d41a7c63565522d703, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ControlPath: <Keyboard>/d
+  Value: 1
+--- !u!114 &1834242940
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1834242933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d12e162b512b2d41a7c63565522d703, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ControlPath: <Keyboard>/a
+  Value: 1
+--- !u!114 &1834242941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1834242933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d12e162b512b2d41a7c63565522d703, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ControlPath: <Keyboard>/s
+  Value: 1
+--- !u!114 &1834242942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1834242933}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2d12e162b512b2d41a7c63565522d703, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ControlPath: <Keyboard>/w
   Value: 1
 --- !u!1 &1990032705
 GameObject:
