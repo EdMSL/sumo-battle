@@ -2,10 +2,12 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.InputSystem;
+using UnityEngine.InputSystem.Layouts;
 using UnityEngine.InputSystem.OnScreen;
 
 public class OnScreenControlTrigger : OnScreenControl
 {
+    [InputControl(layout = "Button")]
     public string ControlPath;
     public float Value = 1f;
 

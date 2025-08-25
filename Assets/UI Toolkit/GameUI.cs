@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using JSAM;
 using AlpaSunFade;
+using UnityEngine.InputSystem.Layouts;
 
 public class GameUI : MonoBehaviour
 {
@@ -27,13 +28,18 @@ public class GameUI : MonoBehaviour
     private VisualElement _rightControl;
     private VisualElement _upControl;
     private VisualElement _downControl;
+    private VisualElement _pauseControl;
     private Button _endGameGoToMenuBtn;
     private Button _endGameRepeatBtn;
     public VisualElement countdownContainer;
     public Label livesCounter;
     public Label waveCounter;
     public Label countdownText;
-    public OnScreenControlTrigger PauseTrigger;
+    public OnScreenControlTrigger PauseControlTrigger;
+    public OnScreenControlTrigger UpControlTrigger;
+    public OnScreenControlTrigger DownControlTrigger;
+    public OnScreenControlTrigger LeftControlTrigger;
+    public OnScreenControlTrigger RightControlTrigger;
 
     private void OnEnable()
     {
@@ -64,8 +70,13 @@ public class GameUI : MonoBehaviour
             _rightControl = _mobileControlsContainer.Q("right-control");
             _upControl = _mobileControlsContainer.Q("up-control");
             _downControl = _mobileControlsContainer.Q("down-control");
+            _pauseControl = _mobileControlsContainer.Q("pause-control");
 
-            _upControl.RegisterCallback<ClickEvent>(OnUpControlClick);
+            _upControl.RegisterCallback<PointerDownEvent>(OnUpControlClick);
+            _downControl.RegisterCallback<PointerDownEvent>(OnDownControlClick);
+            _leftControl.RegisterCallback<PointerDownEvent>(OnLeftControlClick);
+            _rightControl.RegisterCallback<PointerDownEvent>(OnRightControlClick);
+            _pauseControl.RegisterCallback<PointerDownEvent>(OnPauseControlClick);
         }
 
         livesCounter = _hudContainer.Q("lives-block").Q<Label>(className: "hud__counter");
@@ -101,6 +112,15 @@ public class GameUI : MonoBehaviour
         _endGameRepeatBtn.UnregisterCallback<ClickEvent>(OnRepeatGameBtnClick);
         _endGameGoToMenuBtn.UnregisterCallback<ClickEvent>(OnGoToMenuBtnClick);
 
+        if (Platform.IsMobileBrowser())
+        {
+            // _upControl.UnregisterCallback<ClickEvent>(OnUpControlClick);
+            // _downControl.UnregisterCallback<ClickEvent>(OnDownControlClick);
+            // _leftControl.UnregisterCallback<ClickEvent>(OnLeftControlClick);
+            // _rightControl.UnregisterCallback<ClickEvent>(OnRightControlClick);
+            // _pauseControl.UnregisterCallback<ClickEvent>(OnPauseControlClick);
+        }
+
         GameManager.Instance.OnCountdawnStart -= GameManager_OnCountdawnStart;
         GameManager.Instance.OnGamePaused -= GameManager_OnGamePaused;
         GameManager.Instance.OnGameUnpaused -= GameManager_OnGameUnpaused;
@@ -126,9 +146,35 @@ public class GameUI : MonoBehaviour
         transitionPanelScript.StartTransition(false, 0.1f, GameManager.Instance.waitingTime * 2);
     }
 
-    private void OnUpControlClick(ClickEvent evt)
+    // private void OnUpControlClick(ClickEvent evt)
+    private void OnUpControlClick(PointerDownEvent evt)
     {
-        PauseTrigger.Trigger();
+        // ControlTrigger.ControlPath = UpControlPath;
+        UpControlTrigger.Trigger();
+    }
+    // private void OnDownControlClick(ClickEvent evt)
+    private void OnDownControlClick(PointerDownEvent evt)
+    {
+        // ControlTrigger.ControlPath = DownControlPath;
+        DownControlTrigger.Trigger();
+    }
+    // private void OnLeftControlClick(ClickEvent evt)
+    private void OnLeftControlClick(PointerDownEvent evt)
+    {
+        // ControlTrigger.ControlPath = LeftControlPath;
+        LeftControlTrigger.Trigger();
+    }
+    // private void OnRightControlClick(ClickEvent evt)
+    private void OnRightControlClick(PointerDownEvent evt)
+    {
+        // ControlTrigger.ControlPath = RightControlPath;
+        RightControlTrigger.Trigger();
+    }
+    // private void OnPauseControlClick(ClickEvent evt)
+    private void OnPauseControlClick(PointerDownEvent evt)
+    {
+        // ControlTrigger.ControlPath = PauseControlPath;
+        PauseControlTrigger.Trigger();
     }
 
     private void GameManager_OnGameOver(object sender, EventArgs e)

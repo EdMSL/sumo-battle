@@ -44,7 +44,7 @@ public class PlayerController : MonoBehaviour
         gameUI = FindAnyObjectByType<GameUI>();
         playerRb.linearDamping = linearDamping;
 
-        menuAction = gameObject.GetComponent<PlayerInput>().actions.actionMaps.First().FindAction("Menu");
+        menuAction = gameObject.GetComponent<PlayerInput>().actions["Menu"];
 
         if (menuAction != null)
         {
