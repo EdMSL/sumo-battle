@@ -82,6 +82,11 @@ public class GameUI : MonoBehaviour
             _downControl.RegisterCallback<PointerUpEvent>(OnDownControlUp);
             _leftControl.RegisterCallback<PointerUpEvent>(OnLeftControlUp);
             _rightControl.RegisterCallback<PointerUpEvent>(OnRightControlUp);
+
+            _upControl.RegisterCallback<PointerLeaveEvent>(OnUpControlLeave);
+            _downControl.RegisterCallback<PointerLeaveEvent>(OnDownControlLeave);
+            _leftControl.RegisterCallback<PointerLeaveEvent>(OnLeftControlLeave);
+            _rightControl.RegisterCallback<PointerLeaveEvent>(OnRightControlLeave);
         }
 
         livesCounter = _hudContainer.Q("lives-block").Q<Label>(className: "hud__counter");
@@ -119,11 +124,21 @@ public class GameUI : MonoBehaviour
 
         if (Platform.IsMobileBrowser())
         {
-            // _upControl.UnregisterCallback<ClickEvent>(OnUpControlClick);
-            // _downControl.UnregisterCallback<ClickEvent>(OnDownControlClick);
-            // _leftControl.UnregisterCallback<ClickEvent>(OnLeftControlClick);
-            // _rightControl.UnregisterCallback<ClickEvent>(OnRightControlClick);
-            // _pauseControl.UnregisterCallback<ClickEvent>(OnPauseControlClick);
+            _upControl.UnregisterCallback<PointerDownEvent>(OnUpControlClick);
+            _downControl.UnregisterCallback<PointerDownEvent>(OnDownControlClick);
+            _leftControl.UnregisterCallback<PointerDownEvent>(OnLeftControlClick);
+            _rightControl.UnregisterCallback<PointerDownEvent>(OnRightControlClick);
+            _pauseControl.UnregisterCallback<PointerDownEvent>(OnPauseControlClick);
+
+            _upControl.UnregisterCallback<PointerUpEvent>(OnUpControlUp);
+            _downControl.UnregisterCallback<PointerUpEvent>(OnDownControlUp);
+            _leftControl.UnregisterCallback<PointerUpEvent>(OnLeftControlUp);
+            _rightControl.UnregisterCallback<PointerUpEvent>(OnRightControlUp);
+
+            _upControl.UnregisterCallback<PointerLeaveEvent>(OnUpControlLeave);
+            _downControl.UnregisterCallback<PointerLeaveEvent>(OnDownControlLeave);
+            _leftControl.UnregisterCallback<PointerLeaveEvent>(OnLeftControlLeave);
+            _rightControl.UnregisterCallback<PointerLeaveEvent>(OnRightControlLeave);
         }
 
         GameManager.Instance.OnCountdawnStart -= GameManager_OnCountdawnStart;
@@ -185,6 +200,23 @@ public class GameUI : MonoBehaviour
         LeftControlTrigger.Stop();
     }
     private void OnRightControlUp(PointerUpEvent evt)
+    {
+        RightControlTrigger.Stop();
+    }
+
+    private void OnUpControlLeave(PointerLeaveEvent evt)
+    {
+        UpControlTrigger.Stop();
+    }
+    private void OnDownControlLeave(PointerLeaveEvent evt)
+    {
+        DownControlTrigger.Stop();
+    }
+    private void OnLeftControlLeave(PointerLeaveEvent evt)
+    {
+        LeftControlTrigger.Stop();
+    }
+    private void OnRightControlLeave(PointerLeaveEvent evt)
     {
         RightControlTrigger.Stop();
     }

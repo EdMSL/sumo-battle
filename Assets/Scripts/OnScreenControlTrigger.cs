@@ -23,16 +23,12 @@ public class OnScreenControlTrigger : OnScreenControl
     public void Trigger(bool isHold = false)
     {
         if (!string.IsNullOrEmpty(ControlPath))
-        {
-            coroutine = StartCoroutine(triggerEvent(isHold));
-        }
+            StartCoroutine(triggerEvent(isHold));
     }
 
     public void Stop()
     {
-        Debug.Log(coroutine);
-        StopCoroutine(coroutine);
-        Debug.Log(coroutine);
+        SentDefaultValueToControl();
     }
 
     private IEnumerator triggerEvent(bool isHold = false)
