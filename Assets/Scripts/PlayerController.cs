@@ -76,12 +76,10 @@ public class PlayerController : MonoBehaviour
 
     private void OnDisable()
     {
-
         if (menuAction != null)
         {
             menuAction.performed -= GameManager_OnTogglePause;
         }
-
     }
 
     void Update()
@@ -171,9 +169,11 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    //FIXME подбор усилителя работает неправильно. При взятии нового с включенным старым время не суммируется.
     IEnumerator Counter()
     {
         yield return new WaitForSeconds(5);
+
         isHavePowerup = false;
         indicator.gameObject.SetActive(false);
     }

@@ -10,9 +10,6 @@ public class OnScreenControlTrigger : OnScreenControl
     [InputControl(layout = "Button")]
     public string ControlPath;
     public float Value = 1f;
-    public bool isMove = false;
-
-    private Coroutine coroutine;
 
     protected override string controlPathInternal
     {
