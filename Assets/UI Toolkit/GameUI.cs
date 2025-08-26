@@ -77,6 +77,11 @@ public class GameUI : MonoBehaviour
             _leftControl.RegisterCallback<PointerDownEvent>(OnLeftControlClick);
             _rightControl.RegisterCallback<PointerDownEvent>(OnRightControlClick);
             _pauseControl.RegisterCallback<PointerDownEvent>(OnPauseControlClick);
+
+            _upControl.RegisterCallback<PointerUpEvent>(OnUpControlUp);
+            _downControl.RegisterCallback<PointerUpEvent>(OnDownControlUp);
+            _leftControl.RegisterCallback<PointerUpEvent>(OnLeftControlUp);
+            _rightControl.RegisterCallback<PointerUpEvent>(OnRightControlUp);
         }
 
         livesCounter = _hudContainer.Q("lives-block").Q<Label>(className: "hud__counter");
@@ -146,35 +151,42 @@ public class GameUI : MonoBehaviour
         transitionPanelScript.StartTransition(false, 0.1f, GameManager.Instance.waitingTime * 2);
     }
 
-    // private void OnUpControlClick(ClickEvent evt)
     private void OnUpControlClick(PointerDownEvent evt)
     {
-        // ControlTrigger.ControlPath = UpControlPath;
-        UpControlTrigger.Trigger();
+        UpControlTrigger.Trigger(true);
     }
-    // private void OnDownControlClick(ClickEvent evt)
     private void OnDownControlClick(PointerDownEvent evt)
     {
-        // ControlTrigger.ControlPath = DownControlPath;
-        DownControlTrigger.Trigger();
+        DownControlTrigger.Trigger(true);
     }
-    // private void OnLeftControlClick(ClickEvent evt)
     private void OnLeftControlClick(PointerDownEvent evt)
     {
-        // ControlTrigger.ControlPath = LeftControlPath;
-        LeftControlTrigger.Trigger();
+        LeftControlTrigger.Trigger(true);
     }
-    // private void OnRightControlClick(ClickEvent evt)
     private void OnRightControlClick(PointerDownEvent evt)
     {
-        // ControlTrigger.ControlPath = RightControlPath;
-        RightControlTrigger.Trigger();
+        RightControlTrigger.Trigger(true);
     }
-    // private void OnPauseControlClick(ClickEvent evt)
     private void OnPauseControlClick(PointerDownEvent evt)
     {
-        // ControlTrigger.ControlPath = PauseControlPath;
         PauseControlTrigger.Trigger();
+    }
+
+    private void OnUpControlUp(PointerUpEvent evt)
+    {
+        UpControlTrigger.Stop();
+    }
+    private void OnDownControlUp(PointerUpEvent evt)
+    {
+        DownControlTrigger.Stop();
+    }
+    private void OnLeftControlUp(PointerUpEvent evt)
+    {
+        LeftControlTrigger.Stop();
+    }
+    private void OnRightControlUp(PointerUpEvent evt)
+    {
+        RightControlTrigger.Stop();
     }
 
     private void GameManager_OnGameOver(object sender, EventArgs e)

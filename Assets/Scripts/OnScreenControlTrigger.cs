@@ -10,6 +10,9 @@ public class OnScreenControlTrigger : OnScreenControl
     [InputControl(layout = "Button")]
     public string ControlPath;
     public float Value = 1f;
+    public bool isMove = false;
+
+    private Coroutine coroutine;
 
     protected override string controlPathInternal
     {
@@ -17,13 +20,22 @@ public class OnScreenControlTrigger : OnScreenControl
         set => ControlPath = value;
     }
 
-    public void Trigger()
+    public void Trigger(bool isHold = false)
     {
         if (!string.IsNullOrEmpty(ControlPath))
-            StartCoroutine(triggerEvent());
+        {
+            coroutine = StartCoroutine(triggerEvent(isHold));
+        }
     }
 
-    private IEnumerator triggerEvent()
+    public void Stop()
+    {
+        Debug.Log(coroutine);
+        StopCoroutine(coroutine);
+        Debug.Log(coroutine);
+    }
+
+    private IEnumerator triggerEvent(bool isHold = false)
     {
         yield return null;
         SentDefaultValueToControl();
@@ -31,8 +43,11 @@ public class OnScreenControlTrigger : OnScreenControl
         yield return null;
         SendValueToControl<float>(Value);
 
-        yield return null;
-        SentDefaultValueToControl();
+        if (!isHold)
+        {
+            yield return null;
+            SentDefaultValueToControl();
+        }
     }
 }
 #endif
