@@ -86,13 +86,6 @@ public class PlayerController : MonoBehaviour
     {
         if (GameManager.Instance.state == GameManager.State.GameProcess)
         {
-            float verticalInput = movement.y;
-
-            if (isOnGround)
-            {
-                playerRb.AddForce(focalPoint.transform.forward * verticalInput * speed);
-            }
-
             indicator.transform.rotation = Quaternion.identity;
 
             if (transform.position.y < -5f)
@@ -123,6 +116,13 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
+        float verticalInput = movement.y;
+
+        if (isOnGround)
+        {
+            playerRb.AddForce(focalPoint.transform.forward * verticalInput * speed);
+        }
+
         if (playerRb.linearVelocity.magnitude < noMowementMagnitude)
         {
             if (!isOnGround)

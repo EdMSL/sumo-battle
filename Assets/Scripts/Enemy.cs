@@ -15,14 +15,20 @@ public class Enemy : MonoBehaviour
     {
         if (GameManager.Instance.state == GameManager.State.GameProcess)
         {
-            Vector3 lookDirection = (PlayerController.Instance.transform.position - transform.position).normalized;
-
-            enemyRb.AddForce(lookDirection * speed);
-
             if (transform.position.y < bottomBound)
             {
                 SpawnManager.Instance.DestroyEnemy(gameObject);
             }
+        }
+    }
+
+    private void FixedUpdate()
+    {
+        if (GameManager.Instance.state == GameManager.State.GameProcess)
+        {
+            Vector3 lookDirection = (PlayerController.Instance.transform.position - transform.position).normalized;
+
+            enemyRb.AddForce(lookDirection * speed);
 
             if (PlayerController.Instance.transform.position.y < -1f)
             {
