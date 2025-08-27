@@ -3,7 +3,6 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using JSAM;
 using System.Collections.Generic;
-using System.Linq;
 
 public class PlayerController : MonoBehaviour
 {
@@ -26,6 +25,8 @@ public class PlayerController : MonoBehaviour
     private bool isHavePowerup;
     private InputAction menuAction;
     private GameUI gameUI;
+
+    private Coroutine powerUpCoroutine;
 
     public int lives { get; set; }
     public bool isOnGround { get; set; }
@@ -162,14 +163,19 @@ public class PlayerController : MonoBehaviour
         if (other.CompareTag("Powerup"))
         {
             AudioManager.PlaySound(GameAudioLibrarySounds.powerup);
-            isHavePowerup = true;
             Destroy(other.gameObject);
-            StartCoroutine(Counter());
+
+            if (isHavePowerup)
+            {
+                StopCoroutine(powerUpCoroutine);
+            }
+
+            isHavePowerup = true;
+            powerUpCoroutine = StartCoroutine(Counter());
             indicator.gameObject.SetActive(true);
         }
     }
 
-    //FIXME подбор усилителя работает неправильно. При взятии нового с включенным старым время не суммируется.
     IEnumerator Counter()
     {
         yield return new WaitForSeconds(5);
