@@ -3,7 +3,6 @@
 public class Enemy : MonoBehaviour
 {
     private Rigidbody enemyRb;
-    private float bottomBound = -10.0f;
     private float speed = 3f;
 
     void Start()

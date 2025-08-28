@@ -10,7 +10,7 @@ public class SpawnManager : MonoBehaviour
     public float spawnRangeBound = 9f;
     public byte enemiesStartQuantity = 1;
     public float enemySpeed = 0f;
-    public byte powerupsQuantity = 0;
+    [HideInInspector] public byte powerupsQuantity = 0;
 
     private byte enemiesQuantity;
     private byte powerupsMaxQuantity;
