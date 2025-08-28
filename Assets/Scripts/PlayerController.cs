@@ -164,6 +164,7 @@ public class PlayerController : MonoBehaviour
         {
             AudioManager.PlaySound(GameAudioLibrarySounds.powerup);
             Destroy(other.gameObject);
+            SpawnManager.Instance.powerupsQuantity--;
 
             if (isHavePowerup)
             {

@@ -8,10 +8,13 @@ public class SpawnManager : MonoBehaviour
     public GameObject enemyPrefab;
     public GameObject powerupPrefab;
     public float spawnRangeBound = 9f;
-    public byte enemiesStartQuontity = 1;
+    public byte enemiesStartQuantity = 1;
     public float enemySpeed = 0f;
+    public byte powerupsQuantity = 0;
 
-    private byte enemiesQuontity;
+    private byte enemiesQuantity;
+    private byte powerupsMaxQuantity;
+
     [HideInInspector] public List<GameObject> enemiesList;
 
     private void Awake()
@@ -28,18 +31,21 @@ public class SpawnManager : MonoBehaviour
 
     private void Start()
     {
-        if (enemiesStartQuontity == 0)
+        if (enemiesStartQuantity == 0)
         {
             switch (GameManager.Instance.difficultyLevel)
             {
                 case GameManager.DifficultyLevel.Easy:
-                    enemiesQuontity = 2;
+                    enemiesQuantity = 2;
+                    powerupsMaxQuantity = 5;
                     break;
                 case GameManager.DifficultyLevel.Normal:
-                    enemiesQuontity = 4;
+                    enemiesQuantity = 4;
+                    powerupsMaxQuantity = 4;
                     break;
                 case GameManager.DifficultyLevel.Hard:
-                    enemiesQuontity = 6;
+                    enemiesQuantity = 6;
+                    powerupsMaxQuantity = 3;
                     break;
                 default:
                     break;
@@ -47,7 +53,7 @@ public class SpawnManager : MonoBehaviour
         }
         else
         {
-            enemiesQuontity = enemiesStartQuontity;
+            enemiesQuantity = enemiesStartQuantity;
         }
     }
 
@@ -59,11 +65,17 @@ public class SpawnManager : MonoBehaviour
             {
                 if (GameManager.Instance.wave > 1)
                 {
-                    enemiesQuontity++;
+                    enemiesQuantity++;
                 }
 
-                SpawnEnemysWave(enemiesQuontity);
-                Instantiate(powerupPrefab, GetRandomSpawnPos(), powerupPrefab.transform.rotation);
+                SpawnEnemysWave(enemiesQuantity);
+
+                if (powerupsQuantity < powerupsMaxQuantity)
+                {
+                    Instantiate(powerupPrefab, GetRandomSpawnPos(), powerupPrefab.transform.rotation);
+                    powerupsQuantity++;
+                }
+
                 GameManager.Instance.ChangeWave();
             }
         }
