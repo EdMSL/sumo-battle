@@ -25,7 +25,9 @@
                 <ui:VisualElement name="left-control" class="controls__btn" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=-1008301579157283121&amp;guid=3707709186531364eb5dcafe1de9f5c9&amp;type=3#arrow-left@2x&quot;);" />
                 <ui:VisualElement name="right-control" class="controls__btn" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=-1087164816274819069&amp;guid=3707709186531364eb5dcafe1de9f5c9&amp;type=3#arrow-right@2x&quot;);" />
             </ui:VisualElement>
-            <ui:VisualElement name="pause-control" style="flex-grow: 1; background-image: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=3316425174430470091&amp;guid=3707709186531364eb5dcafe1de9f5c9&amp;type=3#check-dash@2x&quot;);" />
+            <ui:VisualElement name="state-controls" class="controls__block" style="flex-grow: 1;">
+                <ui:VisualElement name="pause-control" class="controls__btn" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=3316425174430470091&amp;guid=3707709186531364eb5dcafe1de9f5c9&amp;type=3#check-dash@2x&quot;);" />
+            </ui:VisualElement>
             <ui:VisualElement name="speed-controls" class="controls__block controls__block-vertical">
                 <ui:VisualElement name="up-control" class="controls__btn" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=6936960519852013934&amp;guid=3707709186531364eb5dcafe1de9f5c9&amp;type=3#arrow-up@2x&quot;);" />
                 <ui:VisualElement name="down-control" class="controls__btn" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=-1304905567622442630&amp;guid=3707709186531364eb5dcafe1de9f5c9&amp;type=3#arrow-down@2x&quot;);" />

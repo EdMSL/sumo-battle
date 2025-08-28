@@ -21,7 +21,6 @@ public class SpawnManager : MonoBehaviour
     {
         if (Instance != null)
         {
-            Debug.LogError("There is more than one DeliveryManager instance");
             Destroy(gameObject);
             return;
         }
@@ -31,45 +30,29 @@ public class SpawnManager : MonoBehaviour
 
     private void Start()
     {
-        if (enemiesStartQuantity == 0)
-        {
-            switch (GameManager.Instance.difficultyLevel)
-            {
-                case GameManager.DifficultyLevel.Easy:
-                    enemiesQuantity = 2;
-                    powerupsMaxQuantity = 5;
-                    break;
-                case GameManager.DifficultyLevel.Normal:
-                    enemiesQuantity = 4;
-                    powerupsMaxQuantity = 4;
-                    break;
-                case GameManager.DifficultyLevel.Hard:
-                    enemiesQuantity = 6;
-                    powerupsMaxQuantity = 3;
-                    break;
-                default:
-                    break;
-            }
-        }
-        else
-        {
-            enemiesQuantity = enemiesStartQuantity;
-        }
-
         switch (GameManager.Instance.difficultyLevel)
         {
             case GameManager.DifficultyLevel.Easy:
                 powerupsMaxQuantity = 5;
+                if (enemiesStartQuantity == 0)
+                    enemiesQuantity = 2;
                 break;
             case GameManager.DifficultyLevel.Normal:
                 powerupsMaxQuantity = 4;
+                if (enemiesStartQuantity == 0)
+                    enemiesQuantity = 4;
                 break;
             case GameManager.DifficultyLevel.Hard:
                 powerupsMaxQuantity = 3;
+                if (enemiesStartQuantity == 0)
+                    enemiesQuantity = 6;
                 break;
             default:
                 break;
         }
+
+        if (enemiesStartQuantity != 0)
+            enemiesQuantity = enemiesStartQuantity;
     }
 
     void Update()

@@ -360,6 +360,7 @@
     align-items: center;
     margin-left: var(--indent-xl);
     margin-right: var(--indent-xl);
+    justify-content: center;
 }
 
 .controls__block-vertical {
