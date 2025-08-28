@@ -103,7 +103,14 @@ public class SpawnManager : MonoBehaviour
         float spawnPosX = Random.Range(-spawnRangeBound, spawnRangeBound);
         float spawnPosZ = Random.Range(-spawnRangeBound, spawnRangeBound);
 
-        return new Vector3(spawnPosX, 0, spawnPosZ);
+        var position = new Vector3(spawnPosX, 0, spawnPosZ);
+
+        while (Vector3.Distance(position, PlayerController.Instance.transform.position) < 2f)
+        {
+            position = GetRandomSpawnPos();
+        }
+
+        return position;
     }
 
     public void DestroyEnemy(GameObject enemy)
