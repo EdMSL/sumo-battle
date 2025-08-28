@@ -55,6 +55,21 @@ public class SpawnManager : MonoBehaviour
         {
             enemiesQuantity = enemiesStartQuantity;
         }
+
+        switch (GameManager.Instance.difficultyLevel)
+        {
+            case GameManager.DifficultyLevel.Easy:
+                powerupsMaxQuantity = 5;
+                break;
+            case GameManager.DifficultyLevel.Normal:
+                powerupsMaxQuantity = 4;
+                break;
+            case GameManager.DifficultyLevel.Hard:
+                powerupsMaxQuantity = 3;
+                break;
+            default:
+                break;
+        }
     }
 
     void Update()
