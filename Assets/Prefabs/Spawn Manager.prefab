@@ -46,9 +46,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPrefab: {fileID: 4494661120651971314, guid: b56657c4351d1ca4dab38abe9280ef3c,
     type: 3}
-  powerupPrefab: {fileID: 4110984330760250481, guid: 6b20bbbcee34632488a0590726b70c28,
+  powerupPrefab: {fileID: 6618347754524191878, guid: 6b20bbbcee34632488a0590726b70c28,
     type: 3}
   spawnRangeBound: 8
-  enemiesStartQuontity: 0
+  enemiesStartQuantity: 0
   enemySpeed: 5
+  powerupsQuantity: 0
   enemiesList: []

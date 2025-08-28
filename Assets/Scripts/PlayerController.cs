@@ -89,15 +89,6 @@ public class PlayerController : MonoBehaviour
         {
             indicator.transform.rotation = Quaternion.identity;
 
-            if (transform.position.y < -5f)
-            {
-                transform.position = respawn.position;
-                playerRb.linearVelocity = Vector3.zero;
-                isHavePowerup = false;
-                indicator.gameObject.SetActive(false);
-                RecountLives();
-            }
-
             if (isMovementBlocked)
             {
                 movementBlockedTimer += Time.deltaTime;
@@ -140,24 +131,6 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    public void Move(InputAction.CallbackContext context)
-    {
-        movement = context.ReadValue<Vector2>();
-    }
-
-    private void RecountLives()
-    {
-        AudioManager.PlaySound(GameAudioLibrarySounds.die);
-        lives -= 1;
-        gameUI.livesCounter.text = lives.ToString();
-
-        if (lives <= 0)
-        {
-            gameUI.livesCounter.text = "0";
-            GameManager.Instance.GameOver();
-        }
-    }
-
     private void OnTriggerEnter(Collider other)
     {
         if (other.CompareTag("Powerup"))
@@ -175,14 +148,16 @@ public class PlayerController : MonoBehaviour
             powerUpCoroutine = StartCoroutine(Counter());
             indicator.gameObject.SetActive(true);
         }
-    }
 
-    IEnumerator Counter()
-    {
-        yield return new WaitForSeconds(5);
+        if (other.CompareTag("DeadZone"))
+        {
+            transform.position = respawn.position;
+            playerRb.linearVelocity = Vector3.zero;
+            isHavePowerup = false;
+            indicator.gameObject.SetActive(false);
+            RecountLives();
+        }
 
-        isHavePowerup = false;
-        indicator.gameObject.SetActive(false);
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -222,6 +197,32 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    public void Move(InputAction.CallbackContext context)
+    {
+        movement = context.ReadValue<Vector2>();
+    }
+
+    private void RecountLives()
+    {
+        AudioManager.PlaySound(GameAudioLibrarySounds.die);
+        lives -= 1;
+        gameUI.livesCounter.text = lives.ToString();
+
+        if (lives <= 0)
+        {
+            gameUI.livesCounter.text = "0";
+            GameManager.Instance.GameOver();
+        }
+    }
+
+    IEnumerator Counter()
+    {
+        yield return new WaitForSeconds(5);
+
+        isHavePowerup = false;
+        indicator.gameObject.SetActive(false);
+    }
+
     private void RestorePosition()
     {
         float maxDistance = 0f;
@@ -235,7 +236,6 @@ public class PlayerController : MonoBehaviour
                 newPosition = restorePoints[i].position;
             }
         }
-        Debug.Log(newPosition);
 
         transform.position = newPosition;
     }

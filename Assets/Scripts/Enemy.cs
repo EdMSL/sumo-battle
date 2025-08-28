@@ -13,13 +13,6 @@ public class Enemy : MonoBehaviour
 
     void Update()
     {
-        if (GameManager.Instance.state == GameManager.State.GameProcess)
-        {
-            if (transform.position.y < bottomBound)
-            {
-                SpawnManager.Instance.DestroyEnemy(gameObject);
-            }
-        }
     }
 
     private void FixedUpdate()
@@ -34,6 +27,14 @@ public class Enemy : MonoBehaviour
             {
                 enemyRb.linearVelocity = Vector3.zero;
             }
+        }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        if (other.CompareTag("DeadZone"))
+        {
+            SpawnManager.Instance.DestroyEnemy(gameObject);
         }
     }
 
