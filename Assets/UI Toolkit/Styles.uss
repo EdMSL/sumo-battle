@@ -72,7 +72,7 @@
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
-    background-color: rgba(0, 0, 0, 0.13);
+    background-color: rgba(0, 0, 0, 0);
     font-size: 30px;
     margin-top: 0;
     margin-right: 0;
@@ -84,6 +84,8 @@
     padding-left: 0;
     -unity-text-align: middle-center;
     -unity-font-style: bold;
+    background-image: url("project://database/Assets/UI%20Toolkit/Art/button_rectangle_gradient_green.png?fileID=2800000&guid=bb8fef04c07792549ba7c710f7866985&type=3#button_rectangle_gradient_green");
+    color: rgb(255, 255, 255);
 }
 
 .menu__btn {
@@ -161,6 +163,13 @@
     transition-property: translate;
     transition-duration: 300ms;
     transition-timing-function: ease-out-back;
+    background-image: url("project://database/Assets/UI%20Toolkit/Art/panel_gray.png?fileID=2800000&guid=83faf3ac4a49e0a4b8b97895314b175d&type=3#panel_gray");
+    -unity-slice-type: tiled;
+    -unity-slice-left: 18;
+    -unity-slice-top: 18;
+    -unity-slice-right: 18;
+    -unity-slice-bottom: 18;
+    -unity-slice-scale: 2px;
 }
 
 .popup-hidden {
@@ -349,10 +358,17 @@
     margin-right: 0;
 }
 
+.mobile-controls__container {
+    flex-grow: 1;
+    justify-content: space-between;
+}
+
 .controls__container {
     margin-top: auto;
     flex-direction: row;
     justify-content: space-between;
+    align-self: auto;
+    align-items: stretch;
 }
 
 .controls__block {
@@ -368,8 +384,8 @@
 }
 
 .controls__btn {
-    width: 100px;
-    height: 100px;
+    width: 160px;
+    height: 160px;
     margin-left: var(--indent-s);
     margin-right: var(--indent-s);
 }

@@ -62,7 +62,7 @@ public class GameUI : MonoBehaviour
 
         _hudContainer = uiDocument.rootVisualElement.Q("hud-container");
 
-        _mobileControlsContainer = uiDocument.rootVisualElement.Q("mobile-controls");
+        _mobileControlsContainer = uiDocument.rootVisualElement.Q("mobile-controls-container");
 
         if (Platform.IsMobileBrowser())
         {
