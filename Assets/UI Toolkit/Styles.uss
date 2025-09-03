@@ -11,6 +11,7 @@
     --indent-m: 50px;
     --indent-l: 80px;
     --indent-xl: 100px;
+    --main-color: rgb(46, 215, 145);
 }
 
 .hide {
@@ -304,17 +305,34 @@
     align-items: center;
 }
 
+.hud__container {
+    display: flex;
+    position: absolute;
+    top: 0;
+    right: 0;
+    flex-direction: row-reverse;
+    padding-top: var(--padding-m);
+    padding-bottom: var(--padding-m);
+    padding-right: var(--padding-xl);
+    padding-left: var(--padding-xl);
+    background-color: rgb(50, 50, 50);
+}
+
 .hud__item {
     flex-direction: row;
-    -unity-font-style: normal;
-    font-size: 34px;
-    color: rgb(255, 255, 255);
+    -unity-font-style: bold;
+    font-size: var(--text-xl);
+    color: var(--main-color);
+    flex-grow: 1;
+    margin-left: var(--indent-m);
+}
+
+.hud__item.last-child {
+    margin-left: 0;
 }
 
 .hud__counter {
-    -unity-font-style: bold;
     flex-direction: row-reverse;
-    padding-right: 20px;
 }
 
 .end-game__container {
@@ -364,18 +382,19 @@
 }
 
 .controls__container {
-    margin-top: auto;
+    margin-top: 0;
     flex-direction: row;
     justify-content: space-between;
     align-self: auto;
     align-items: stretch;
+    padding-top: var(--padding-l);
 }
 
 .controls__block {
     flex-direction: row;
     align-items: center;
-    margin-left: var(--indent-xl);
-    margin-right: var(--indent-xl);
+    margin-left: var(--indent-l);
+    margin-right: var(--indent-l);
     justify-content: center;
 }
 

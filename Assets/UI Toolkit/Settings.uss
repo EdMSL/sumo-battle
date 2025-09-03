@@ -6,7 +6,6 @@
     max-width: none;
     max-height: none;
     flex-direction: column;
-    background-color: rgb(255, 255, 255);
     padding-top: var(--padding-m);
     padding-right: var(--padding-m);
     padding-bottom: var(--padding-m);
@@ -21,21 +20,67 @@
     margin-bottom: var(--indent-s);
 }
 
+.options__container {
+    flex-grow: 1;
+}
+
 .options__list {
     flex-grow: 1;
-    width: 50%;
+    width: 90%;
+}
+
+.options__block Label {
+    font-size: var(--text-m);
 }
 
 .options__block__title {
     -unity-font-style: bold;
     font-size: var(--text-m);
     -unity-text-align: upper-center;
+    padding-left: var(--padding-s);
 }
 
+.options__block .unity-base-field {
+    padding-right: var(--padding-s);
+}
 .options__block Slider {
     font-size: var(--text-s);
 }
 
 .options__block Toggle {
     font-size: var(--text-s);
+}
+
+.language-list .unity-radio-button-group__container {
+    flex-direction: row;
+    justify-content: center;
+    flex-grow: 1;
+}
+
+.language__item {
+    background-image: url("project://database/Assets/Course%20Library/Textures/PolygonPrototype_Texture_Grid_08.png?fileID=2800000&guid=1d12fa396a3563b41b9ae11b0fb0b986&type=3#PolygonPrototype_Texture_Grid_08");
+    width: 200px;
+    height: 200px;
+}
+
+.language__item.last-child {
+    margin-right: 0;
+}
+
+.language__item .unity-radio-button__checkmark-background {
+}
+
+.language__item .unity-radio-button__checkmark {
+    border-top-left-radius: 0;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+    border-top-width: initial;
+    border-right-width: initial;
+    border-bottom-width: initial;
+    border-left-width: initial;
+    width: 100%;
+    height: 100%;
+    background-image: url("project://database/Assets/UI%20Toolkit/Art/checkmark_green.png?fileID=2800000&guid=304bf2cf780fb7740ad891370c44de28&type=3#checkmark_green");
+    background-size: 30% 30%;
 }
