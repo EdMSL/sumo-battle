@@ -43,8 +43,51 @@
 .options__block .unity-base-field {
     padding-right: var(--padding-s);
 }
-.options__block Slider {
-    font-size: var(--text-s);
+
+.options__block .unity-slider {
+}
+
+.options__block .unity-slider__label {
+    flex-grow: 1;
+    width: 50%;
+}
+
+.options__block .unity-slider__input {
+    flex-grow: 1;
+    width: 50%;
+}
+
+.options__block .unity-base-slider__tracker {
+    height: 50px;
+    top: 15%;
+    border-left-color: rgb(2, 147, 87);
+    border-right-color: rgb(2, 147, 87);
+    border-top-color: rgb(2, 147, 87);
+    border-bottom-color: rgb(2, 147, 87);
+    border-top-width: 6px;
+    border-right-width: 6px;
+    border-bottom-width: 6px;
+    border-left-width: 6px;
+    background-color: rgb(255, 255, 255);
+}
+
+.options__block .unity-slider__input #unity-fill {
+    background-color: rgb(47, 215, 146);
+}
+
+.options__block .unity-base-slider__dragger {
+    height: 50px;
+    top: 30%;
+    background-color: rgb(2, 147, 87);
+    width: 50px;
+    border-top-width: 0;
+    border-right-width: 0;
+    border-bottom-width: 0;
+    border-left-width: 0;
+    border-top-left-radius: 50%;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    border-bottom-left-radius: 50%;
 }
 
 .options__block Toggle {
