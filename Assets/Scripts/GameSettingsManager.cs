@@ -2,6 +2,7 @@ using System;
 using JSAM;
 using UnityEngine;
 using UnityEngine.Audio;
+using UnityEngine.Localization.Settings;
 using UnityEngine.UIElements;
 
 public class GameSettingsManager : MonoBehaviour
@@ -11,6 +12,7 @@ public class GameSettingsManager : MonoBehaviour
     public static GameSettingsManager Instance { get; private set; }
     private Slider masterVolumeSlider, soundVolumeSlider, musicVolumeSlider;
     private Toggle soundSwitcher, musicSwitcher, shadowsSwitcher;
+    private RadioButtonGroup languageSelector;
     private Button cancelBtn, acceptBtn;
     private ScrollView optionsList;
 
@@ -19,6 +21,7 @@ public class GameSettingsManager : MonoBehaviour
 
     private float oldMasterVolume, oldSoundVolume, oldMusicVolume;
     private bool isSoundEnabledOld, isMusicEnabledOld, isShadowsEnabledOld;
+    private int languageIndexOld;
 
     private void Awake()
     {
@@ -45,6 +48,8 @@ public class GameSettingsManager : MonoBehaviour
         musicSwitcher = root.Q<Toggle>("music-switcher");
         shadowsSwitcher = root.Q<Toggle>("shadows-switcher");
 
+        languageSelector = root.Q<RadioButtonGroup>("language-list");
+
         cancelBtn = root.Q<Button>("cancel-btn");
         acceptBtn = root.Q<Button>("accept-btn");
 
@@ -55,6 +60,8 @@ public class GameSettingsManager : MonoBehaviour
         soundSwitcher.RegisterValueChangedCallback(Mute);
         musicSwitcher.RegisterValueChangedCallback(Mute);
         shadowsSwitcher.RegisterValueChangedCallback(ToggleShadows);
+
+        languageSelector.RegisterValueChangedCallback(OnLanguageChange);
 
         acceptBtn.RegisterCallback<ClickEvent>(OnAcceptBtnClick);
         cancelBtn.RegisterCallback<ClickEvent>(OnCancelBtnClick);
@@ -89,6 +96,8 @@ public class GameSettingsManager : MonoBehaviour
         AudioManager.SoundMuted = isSoundEnabledOld;
         QualitySettings.shadows = isShadowsEnabledOld ? ShadowQuality.HardOnly : ShadowQuality.Disable;
 
+        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[languageIndexOld];
+
         masterVolumeSlider.value = oldMasterVolume;
         soundVolumeSlider.value = oldMusicVolume;
         musicVolumeSlider.value = oldSoundVolume;
@@ -96,6 +105,8 @@ public class GameSettingsManager : MonoBehaviour
         soundSwitcher.value = isMusicEnabledOld;
         musicSwitcher.value = isSoundEnabledOld;
         shadowsSwitcher.value = isShadowsEnabledOld;
+
+        languageSelector.value = languageIndexOld;
 
         optionsList.scrollOffset = new Vector2(optionsList.scrollOffset.x, 0);
 
@@ -111,6 +122,8 @@ public class GameSettingsManager : MonoBehaviour
         isSoundEnabledOld = soundSwitcher.value;
         isMusicEnabledOld = musicSwitcher.value;
         isShadowsEnabledOld = shadowsSwitcher.value;
+
+        languageIndexOld = languageSelector.value;
     }
 
     private void OnAcceptBtnClick(ClickEvent evt)
@@ -120,6 +133,11 @@ public class GameSettingsManager : MonoBehaviour
         optionsList.scrollOffset = new Vector2(optionsList.scrollOffset.x, 0);
 
         OnAcceptSettings?.Invoke(this, EventArgs.Empty);
+    }
+
+    private void OnLanguageChange(ChangeEvent<int> evt)
+    {
+        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[evt.newValue];
     }
 
     private void ToggleShadows(ChangeEvent<bool> evt)

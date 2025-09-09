@@ -6,7 +6,6 @@ using UnityEngine.Localization.Settings;
 using UnityEngine.UIElements;
 using JSAM;
 using AlpaSunFade;
-using System.Collections.Generic;
 using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class MainMenuUI : MonoBehaviour
@@ -108,6 +107,7 @@ public class MainMenuUI : MonoBehaviour
         yield return LocalizationSettings.InitializationOperation;
 
         m_InitializeOperation = LocalizationSettings.SelectedLocaleAsync;
+
         if (m_InitializeOperation.IsDone)
         {
             for (int i = 0; i < LocalizationSettings.AvailableLocales.Locales.Count; i++)
