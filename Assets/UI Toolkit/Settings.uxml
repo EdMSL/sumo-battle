@@ -15,27 +15,27 @@
                             <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(348055499112448)" />
                         </Bindings>
                     </ui:Label>
-                    <ui:Slider label="Slider" value="1" high-value="1" name="master-volume" low-value="0" show-input-field="false" fill="true" inverted="false">
+                    <ui:Slider label="Slider" value="1" high-value="1" name="master-volume" low-value="0" show-input-field="false" fill="true" inverted="false" class="options__item">
                         <Bindings>
                             <UnityEngine.Localization.LocalizedString property="label" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(14122293724540928)" />
                         </Bindings>
                     </ui:Slider>
-                    <ui:Toggle label="Toggle" name="sound-switcher" value="true">
+                    <ui:Toggle label="Toggle" name="sound-switcher" value="true" enabled="true" class="options__item">
                         <Bindings>
                             <UnityEngine.Localization.LocalizedString property="label" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(13811791240720384)" />
                         </Bindings>
                     </ui:Toggle>
-                    <ui:Slider label="Slider" value="1" high-value="1" name="sound-volume" low-value="0" fill="true">
+                    <ui:Slider label="Slider" value="1" high-value="1" name="sound-volume" low-value="0" fill="true" class="options__item">
                         <Bindings>
                             <UnityEngine.Localization.LocalizedString property="label" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(13812204639711232)" />
                         </Bindings>
                     </ui:Slider>
-                    <ui:Toggle label="Toggle" name="music-switcher" value="true">
+                    <ui:Toggle label="Toggle" name="music-switcher" value="true" class="options__item">
                         <Bindings>
                             <UnityEngine.Localization.LocalizedString property="label" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(13811656490315776)" />
                         </Bindings>
                     </ui:Toggle>
-                    <ui:Slider label="Slider" value="1" high-value="1" name="music-volume" low-value="0" fill="true">
+                    <ui:Slider label="Slider" value="1" high-value="1" name="music-volume" low-value="0" fill="true" class="options__item last-child">
                         <Bindings>
                             <UnityEngine.Localization.LocalizedString property="label" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(13811852766965760)" />
                         </Bindings>
@@ -47,13 +47,13 @@
                             <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(368872052162560)" />
                         </Bindings>
                     </ui:Label>
-                    <ui:Toggle label="Toggle" name="shadows-switcher" value="true">
+                    <ui:Toggle label="Toggle" name="shadows-switcher" value="true" class="options__item last-child">
                         <Bindings>
                             <UnityEngine.Localization.LocalizedString property="label" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(14175526375485440)" />
                         </Bindings>
                     </ui:Toggle>
                 </ui:VisualElement>
-                <ui:VisualElement name="options-block" class="options__block" style="flex-grow: 1;">
+                <ui:VisualElement name="options-block" class="options__block last-child" style="flex-grow: 1;">
                     <ui:Label text="Label" name="options-block-title" class="options__block__title">
                         <Bindings>
                             <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(17692601841025024)" />

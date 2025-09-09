@@ -1,3 +1,20 @@
+:root {
+    --text-s: 24px;
+    --text-m: 30px;
+    --text-l: 40px;
+    --text-xl: 60px;
+    --padding-s: 20px;
+    --padding-m: 40px;
+    --padding-l: 60px;
+    --padding-xl: 80px;
+    --indent-xs: 16px;
+    --indent-s: 30px;
+    --indent-m: 50px;
+    --indent-l: 80px;
+    --indent-xl: 100px;
+    --main-color: rgb(46, 215, 145);
+}
+
 .settings__block {
     justify-content: flex-start;
     align-items: center;
@@ -11,13 +28,15 @@
     padding-bottom: var(--padding-m);
     padding-left: var(--padding-m);
     flex-grow: 1;
+    -unity-font-definition: url("project://database/Assets/TextMesh%20Pro/Fonts/LiberationSans.ttf?fileID=12800000&guid=e3265ab4bf004d28a9537516768c1c75&type=3#LiberationSans");
 }
 
 .settings__title {
     font-size: var(--text-l);
-    -unity-font-style: bold;
+    -unity-font-style: normal;
     -unity-text-align: upper-center;
     margin-bottom: var(--indent-s);
+    -unity-font-definition: url("project://database/Assets/UI%20Toolkit/SeymourOne-Regular.ttf?fileID=12800000&guid=0f03c94fa84679f44b05228813647d13&type=3#SeymourOne-Regular");
 }
 
 .options__container {
@@ -29,30 +48,73 @@
     width: 90%;
 }
 
+.options__list .unity-scroller .unity-repeat-button {
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.options__list .unity-scroller .unity-scroller__high-button {
+    background-image: url("project://database/Assets/UI%20Toolkit/Art/arrow_decorative_s_small.png?fileID=2800000&guid=3ce3695d739dee64b9c8199d22919545&type=3#arrow_decorative_s_small");
+}
+
+.options__list .unity-scroller .unity-scroller__low-button {
+    background-image: url("project://database/Assets/UI%20Toolkit/Art/arrow_decorative_n_small.png?fileID=2800000&guid=a6fb482bee2f68f41b0af40a650d6ad2&type=3#arrow_decorative_n_small");
+}
+
+.options__list .unity-scroller__slider .unity-base-slider__tracker {
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.options__list .unity-scroller__slider .unity-base-slider__dragger {
+    background-color: rgb(47, 215, 146);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+}
+
+.options__block {
+    margin-bottom: var(--indent-s);
+}
+
+.options__block.last-child {
+    margin-bottom: 0;
+}
+
 .options__block Label {
     font-size: var(--text-m);
 }
 
 .options__block__title {
-    -unity-font-style: bold;
+    -unity-font-style: normal;
     font-size: var(--text-m);
     -unity-text-align: upper-center;
     padding-left: var(--padding-s);
+    -unity-font-definition: url("project://database/Assets/UI%20Toolkit/SeymourOne-Regular.ttf?fileID=12800000&guid=0f03c94fa84679f44b05228813647d13&type=3#SeymourOne-Regular");
 }
 
-.options__block .unity-base-field {
-    padding-right: var(--padding-s);
+.options__item {
+    margin-bottom: var(--indent-xs);
+}
+
+.options__item.last-child {
+    margin-bottom: 0;
 }
 
 .options__block .unity-slider {
+    padding-right: var(--padding-s);
 }
 
-.options__block .unity-slider__label {
+.options__block .unity-toggle {
+    padding-right: var(--padding-s);
+}
+
+.options__block .unity-base-field .unity-label {
     flex-grow: 1;
     width: 50%;
 }
 
-.options__block .unity-slider__input {
+.options__block .unity-base-field .unity-base-field__input {
     flex-grow: 1;
     width: 50%;
 }
@@ -60,15 +122,36 @@
 .options__block .unity-base-slider__tracker {
     height: 50px;
     top: 15%;
-    border-left-color: rgb(2, 147, 87);
-    border-right-color: rgb(2, 147, 87);
-    border-top-color: rgb(2, 147, 87);
-    border-bottom-color: rgb(2, 147, 87);
     border-top-width: 6px;
     border-right-width: 6px;
     border-bottom-width: 6px;
     border-left-width: 6px;
-    background-color: rgb(255, 255, 255);
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    background-color: rgba(0, 0, 0, 0);
+}
+
+.options__block .unity-toggle__input {
+    height: 50px;
+    width: 50px;
+}
+
+.options__block .unity-toggle__checkmark {
+    height: 100%;
+    width: 50px;
+    background-image: url("project://database/Assets/UI%20Toolkit/Art/check_square_color.png?fileID=2800000&guid=1f130f58cca90fc4193f120e17c01c39&type=3#check_square_color");
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+}
+
+.options__block .unity-toggle__input:checked .unity-toggle__checkmark {
+    background-image: url("project://database/Assets/UI%20Toolkit/Art/check_square_color_checkmark.png?fileID=2800000&guid=662130fdae9f5f34fa986a7efe42fcb3&type=3#check_square_color_checkmark");
+    -unity-background-image-tint-color: rgb(255, 255, 255);
 }
 
 .options__block .unity-slider__input #unity-fill {
@@ -76,18 +159,18 @@
 }
 
 .options__block .unity-base-slider__dragger {
-    height: 50px;
-    top: 30%;
+    height: 40px;
+    top: 22px;
     background-color: rgb(2, 147, 87);
-    width: 50px;
+    width: 20px;
     border-top-width: 0;
     border-right-width: 0;
     border-bottom-width: 0;
     border-left-width: 0;
-    border-top-left-radius: 50%;
-    border-top-right-radius: 50%;
-    border-bottom-right-radius: 50%;
-    border-bottom-left-radius: 50%;
+    border-top-left-radius: 8px;
+    border-top-right-radius: 8px;
+    border-bottom-right-radius: 8px;
+    border-bottom-left-radius: 8px;
 }
 
 .options__block Toggle {
