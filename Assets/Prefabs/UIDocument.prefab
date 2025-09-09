@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 7108299436712477983}
   - component: {fileID: 659278782599629821}
   - component: {fileID: 9440827619820743}
+  - component: {fileID: 6251871932667521496}
   m_Layer: 5
   m_Name: UIDocument
   m_TagString: Untagged
@@ -146,3 +147,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ControlPath: <Keyboard>/d
   Value: 1
+--- !u!114 &6251871932667521496
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1399611136961252565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be6e3da8a42f87a43b955fe2d20b7acc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: a1c2ae3536f80044684b7d1d327ebc9d, type: 2}

@@ -120,6 +120,9 @@ public class MainMenuUI : MonoBehaviour
             }
         }
 
+        GameSettingsManager.Instance.OnAcceptSettings += GameSettingsManager_OnAcceptSettings;
+        GameSettingsManager.Instance.OnCancelSettings += GameSettingsManager_OnCancelSettings;
+
         transitionPanel.gameObject.SetActive(false);
 
         _levelsList.Clear();
@@ -159,6 +162,16 @@ public class MainMenuUI : MonoBehaviour
 
         GameManager.Instance.SetDifficultyLevel(btnName);
         GameManager.Instance.StartGame(selectedLevelIndex);
+    }
+
+    private void GameSettingsManager_OnCancelSettings(object sender, EventArgs e)
+    {
+        OnSettingsBtnClick(null);
+    }
+
+    private void GameSettingsManager_OnAcceptSettings(object sender, EventArgs e)
+    {
+        OnSettingsBtnClick(null);
     }
 
     private void OnPlayBtnClick(ClickEvent evt)
@@ -317,5 +330,8 @@ public class MainMenuUI : MonoBehaviour
         _levelsList.UnregisterValueChangedCallback(OnLevelRadiobuttonChange);
         _levelOkButton.UnregisterCallback<ClickEvent>(OnLevelOkBtnClick);
         _levelBackButton.UnregisterCallback<ClickEvent>(OnLevelBackBtnClick);
+
+        GameSettingsManager.Instance.OnAcceptSettings -= GameSettingsManager_OnAcceptSettings;
+        GameSettingsManager.Instance.OnCancelSettings -= GameSettingsManager_OnCancelSettings;
     }
 }

@@ -8,8 +8,27 @@ public class GameSettingsManager : MonoBehaviour
 {
     [SerializeField] private AudioMixer audioMixer;
 
+    public static GameSettingsManager Instance { get; private set; }
     private Slider masterVolumeSlider, soundVolumeSlider, musicVolumeSlider;
     private Toggle soundSwitcher, musicSwitcher, shadowsSwitcher;
+    private Button cancelBtn, acceptBtn;
+
+    public event EventHandler OnAcceptSettings;
+    public event EventHandler OnCancelSettings;
+
+    private float oldMasterVolume, oldSoundVolume, oldMusicVolume;
+    private bool isSoundEnabledOld, isMusicEnabledOld, isShadowsEnabledOld;
+
+    private void Awake()
+    {
+        if (Instance != null)
+        {
+            Destroy(gameObject);
+            return;
+        }
+
+        Instance = this;
+    }
 
     private void OnEnable()
     {
@@ -23,6 +42,9 @@ public class GameSettingsManager : MonoBehaviour
         musicSwitcher = root.Q<Toggle>("music-switcher");
         shadowsSwitcher = root.Q<Toggle>("shadows-switcher");
 
+        cancelBtn = root.Q<Button>("cancel-btn");
+        acceptBtn = root.Q<Button>("accept-btn");
+
         masterVolumeSlider.RegisterValueChangedCallback(ChangeVolume);
         soundVolumeSlider.RegisterValueChangedCallback(ChangeVolume);
         musicVolumeSlider.RegisterValueChangedCallback(ChangeVolume);
@@ -30,6 +52,9 @@ public class GameSettingsManager : MonoBehaviour
         soundSwitcher.RegisterValueChangedCallback(Mute);
         musicSwitcher.RegisterValueChangedCallback(Mute);
         shadowsSwitcher.RegisterValueChangedCallback(ToggleShadows);
+
+        acceptBtn.RegisterCallback<ClickEvent>(OnAcceptBtnClick);
+        cancelBtn.RegisterCallback<ClickEvent>(OnCancelBtnClick);
     }
 
     private void OnDisable()
@@ -41,6 +66,53 @@ public class GameSettingsManager : MonoBehaviour
         soundSwitcher.UnregisterValueChangedCallback(Mute);
         musicSwitcher.UnregisterValueChangedCallback(Mute);
         shadowsSwitcher.UnregisterValueChangedCallback(ToggleShadows);
+
+        acceptBtn.UnregisterCallback<ClickEvent>(OnAcceptBtnClick);
+        cancelBtn.UnregisterCallback<ClickEvent>(OnCancelBtnClick);
+    }
+
+    private void Start()
+    {
+        UpdateOldSettingsValues();
+    }
+
+    private void OnCancelBtnClick(ClickEvent evt)
+    {
+        AudioManager.MasterVolume = oldMasterVolume;
+        AudioManager.MusicVolume = oldMusicVolume;
+        AudioManager.SoundVolume = oldSoundVolume;
+
+        AudioManager.MusicMuted = isMusicEnabledOld;
+        AudioManager.SoundMuted = isSoundEnabledOld;
+        QualitySettings.shadows = isShadowsEnabledOld ? ShadowQuality.HardOnly : ShadowQuality.Disable;
+
+        masterVolumeSlider.value = oldMasterVolume;
+        soundVolumeSlider.value = oldMusicVolume;
+        musicVolumeSlider.value = oldSoundVolume;
+
+        soundSwitcher.value = isMusicEnabledOld;
+        musicSwitcher.value = isSoundEnabledOld;
+        shadowsSwitcher.value = isShadowsEnabledOld;
+
+        OnCancelSettings?.Invoke(this, EventArgs.Empty);
+    }
+
+    private void UpdateOldSettingsValues()
+    {
+        oldMasterVolume = masterVolumeSlider.value;
+        oldSoundVolume = soundVolumeSlider.value;
+        oldMusicVolume = musicVolumeSlider.value;
+
+        isSoundEnabledOld = soundSwitcher.value;
+        isMusicEnabledOld = musicSwitcher.value;
+        isShadowsEnabledOld = shadowsSwitcher.value;
+    }
+
+    private void OnAcceptBtnClick(ClickEvent evt)
+    {
+        UpdateOldSettingsValues();
+
+        OnAcceptSettings?.Invoke(this, EventArgs.Empty);
     }
 
     private void ToggleShadows(ChangeEvent<bool> evt)

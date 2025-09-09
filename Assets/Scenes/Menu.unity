@@ -1041,6 +1041,7 @@ GameObject:
   - component: {fileID: 2023321839}
   - component: {fileID: 2023321838}
   - component: {fileID: 2023321837}
+  - component: {fileID: 2023321840}
   m_Layer: 5
   m_Name: UIDocument
   m_TagString: Untagged
@@ -1101,6 +1102,19 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &2023321840
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2023321836}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: be6e3da8a42f87a43b955fe2d20b7acc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  audioMixer: {fileID: 24100000, guid: a1c2ae3536f80044684b7d1d327ebc9d, type: 2}
 --- !u!114 &2031956298 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6631212189729463131, guid: 37c8d43690670cd479a98957930fb800,

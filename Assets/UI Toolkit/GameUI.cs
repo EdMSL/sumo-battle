@@ -4,7 +4,6 @@ using UnityEngine;
 using UnityEngine.UIElements;
 using JSAM;
 using AlpaSunFade;
-using UnityEngine.InputSystem.Layouts;
 
 public class GameUI : MonoBehaviour
 {
@@ -20,8 +19,6 @@ public class GameUI : MonoBehaviour
     private VisualElement _endGameWindow;
     private VisualElement _endGameWindowContent;
     private VisualElement _endGameContainer;
-    private Button _settingsAcceptButton;
-    private Button _settingsCancelButton;
     private VisualElement _hudContainer;
     private VisualElement _mobileControlsContainer;
     private VisualElement _leftControl;
@@ -54,8 +51,6 @@ public class GameUI : MonoBehaviour
         _mainMenuGoToMenuGameBtn = _mainMenuContainer.Q<Button>("gotomenu-btn");
 
         _settingsContainer = _gameMenuWindowContent.Q("settings-container");
-        _settingsAcceptButton = _settingsContainer.Q<Button>("accept-btn");
-        _settingsCancelButton = _settingsContainer.Q<Button>("cancel-btn");
 
         countdownContainer = uiDocument.rootVisualElement.Q("countdown-container");
         countdownText = countdownContainer.Q<Label>("countdown-text");
@@ -103,9 +98,6 @@ public class GameUI : MonoBehaviour
         _mainMenuSettingsGameBtn.RegisterCallback<ClickEvent>(OnSettingsBtnClick);
         _mainMenuGoToMenuGameBtn.RegisterCallback<ClickEvent>(OnGoToMenuBtnClick);
 
-        _settingsAcceptButton.RegisterCallback<ClickEvent>(OnSettingsBtnClick);
-        _settingsCancelButton.RegisterCallback<ClickEvent>(OnSettingsBtnClick);
-
         _endGameRepeatBtn.RegisterCallback<ClickEvent>(OnRepeatGameBtnClick);
         _endGameGoToMenuBtn.RegisterCallback<ClickEvent>(OnGoToMenuBtnClick);
     }
@@ -115,9 +107,6 @@ public class GameUI : MonoBehaviour
         _mainMenuResumeGameBtn.UnregisterCallback<ClickEvent>(OnResumeBtnClick);
         _mainMenuSettingsGameBtn.UnregisterCallback<ClickEvent>(OnSettingsBtnClick);
         _mainMenuGoToMenuGameBtn.UnregisterCallback<ClickEvent>(OnGoToMenuBtnClick);
-
-        _settingsAcceptButton.UnregisterCallback<ClickEvent>(OnSettingsBtnClick);
-        _settingsCancelButton.UnregisterCallback<ClickEvent>(OnSettingsBtnClick);
 
         _endGameRepeatBtn.UnregisterCallback<ClickEvent>(OnRepeatGameBtnClick);
         _endGameGoToMenuBtn.UnregisterCallback<ClickEvent>(OnGoToMenuBtnClick);
@@ -141,6 +130,9 @@ public class GameUI : MonoBehaviour
             _rightControl.UnregisterCallback<PointerLeaveEvent>(OnRightControlLeave);
         }
 
+        GameSettingsManager.Instance.OnAcceptSettings -= GameSettingsManager_OnAcceptSettings;
+        GameSettingsManager.Instance.OnCancelSettings -= GameSettingsManager_OnCancelSettings;
+
         GameManager.Instance.OnCountdawnStart -= GameManager_OnCountdawnStart;
         GameManager.Instance.OnGamePaused -= GameManager_OnGamePaused;
         GameManager.Instance.OnGameUnpaused -= GameManager_OnGameUnpaused;
@@ -149,6 +141,9 @@ public class GameUI : MonoBehaviour
 
     private void Start()
     {
+        GameSettingsManager.Instance.OnAcceptSettings += GameSettingsManager_OnAcceptSettings;
+        GameSettingsManager.Instance.OnCancelSettings += GameSettingsManager_OnCancelSettings;
+
         GameManager.Instance.OnCountdawnStart += GameManager_OnCountdawnStart;
         GameManager.Instance.OnGamePaused += GameManager_OnGamePaused;
         GameManager.Instance.OnGameUnpaused += GameManager_OnGameUnpaused;
@@ -162,8 +157,18 @@ public class GameUI : MonoBehaviour
         livesCounter.text = PlayerController.Instance.lives.ToString();
         waveCounter.text = GameManager.Instance.wave.ToString();
 
-        /// Нормально работает только с задержкой начала (иначе отклбючается сразу же) и продолжительностью, помноженной на 2.
+        /// Нормально работает только с задержкой начала (иначе отключается сразу же) и продолжительностью, помноженной на 2.
         transitionPanelScript.StartTransition(false, 0.1f, GameManager.Instance.waitingTime * 2);
+    }
+
+    private void GameSettingsManager_OnCancelSettings(object sender, EventArgs e)
+    {
+        ToggleSettingMenu();
+    }
+
+    private void GameSettingsManager_OnAcceptSettings(object sender, EventArgs e)
+    {
+        ToggleSettingMenu();
     }
 
     private void OnUpControlClick(PointerDownEvent evt)

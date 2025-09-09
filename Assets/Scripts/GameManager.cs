@@ -55,8 +55,8 @@ public class GameManager : MonoBehaviour
 
         Instance = this;
 
-        state = State.Waiting;
-        // state = State.MainMenu;
+        // state = State.Waiting;
+        state = State.MainMenu;
 
         Application.targetFrameRate = 60;
     }
