@@ -12,6 +12,7 @@ public class GameSettingsManager : MonoBehaviour
     private Slider masterVolumeSlider, soundVolumeSlider, musicVolumeSlider;
     private Toggle soundSwitcher, musicSwitcher, shadowsSwitcher;
     private Button cancelBtn, acceptBtn;
+    private ScrollView optionsList;
 
     public event EventHandler OnAcceptSettings;
     public event EventHandler OnCancelSettings;
@@ -33,6 +34,8 @@ public class GameSettingsManager : MonoBehaviour
     private void OnEnable()
     {
         var root = GetComponent<UIDocument>().rootVisualElement.Q("root");
+
+        optionsList = root.Q<ScrollView>("options-list");
 
         masterVolumeSlider = root.Q<Slider>("master-volume");
         soundVolumeSlider = root.Q<Slider>("sound-volume");
@@ -94,6 +97,8 @@ public class GameSettingsManager : MonoBehaviour
         musicSwitcher.value = isSoundEnabledOld;
         shadowsSwitcher.value = isShadowsEnabledOld;
 
+        optionsList.scrollOffset = new Vector2(optionsList.scrollOffset.x, 0);
+
         OnCancelSettings?.Invoke(this, EventArgs.Empty);
     }
 
@@ -111,6 +116,8 @@ public class GameSettingsManager : MonoBehaviour
     private void OnAcceptBtnClick(ClickEvent evt)
     {
         UpdateOldSettingsValues();
+
+        optionsList.scrollOffset = new Vector2(optionsList.scrollOffset.x, 0);
 
         OnAcceptSettings?.Invoke(this, EventArgs.Empty);
     }
