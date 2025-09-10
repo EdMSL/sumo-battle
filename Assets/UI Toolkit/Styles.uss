@@ -74,7 +74,7 @@
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
     background-color: rgba(0, 0, 0, 0);
-    font-size: 30px;
+    font-size: var(--text-s);
     margin-top: 0;
     margin-right: 0;
     margin-bottom: 0;
@@ -87,6 +87,7 @@
     -unity-font-style: bold;
     background-image: url("project://database/Assets/UI%20Toolkit/Art/button_rectangle_gradient_green.png?fileID=2800000&guid=bb8fef04c07792549ba7c710f7866985&type=3#button_rectangle_gradient_green");
     color: rgb(255, 255, 255);
+    -unity-font-definition: url("project://database/Assets/UI%20Toolkit/GardensC_03_1.otf?fileID=12800000&guid=948aec02539cfcd4389877be80b639e1&type=3#GardensC_03_1");
 }
 
 .menu__btn {
@@ -171,6 +172,7 @@
     -unity-slice-right: 18;
     -unity-slice-bottom: 18;
     -unity-slice-scale: 2px;
+    -unity-font-definition: url("project://database/Assets/UI%20Toolkit/GardensC_03_1.otf?fileID=12800000&guid=948aec02539cfcd4389877be80b639e1&type=3#GardensC_03_1");
 }
 
 .popup-hidden {
@@ -303,6 +305,23 @@
     height: 100%;
     justify-content: center;
     align-items: center;
+    -unity-font-definition: url("project://database/Assets/UI%20Toolkit/SeymourOne-Regular.ttf?fileID=12800000&guid=0f03c94fa84679f44b05228813647d13&type=3#SeymourOne-Regular");
+    font-size: 140px;
+    color: rgb(255, 255, 255);
+}
+
+.countdown__container > Label {
+    transition-property: opacity;
+    transition-duration: 500ms;
+}
+
+.countdown__title-hide {
+    opacity: 0;
+}
+
+.countdown__title-show {
+    opacity: 1;
+    transition-duration: 0s;
 }
 
 .hud__container {
@@ -316,6 +335,7 @@
     padding-right: var(--padding-xl);
     padding-left: var(--padding-xl);
     background-color: rgb(50, 50, 50);
+    -unity-font-definition: url("project://database/Assets/UI%20Toolkit/SeymourOne-Regular.ttf?fileID=12800000&guid=0f03c94fa84679f44b05228813647d13&type=3#SeymourOne-Regular");
 }
 
 .hud__item {
@@ -339,7 +359,7 @@
     -unity-text-align: upper-center;
     flex-grow: 1;
     font-size: var(--text-m);
-    padding-top: var(--padding-m);
+    padding-top: var(--padding-l);
     padding-right: var(--padding-m);
     padding-bottom: var(--padding-m);
     padding-left: var(--padding-m);

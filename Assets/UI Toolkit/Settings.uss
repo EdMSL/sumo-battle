@@ -75,6 +75,7 @@
 
 .options__block {
     margin-bottom: var(--indent-s);
+    -unity-font-definition: url("project://database/Assets/UI%20Toolkit/GardensC_03_1.otf?fileID=12800000&guid=948aec02539cfcd4389877be80b639e1&type=3#GardensC_03_1");
 }
 
 .options__block.last-child {

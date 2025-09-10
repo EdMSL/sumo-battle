@@ -20,31 +20,14 @@
                 <ui:Label text="10" name="wave-counter" class="hud__counter" />
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="mobile-controls-container" class="mobile-controls__container">
-            <ui:VisualElement name="top-block" class="controls__container" style="flex-grow: 1;">
-                <ui:VisualElement name="state-controls" class="controls__block" style="flex-grow: 1; justify-content: flex-start; align-items: flex-start;">
-                    <ui:VisualElement name="pause-control" class="controls__btn" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/Art/button_menu%201.png?fileID=2800000&amp;guid=5fdc15b0d1f8b144ba727e62e4d4cfe3&amp;type=3#button_menu 1&quot;);" />
-                </ui:VisualElement>
-            </ui:VisualElement>
-            <ui:VisualElement name="bottom-block" class="controls__container">
-                <ui:VisualElement name="turn-controls" class="controls__block">
-                    <ui:VisualElement name="left-control" class="controls__btn" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/Art/arrow_decorative_w_small.png?fileID=2800000&amp;guid=5f5588187ab19c445add79f10dbd5eaf&amp;type=3#arrow_decorative_w_small&quot;);" />
-                    <ui:VisualElement name="right-control" class="controls__btn" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/Art/arrow_decorative_e_small.png?fileID=2800000&amp;guid=5eef6f7a5f503164cbc3d41af5106c7b&amp;type=3#arrow_decorative_e_small&quot;);" />
-                </ui:VisualElement>
-                <ui:VisualElement name="speed-controls" class="controls__block controls__block-vertical">
-                    <ui:VisualElement name="up-control" class="controls__btn" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/Art/arrow_decorative_n_small.png?fileID=2800000&amp;guid=a6fb482bee2f68f41b0af40a650d6ad2&amp;type=3#arrow_decorative_n_small&quot;);" />
-                    <ui:VisualElement name="down-control" class="controls__btn" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/Art/arrow_decorative_s_small.png?fileID=2800000&amp;guid=3ce3695d739dee64b9c8199d22919545&amp;type=3#arrow_decorative_s_small&quot;);" />
-                </ui:VisualElement>
-            </ui:VisualElement>
-        </ui:VisualElement>
         <ui:VisualElement name="countdown-container" class="countdown__container hide">
-            <ui:Label text="3" name="countdown-text" style="font-size: 40px; -unity-font-style: bold; color: rgb(255, 255, 255); display: flex;" />
+            <ui:Label text="3" name="countdown-text" />
         </ui:VisualElement>
         <ui:VisualElement name="game-menu-window" class="popup popup-hidden">
             <ui:VisualElement name="popup-overlay" class="popup__overlay" />
             <ui:VisualElement name="popup-content" class="popup__content animation__hide" style="width: 50%; height: 80%;">
                 <ui:VisualElement name="main-menu-container" class="game-menu__container">
-                    <ui:Image name="game-title" enabled="true" class="game__title" style="--unity-image: url(&quot;project://database/Assets/Materials/title_EN.png?fileID=2800000&amp;guid=4b54da4efdd5777419103f62ce0efdcb&amp;type=3#title_EN&quot;); display: flex;" />
+                    <ui:Image name="game-title" enabled="true" class="game__title" style="--unity-image: url(&quot;project://database/Assets/UI%20Toolkit/Art/title_EN.png?fileID=2800000&amp;guid=4b54da4efdd5777419103f62ce0efdcb&amp;type=3#title_EN&quot;); display: flex;" />
                     <ui:VisualElement name="menu-btns-block" class="menu-btns__block buttons__block-vertical" style="flex-grow: 1;">
                         <ui:Button text="Button" name="continue-btn" class="main__btn game-menu-btn">
                             <Bindings>
@@ -92,6 +75,23 @@
                             </Bindings>
                         </ui:Button>
                     </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+        </ui:VisualElement>
+        <ui:VisualElement name="mobile-controls-container" class="mobile-controls__container">
+            <ui:VisualElement name="top-block" class="controls__container" style="flex-grow: 1;">
+                <ui:VisualElement name="state-controls" class="controls__block" style="flex-grow: 1; justify-content: flex-start; align-items: flex-start;">
+                    <ui:VisualElement name="pause-control" class="controls__btn" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/Art/button_menu%201.png?fileID=2800000&amp;guid=5fdc15b0d1f8b144ba727e62e4d4cfe3&amp;type=3#button_menu 1&quot;);" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="bottom-block" class="controls__container">
+                <ui:VisualElement name="turn-controls" class="controls__block">
+                    <ui:VisualElement name="left-control" class="controls__btn" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/Art/arrow_decorative_w_small.png?fileID=2800000&amp;guid=5f5588187ab19c445add79f10dbd5eaf&amp;type=3#arrow_decorative_w_small&quot;);" />
+                    <ui:VisualElement name="right-control" class="controls__btn" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/Art/arrow_decorative_e_small.png?fileID=2800000&amp;guid=5eef6f7a5f503164cbc3d41af5106c7b&amp;type=3#arrow_decorative_e_small&quot;);" />
+                </ui:VisualElement>
+                <ui:VisualElement name="speed-controls" class="controls__block controls__block-vertical">
+                    <ui:VisualElement name="up-control" class="controls__btn" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/Art/arrow_decorative_n_small.png?fileID=2800000&amp;guid=a6fb482bee2f68f41b0af40a650d6ad2&amp;type=3#arrow_decorative_n_small&quot;);" />
+                    <ui:VisualElement name="down-control" class="controls__btn" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/Art/arrow_decorative_s_small.png?fileID=2800000&amp;guid=3ce3695d739dee64b9c8199d22919545&amp;type=3#arrow_decorative_s_small&quot;);" />
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
