@@ -100,7 +100,7 @@
 }
 
 .menu__title {
-    -unity-font-style: bold;
+    -unity-font-style: normal;
     -unity-text-align: upper-center;
     font-size: var(--text-xl);
     padding-top: 0;
@@ -111,6 +111,7 @@
     margin-right: 0;
     margin-bottom: 20px;
     margin-left: 0;
+    -unity-font-definition: url("project://database/Assets/UI%20Toolkit/SeymourOne-Regular.ttf?fileID=12800000&guid=0f03c94fa84679f44b05228813647d13&type=3#SeymourOne-Regular");
 }
 
 .buttons__block-vertical {
@@ -216,55 +217,57 @@
     display: none;
 }
 
+.list__item.last-child {
+    margin-right: 0;
+}
+
 .list__item .unity-radio-button__checkmark-background {
-    background-color: rgba(255, 255, 255, 0);
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-    border-top-width: 0;
-    border-right-width: 0;
-    border-bottom-width: 0;
-    border-left-width: 0;
     width: 100%;
     height: 100%;
-    padding-top: 0;
-    padding-right: 0;
-    padding-bottom: 0;
-    padding-left: 0;
-    -unity-background-scale-mode: scale-to-fit;
+    background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
 }
 
 .list__item .unity-radio-button__checkmark {
-    background-color: rgba(60, 241, 64, 0);
     border-top-left-radius: 0;
     border-top-right-radius: 0;
     border-bottom-right-radius: 0;
     border-bottom-left-radius: 0;
-    border-top-width: 4px;
-    border-right-width: 4px;
-    border-bottom-width: 4px;
-    border-left-width: 4px;
+    border-top-width: initial;
+    border-right-width: initial;
+    border-bottom-width: initial;
+    border-left-width: initial;
     width: 100%;
     height: 100%;
-    border-left-color: rgb(255, 1, 1);
-    border-right-color: rgb(255, 1, 1);
-    border-top-color: rgb(255, 1, 1);
-    border-bottom-color: rgb(255, 1, 1);
+    background-image: url("project://database/Assets/UI%20Toolkit/Art/checkmark_green.png?fileID=2800000&guid=304bf2cf780fb7740ad891370c44de28&type=3#checkmark_green");
+    background-size: 30% 30%;
+    background-color: rgba(0, 0, 0, 0);
 }
 
 .list__item .unity-base-field__input {
-    overflow: hidden;
+}
+
+.levels__list .unity-radio-button-group__container {
+    flex-direction: column;
+    align-items: center;
 }
 
 .levels__item {
     background-image: url("project://database/Assets/Materials/Textures/level%202.jpg?fileID=2800000&guid=811f150c3b44b7c4c89480e7cb50f986&type=3#level 2");
     background-size: contain;
+    width: 400px;
 }
 
 .difficulty__btn {
     padding: var(--padding-l);
     margin-top: var(--indent-m);
+    padding-top: 40px;
+    padding-right: 60px;
+    padding-bottom: 40px;
+    padding-left: 60px;
 }
 
 .difficulty__btn .last-child {

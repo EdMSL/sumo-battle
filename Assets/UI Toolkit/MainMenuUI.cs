@@ -132,6 +132,12 @@ public class MainMenuUI : MonoBehaviour
             var levelElement = new RadioButton() { };
             levelElement.AddToClassList("list__item");
             levelElement.AddToClassList("levels__item");
+
+            if (i == levelsList.Levels.Count - 1)
+            {
+                levelElement.AddToClassList("last-child");
+            }
+
             levelElement.style.backgroundImage = levelsList.Levels[i].image;
             _levelsList.Add(levelElement);
         }
@@ -144,6 +150,13 @@ public class MainMenuUI : MonoBehaviour
         {
             var skinElement = new RadioButton() { };
             skinElement.AddToClassList("list__item");
+            skinElement.AddToClassList("skins__item");
+
+            if (i == skinsList.Skins.Count - 1)
+            {
+                skinElement.AddToClassList("last-child");
+            }
+
             skinElement.style.backgroundImage = skinsList.Skins[i].image;
             _customizationSkinsList.Add(skinElement);
         }

@@ -190,7 +190,7 @@
     height: 200px;
 }
 
-.language__item.last-child {
+/* .language__item.last-child {
     margin-right: 0;
 }
 
@@ -210,4 +210,4 @@
     height: 100%;
     background-image: url("project://database/Assets/UI%20Toolkit/Art/checkmark_green.png?fileID=2800000&guid=304bf2cf780fb7740ad891370c44de28&type=3#checkmark_green");
     background-size: 30% 30%;
-}
+} */
