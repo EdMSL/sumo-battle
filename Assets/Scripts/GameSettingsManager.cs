@@ -92,15 +92,15 @@ public class GameSettingsManager : MonoBehaviour
         AudioManager.MusicVolume = oldMusicVolume;
         AudioManager.SoundVolume = oldSoundVolume;
 
-        AudioManager.MusicMuted = isMusicEnabledOld;
-        AudioManager.SoundMuted = isSoundEnabledOld;
+        AudioManager.MusicMuted = !isMusicEnabledOld;
+        AudioManager.SoundMuted = !isSoundEnabledOld;
         QualitySettings.shadows = isShadowsEnabledOld ? ShadowQuality.HardOnly : ShadowQuality.Disable;
 
         LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[languageIndexOld];
 
         masterVolumeSlider.value = oldMasterVolume;
-        soundVolumeSlider.value = oldMusicVolume;
-        musicVolumeSlider.value = oldSoundVolume;
+        soundVolumeSlider.value = oldSoundVolume;
+        musicVolumeSlider.value = oldMusicVolume;
 
         soundSwitcher.value = isMusicEnabledOld;
         musicSwitcher.value = isSoundEnabledOld;
@@ -111,6 +111,15 @@ public class GameSettingsManager : MonoBehaviour
         optionsList.scrollOffset = new Vector2(optionsList.scrollOffset.x, 0);
 
         OnCancelSettings?.Invoke(this, EventArgs.Empty);
+    }
+
+    private void OnAcceptBtnClick(ClickEvent evt)
+    {
+        UpdateOldSettingsValues();
+
+        optionsList.scrollOffset = new Vector2(optionsList.scrollOffset.x, 0);
+
+        OnAcceptSettings?.Invoke(this, EventArgs.Empty);
     }
 
     private void UpdateOldSettingsValues()
@@ -124,15 +133,6 @@ public class GameSettingsManager : MonoBehaviour
         isShadowsEnabledOld = shadowsSwitcher.value;
 
         languageIndexOld = languageSelector.value;
-    }
-
-    private void OnAcceptBtnClick(ClickEvent evt)
-    {
-        UpdateOldSettingsValues();
-
-        optionsList.scrollOffset = new Vector2(optionsList.scrollOffset.x, 0);
-
-        OnAcceptSettings?.Invoke(this, EventArgs.Empty);
     }
 
     private void OnLanguageChange(ChangeEvent<int> evt)

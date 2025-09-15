@@ -1,99 +1,101 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:Template name="Settings" src="project://database/Assets/UI%20Toolkit/Settings.uxml?fileID=9197481963319205126&amp;guid=2118abaa7f2944543b218e79948ca8a9&amp;type=3#Settings" />
-    <Style src="project://database/Assets/UI%20Toolkit/Styles.uss?fileID=7433441132597879392&amp;guid=6c2a7a29e6f6b5749a27053048a177da&amp;type=3" />
-    <ui:VisualElement name="root" style="flex-grow: 1;">
-        <ui:VisualElement name="hud-container" class="hud__container" style="background-color: rgb(50, 50, 50); background-image: url(&quot;project://database/Assets/UI%20Toolkit/Art/panel_black.png?fileID=2800000&amp;guid=b451c59938802044ab3bcab629f5ce45&amp;type=3#panel_black&quot;); -unity-slice-type: tiled; -unity-slice-left: 20; -unity-slice-top: 20; -unity-slice-right: 20; -unity-slice-bottom: 20; -unity-slice-scale: 1px; -unity-background-image-tint-color: rgb(255, 255, 255); top: 0; right: 0%; -unity-background-scale-mode: stretch-to-fill;">
-            <ui:VisualElement name="lives-block" class="hud__item">
-                <ui:Label text="Label" name="lives-text">
-                    <Bindings>
-                        <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(425458057543680)" />
-                    </Bindings>
-                </ui:Label>
-                <ui:Label text="3" name="lives-counter" class="hud__counter" />
-            </ui:VisualElement>
-            <ui:VisualElement name="wave-block" class="hud__item last-child">
-                <ui:Label text="Label" name="wave-text">
-                    <Bindings>
-                        <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(425376906149888)" />
-                    </Bindings>
-                </ui:Label>
-                <ui:Label text="10" name="wave-counter" class="hud__counter" />
-            </ui:VisualElement>
-        </ui:VisualElement>
-        <ui:VisualElement name="countdown-container" class="countdown__container hide">
-            <ui:Label text="3" name="countdown-text" />
-        </ui:VisualElement>
-        <ui:VisualElement name="game-menu-window" class="popup popup-hidden">
-            <ui:VisualElement name="popup-overlay" class="popup__overlay" />
-            <ui:VisualElement name="popup-content" class="popup__content animation__hide" style="width: 50%; height: 80%;">
-                <ui:VisualElement name="main-menu-container" class="game-menu__container">
-                    <ui:Image name="game-title" enabled="true" class="game__title" style="--unity-image: url(&quot;project://database/Assets/UI%20Toolkit/Art/title_EN.png?fileID=2800000&amp;guid=4b54da4efdd5777419103f62ce0efdcb&amp;type=3#title_EN&quot;); display: flex;" />
-                    <ui:VisualElement name="menu-btns-block" class="menu-btns__block buttons__block-vertical" style="flex-grow: 1;">
-                        <ui:Button text="Button" name="continue-btn" class="main__btn game-menu-btn">
-                            <Bindings>
-                                <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(12100804385009664)" />
-                            </Bindings>
-                        </ui:Button>
-                        <ui:Button text="Button" name="settings-btn" class="main__btn game-menu-btn">
-                            <Bindings>
-                                <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(131489529856)" />
-                            </Bindings>
-                        </ui:Button>
-                        <ui:Button text="Button" name="gotomenu-btn" class="main__btn game-menu-btn last-child">
-                            <Bindings>
-                                <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(12096281931247616)" />
-                            </Bindings>
-                        </ui:Button>
-                    </ui:VisualElement>
-                </ui:VisualElement>
-                <ui:Instance template="Settings" name="settings-container" class="hide" style="flex-grow: 1;" />
-            </ui:VisualElement>
-        </ui:VisualElement>
-        <ui:VisualElement name="end-game-window" class="popup popup-hidden">
-            <ui:VisualElement name="popup-overlay" class="popup__overlay" />
-            <ui:VisualElement name="popup-content" class="popup__content animation__hide" style="width: 30%; height: 30%;">
-                <ui:VisualElement name="end-game-container" class="end-game__container">
-                    <ui:Label text="Label" name="end-game-title" class="end-game__title">
+    <Style src="project://database/Assets/UI%20Toolkit/Styles.uss?fileID=7433441132597879392&amp;guid=6c2a7a29e6f6b5749a27053048a177da&amp;type=3#Styles" />
+    <Bitbebop.SafeArea>
+        <ui:VisualElement name="root" style="flex-grow: 1;">
+            <ui:VisualElement name="hud-container" class="hud__container" style="background-color: rgb(50, 50, 50); background-image: url(&quot;project://database/Assets/UI%20Toolkit/Art/panel_black.png?fileID=2800000&amp;guid=b451c59938802044ab3bcab629f5ce45&amp;type=3#panel_black&quot;); -unity-slice-type: tiled; -unity-slice-left: 20; -unity-slice-top: 20; -unity-slice-right: 20; -unity-slice-bottom: 20; -unity-slice-scale: 1px; -unity-background-image-tint-color: rgb(255, 255, 255); top: 0; right: 0%; -unity-background-scale-mode: stretch-to-fill;">
+                <ui:VisualElement name="lives-block" class="hud__item">
+                    <ui:Label text="Label" name="lives-text">
                         <Bindings>
-                            <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(1191566724919296)" />
+                            <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(425458057543680)" />
                         </Bindings>
                     </ui:Label>
-                    <ui:Label text="Label" name="end-game-text">
+                    <ui:Label text="3" name="lives-counter" class="hud__counter" />
+                </ui:VisualElement>
+                <ui:VisualElement name="wave-block" class="hud__item last-child">
+                    <ui:Label text="Label" name="wave-text">
                         <Bindings>
-                            <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(1191739735764992)" />
+                            <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(425376906149888)" />
                         </Bindings>
                     </ui:Label>
-                    <ui:VisualElement name="end-game-btns" class="end-game__btns">
-                        <ui:Button text="Button" name="btn-no" class="main__btn">
+                    <ui:Label text="10" name="wave-counter" class="hud__counter" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="countdown-container" class="countdown__container hide">
+                <ui:Label text="3" name="countdown-text" />
+            </ui:VisualElement>
+            <ui:VisualElement name="game-menu-window" class="popup popup-hidden">
+                <ui:VisualElement name="popup-overlay" class="popup__overlay" />
+                <ui:VisualElement name="popup-content" class="popup__content animation__hide" style="width: 50%; height: 80%;">
+                    <ui:VisualElement name="main-menu-container" class="game-menu__container">
+                        <ui:Image name="game-title" enabled="true" class="game__title" style="--unity-image: url(&quot;project://database/Assets/UI%20Toolkit/Art/title_EN.png?fileID=2800000&amp;guid=4b54da4efdd5777419103f62ce0efdcb&amp;type=3#title_EN&quot;); display: flex;" />
+                        <ui:VisualElement name="menu-btns-block" class="menu-btns__block buttons__block-vertical" style="flex-grow: 1;">
+                            <ui:Button text="Button" name="continue-btn" class="main__btn game-menu-btn">
+                                <Bindings>
+                                    <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(12100804385009664)" />
+                                </Bindings>
+                            </ui:Button>
+                            <ui:Button text="Button" name="settings-btn" class="main__btn game-menu-btn">
+                                <Bindings>
+                                    <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(131489529856)" />
+                                </Bindings>
+                            </ui:Button>
+                            <ui:Button text="Button" name="gotomenu-btn" class="main__btn game-menu-btn last-child">
+                                <Bindings>
+                                    <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(12096281931247616)" />
+                                </Bindings>
+                            </ui:Button>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                    <ui:Instance template="Settings" name="settings-container" class="hide" style="flex-grow: 1;" />
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="end-game-window" class="popup popup-hidden">
+                <ui:VisualElement name="popup-overlay" class="popup__overlay" />
+                <ui:VisualElement name="popup-content" class="popup__content animation__hide" style="width: 30%; height: 30%;">
+                    <ui:VisualElement name="end-game-container" class="end-game__container">
+                        <ui:Label text="Label" name="end-game-title" class="end-game__title">
                             <Bindings>
-                                <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(789118621777920)" />
+                                <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(1191566724919296)" />
                             </Bindings>
-                        </ui:Button>
-                        <ui:Button text="Button" name="btn-yes" class="main__btn last-child">
+                        </ui:Label>
+                        <ui:Label text="Label" name="end-game-text">
                             <Bindings>
-                                <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(789094227705856)" />
+                                <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(1191739735764992)" />
                             </Bindings>
-                        </ui:Button>
+                        </ui:Label>
+                        <ui:VisualElement name="end-game-btns" class="end-game__btns">
+                            <ui:Button text="Button" name="btn-no" class="main__btn">
+                                <Bindings>
+                                    <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(789118621777920)" />
+                                </Bindings>
+                            </ui:Button>
+                            <ui:Button text="Button" name="btn-yes" class="main__btn last-child">
+                                <Bindings>
+                                    <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(789094227705856)" />
+                                </Bindings>
+                            </ui:Button>
+                        </ui:VisualElement>
+                    </ui:VisualElement>
+                </ui:VisualElement>
+            </ui:VisualElement>
+            <ui:VisualElement name="mobile-controls-container" class="mobile-controls__container">
+                <ui:VisualElement name="top-block" class="controls__container" style="flex-grow: 1;">
+                    <ui:VisualElement name="state-controls" class="controls__block" style="flex-grow: 1; justify-content: flex-start; align-items: flex-start;">
+                        <ui:VisualElement name="pause-control" class="controls__btn" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/Art/button_menu%201.png?fileID=2800000&amp;guid=5fdc15b0d1f8b144ba727e62e4d4cfe3&amp;type=3#button_menu 1&quot;);" />
+                    </ui:VisualElement>
+                </ui:VisualElement>
+                <ui:VisualElement name="bottom-block" class="controls__container">
+                    <ui:VisualElement name="turn-controls" class="controls__block">
+                        <ui:VisualElement name="left-control" class="controls__btn" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/Art/arrow_decorative_w_small.png?fileID=2800000&amp;guid=5f5588187ab19c445add79f10dbd5eaf&amp;type=3#arrow_decorative_w_small&quot;);" />
+                        <ui:VisualElement name="right-control" class="controls__btn" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/Art/arrow_decorative_e_small.png?fileID=2800000&amp;guid=5eef6f7a5f503164cbc3d41af5106c7b&amp;type=3#arrow_decorative_e_small&quot;);" />
+                    </ui:VisualElement>
+                    <ui:VisualElement name="speed-controls" class="controls__block controls__block-vertical">
+                        <ui:VisualElement name="up-control" class="controls__btn" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/Art/arrow_decorative_n_small.png?fileID=2800000&amp;guid=a6fb482bee2f68f41b0af40a650d6ad2&amp;type=3#arrow_decorative_n_small&quot;);" />
+                        <ui:VisualElement name="down-control" class="controls__btn" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/Art/arrow_decorative_s_small.png?fileID=2800000&amp;guid=3ce3695d739dee64b9c8199d22919545&amp;type=3#arrow_decorative_s_small&quot;);" />
                     </ui:VisualElement>
                 </ui:VisualElement>
             </ui:VisualElement>
         </ui:VisualElement>
-        <ui:VisualElement name="mobile-controls-container" class="mobile-controls__container">
-            <ui:VisualElement name="top-block" class="controls__container" style="flex-grow: 1;">
-                <ui:VisualElement name="state-controls" class="controls__block" style="flex-grow: 1; justify-content: flex-start; align-items: flex-start;">
-                    <ui:VisualElement name="pause-control" class="controls__btn" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/Art/button_menu%201.png?fileID=2800000&amp;guid=5fdc15b0d1f8b144ba727e62e4d4cfe3&amp;type=3#button_menu 1&quot;);" />
-                </ui:VisualElement>
-            </ui:VisualElement>
-            <ui:VisualElement name="bottom-block" class="controls__container">
-                <ui:VisualElement name="turn-controls" class="controls__block">
-                    <ui:VisualElement name="left-control" class="controls__btn" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/Art/arrow_decorative_w_small.png?fileID=2800000&amp;guid=5f5588187ab19c445add79f10dbd5eaf&amp;type=3#arrow_decorative_w_small&quot;);" />
-                    <ui:VisualElement name="right-control" class="controls__btn" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/Art/arrow_decorative_e_small.png?fileID=2800000&amp;guid=5eef6f7a5f503164cbc3d41af5106c7b&amp;type=3#arrow_decorative_e_small&quot;);" />
-                </ui:VisualElement>
-                <ui:VisualElement name="speed-controls" class="controls__block controls__block-vertical">
-                    <ui:VisualElement name="up-control" class="controls__btn" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/Art/arrow_decorative_n_small.png?fileID=2800000&amp;guid=a6fb482bee2f68f41b0af40a650d6ad2&amp;type=3#arrow_decorative_n_small&quot;);" />
-                    <ui:VisualElement name="down-control" class="controls__btn" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/Art/arrow_decorative_s_small.png?fileID=2800000&amp;guid=3ce3695d739dee64b9c8199d22919545&amp;type=3#arrow_decorative_s_small&quot;);" />
-                </ui:VisualElement>
-            </ui:VisualElement>
-        </ui:VisualElement>
-    </ui:VisualElement>
+    </Bitbebop.SafeArea>
 </ui:UXML>
