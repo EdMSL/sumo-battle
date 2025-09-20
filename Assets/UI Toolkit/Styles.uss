@@ -207,6 +207,9 @@
     justify-content: flex-start;
 }
 
+.list--vertical {
+}
+
 .list__item {
     width: 300px;
     height: 250px;
@@ -219,6 +222,14 @@
 
 .list__item.last-child {
     margin-right: 0;
+}
+
+.list--vertical .list__item {
+    margin-left: var(--indent-m);
+}
+
+.list--vertical .list__item.last-child {
+    margin-right: var(--indent-m);
 }
 
 .list__item .unity-radio-button__checkmark-background {

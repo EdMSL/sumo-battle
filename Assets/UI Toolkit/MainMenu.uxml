@@ -23,7 +23,7 @@
                             <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(3999451842441216)" />
                         </Bindings>
                     </ui:Label>
-                    <ui:ScrollView name="skins-block" vertical-scroller-visibility="Hidden" horizontal-scroller-visibility="Hidden" mode="Horizontal" touch-scroll-type="Clamped">
+                    <ui:ScrollView name="skins-block" vertical-scroller-visibility="Hidden" horizontal-scroller-visibility="Auto" mode="Horizontal" touch-scroll-type="Clamped">
                         <ui:RadioButtonGroup label="Radio Button Group" value="0" focusable="true" name="skins-list" class="list">
                             <ui:RadioButton label="Radio Button" value="true" class="skins__item list__item" style="background-image: url(&quot;project://database/Assets/Materials/Textures/Enemy.png?fileID=2800000&amp;guid=bbc54c0e722a346408cd09eef6dc0cd6&amp;type=3#Enemy&quot;);" />
                             <ui:RadioButton label="Radio Button" class="skins__item list__item" style="background-image: url(&quot;project://database/Assets/Course%20Library/Textures/PolygonPrototype_Texture_Grid_08.png?fileID=2800000&amp;guid=1d12fa396a3563b41b9ae11b0fb0b986&amp;type=3#PolygonPrototype_Texture_Grid_08&quot;);" />
@@ -40,7 +40,7 @@
                     <ui:Button text="OK" name="ok-btn" class="main__btn last-child" />
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="level-container" class="menu-screen__container" style="display: none;">
+            <ui:VisualElement name="level-container" class="menu-screen__container" style="display: flex;">
                 <ui:VisualElement name="level-top-block" class="menu__top-block">
                     <ui:Label text="Label" name="level-title" class="menu__title">
                         <Bindings>
@@ -48,10 +48,10 @@
                         </Bindings>
                     </ui:Label>
                     <ui:ScrollView name="levels-block" horizontal-scroller-visibility="Hidden" vertical-scroller-visibility="Hidden">
-                        <ui:RadioButtonGroup label="Radio Button Group" name="levels-list" value="0" class="list levels__list">
+                        <ui:RadioButtonGroup label="Radio Button Group" name="levels-list" value="0" class="list levels__list list--vertical">
                             <ui:RadioButton label="Radio Button" value="false" class="list__item levels__item" />
                             <ui:RadioButton label="Radio Button" class="list__item levels__item" style="background-image: url(&quot;project://database/Assets/Materials/Textures/level%203.jpg?fileID=2800000&amp;guid=6f86369bf17066747b9bab760effb736&amp;type=3#level 3&quot;);" />
-                            <ui:RadioButton label="Radio Button" class="list__item levels__item" style="background-image: url(&quot;project://database/Assets/Materials/Textures/level%201.jpg?fileID=2800000&amp;guid=13b79adf7923c2e46b66dad69b7d2951&amp;type=3#level 1&quot;);" />
+                            <ui:RadioButton label="Radio Button" class="list__item levels__item last-child" style="background-image: url(&quot;project://database/Assets/Materials/Textures/level%201.jpg?fileID=2800000&amp;guid=13b79adf7923c2e46b66dad69b7d2951&amp;type=3#level 1&quot;);" />
                         </ui:RadioButtonGroup>
                     </ui:ScrollView>
                 </ui:VisualElement>
@@ -64,7 +64,7 @@
                     <ui:Button text="OK" name="ok-btn" class="main__btn last-child" />
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="difficult-container" class="menu-screen__container" style="display: flex;">
+            <ui:VisualElement name="difficult-container" class="menu-screen__container" style="display: none;">
                 <ui:Label text="Label" name="difficult-title" class="menu__title">
                     <Bindings>
                         <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(1485044524609536)" />
