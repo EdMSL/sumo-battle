@@ -16,7 +16,7 @@
                     </Bindings>
                 </ui:Button>
             </ui:VisualElement>
-            <ui:VisualElement name="customization-container" class="menu-screen__container" style="display: none;">
+            <ui:VisualElement name="customization-container" class="menu-screen__container" style="display: flex;">
                 <ui:VisualElement name="cutomization-top-block" class="menu__top-block">
                     <ui:Label text="Label" name="customization-title" class="menu__title">
                         <Bindings>
@@ -40,7 +40,7 @@
                     <ui:Button text="OK" name="ok-btn" class="main__btn last-child" />
                 </ui:VisualElement>
             </ui:VisualElement>
-            <ui:VisualElement name="level-container" class="menu-screen__container" style="display: flex;">
+            <ui:VisualElement name="level-container" class="menu-screen__container" style="display: none;">
                 <ui:VisualElement name="level-top-block" class="menu__top-block">
                     <ui:Label text="Label" name="level-title" class="menu__title">
                         <Bindings>

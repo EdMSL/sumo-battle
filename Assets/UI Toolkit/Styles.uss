@@ -210,6 +210,47 @@
 .list--vertical {
 }
 
+.menu-screen__container .unity-scroller {
+    height: 60px;
+}
+
+.menu-screen__container .unity-scroller .unity-repeat-button {
+    -unity-background-image-tint-color: rgb(255, 255, 255);
+    background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    width: 60px;
+    height: 60px;
+}
+
+.menu-screen__container .unity-scroller .unity-scroller__high-button {
+    background-image: url("project://database/Assets/UI%20Toolkit/Art/arrow_decorative_e_small.png?fileID=2800000&guid=5eef6f7a5f503164cbc3d41af5106c7b&type=3#arrow_decorative_e_small");
+}
+
+.menu-screen__container .unity-scroller .unity-scroller__low-button {
+    background-image: url("project://database/Assets/UI%20Toolkit/Art/arrow_decorative_w_small.png?fileID=2800000&guid=5f5588187ab19c445add79f10dbd5eaf&type=3#arrow_decorative_w_small");
+}
+
+.menu-screen__container .unity-scroller__slider .unity-base-slider__tracker {
+    background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+    visibility: hidden;
+}
+
+.menu-screen__container .unity-scroller__slider .unity-base-slider__dragger {
+    background-color: rgb(47, 215, 146);
+    border-top-left-radius: 10px;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
+    visibility: hidden;
+}
+
 .list__item {
     width: 300px;
     height: 250px;
@@ -253,7 +294,7 @@
     border-left-width: initial;
     width: 100%;
     height: 100%;
-    background-image: url("project://database/Assets/UI%20Toolkit/Art/checkmark_green.png?fileID=2800000&guid=304bf2cf780fb7740ad891370c44de28&type=3#checkmark_green");
+    background-image: url("project://database/Assets/UI%20Toolkit/Art/checkmark_green.png?fileID=2800000&guid=c92f8d82e0eb37a4aa23703dfc645bc4&type=3#checkmark_green");
     background-size: 30% 30%;
     background-color: rgba(0, 0, 0, 0);
 }
@@ -355,7 +396,7 @@
 .hud__item {
     flex-direction: row;
     -unity-font-style: bold;
-    font-size: var(--text-xl);
+    font-size: var(--text-l);
     color: var(--main-color);
     flex-grow: 1;
     margin-left: var(--indent-m);

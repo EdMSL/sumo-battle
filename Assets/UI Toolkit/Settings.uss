@@ -189,25 +189,3 @@
     width: 200px;
     height: 200px;
 }
-
-/* .language__item.last-child {
-    margin-right: 0;
-}
-
-.language__item .unity-radio-button__checkmark-background {
-}
-
-.language__item .unity-radio-button__checkmark {
-    border-top-left-radius: 0;
-    border-top-right-radius: 0;
-    border-bottom-right-radius: 0;
-    border-bottom-left-radius: 0;
-    border-top-width: initial;
-    border-right-width: initial;
-    border-bottom-width: initial;
-    border-left-width: initial;
-    width: 100%;
-    height: 100%;
-    background-image: url("project://database/Assets/UI%20Toolkit/Art/checkmark_green.png?fileID=2800000&guid=304bf2cf780fb7740ad891370c44de28&type=3#checkmark_green");
-    background-size: 30% 30%;
-} */
