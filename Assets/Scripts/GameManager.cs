@@ -59,6 +59,7 @@ public class GameManager : MonoBehaviour
         state = State.MainMenu;
 
         Application.targetFrameRate = 60;
+        Time.timeScale = 1f;
     }
 
     void Start()
@@ -104,6 +105,7 @@ public class GameManager : MonoBehaviour
     public void StartGame(int sceneIndex)
     {
         state = State.Waiting;
+        Time.timeScale = 1f;
         SceneManager.LoadScene(sceneIndex);
     }
 
@@ -166,25 +168,14 @@ public class GameManager : MonoBehaviour
         gameUI.countdownContainer.ToggleInClassList("hide");
 
         gameUI.countdownText.text = "3";
-        gameUI.countdownText.AddToClassList("countdown__title-hide");
-        // gameUI.countdownText.ToggleInClassList(".countdown__title-show");
-        // gameUI.countdownText.ToggleInClassList(".countdown__title-hide");
 
         yield return new WaitForSeconds(1f);
 
-        gameUI.countdownText.RemoveFromClassList("countdown__title-hide");
-        gameUI.countdownText.AddToClassList("countdown__title-show");
         gameUI.countdownText.text = "2";
-        gameUI.countdownText.AddToClassList("countdown__title-hide");
-        gameUI.countdownText.RemoveFromClassList("countdown__title-show");
 
         yield return new WaitForSeconds(1f);
 
-        gameUI.countdownText.RemoveFromClassList("countdown__title-hide");
-        gameUI.countdownText.AddToClassList("countdown__title-show");
         gameUI.countdownText.text = "1";
-        gameUI.countdownText.RemoveFromClassList("countdown__title-show");
-        gameUI.countdownText.AddToClassList("countdown__title-hide");
 
         yield return new WaitForSeconds(1f);
 

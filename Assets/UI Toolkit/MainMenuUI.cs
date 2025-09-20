@@ -168,7 +168,7 @@ public class MainMenuUI : MonoBehaviour
     {
         transitionPanel.gameObject.SetActive(true);
         transitionPanel.sortingOrder = 1;
-        /// Нормально работает только с задержкой начала (иначе отклбючается сразу же) и продолжительностью, помноженной на 2.
+        /// Нормально работает только с задержкой начала (иначе отключается сразу же) и продолжительностью, помноженной на 2.
         transitionPanelScript.StartTransition(true, 0.1f, fadeDuration * 2);
 
         yield return new WaitForSeconds(fadeDuration);
