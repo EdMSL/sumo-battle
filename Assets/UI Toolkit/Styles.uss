@@ -172,7 +172,7 @@
     -unity-slice-top: 18;
     -unity-slice-right: 18;
     -unity-slice-bottom: 18;
-    -unity-slice-scale: 2px;
+    -unity-slice-scale: 1px;
     -unity-font-definition: url("project://database/Assets/UI%20Toolkit/GardensC_03_1.otf?fileID=12800000&guid=948aec02539cfcd4389877be80b639e1&type=3#GardensC_03_1");
 }
 
@@ -314,12 +314,13 @@
 }
 
 .difficulty__btn {
-    padding: var(--padding-l);
-    margin-top: var(--indent-m);
+    padding: var(--padding-m);
+    margin-top: var(--indent-s);
     padding-top: 40px;
     padding-right: 60px;
     padding-bottom: 40px;
     padding-left: 60px;
+    font-size: var(--text-m);
 }
 
 .difficulty__btn .last-child {
@@ -385,10 +386,10 @@
     top: 0;
     right: 0;
     flex-direction: row-reverse;
-    padding-top: var(--padding-m);
-    padding-bottom: var(--padding-m);
-    padding-right: var(--padding-xl);
-    padding-left: var(--padding-xl);
+    padding-top: var(--padding-s);
+    padding-bottom: var(--padding-s);
+    padding-right: var(--padding-l);
+    padding-left: var(--padding-l);
     background-color: rgb(50, 50, 50);
     -unity-font-definition: url("project://database/Assets/UI%20Toolkit/SeymourOne-Regular.ttf?fileID=12800000&guid=0f03c94fa84679f44b05228813647d13&type=3#SeymourOne-Regular");
 }
