@@ -10,12 +10,12 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: bfb8002b44af6934a9ae327c8311d458, type: 3}
-  m_Name: Game Music
+  m_Name: Game Music 2
   m_EditorClassIdentifier: 
   safeName: 
   presetDescription: 1
   files:
-  - {fileID: 8300000, guid: 1ac065ffa3cb3fe41a22d93e2a4f82ea, type: 3}
+  - {fileID: 8300000, guid: ca977e908e0ed354ab965b3647bba543, type: 3}
   neverRepeat: 0
   loopStart: 0
   loopEnd: 0

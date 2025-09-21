@@ -7,5 +7,8 @@
     }
     public enum GameAudioLibraryMusic {
         GameMusic,
-        MenuMusic
+        MenuMusic,
+        GameMusic1,
+        GameMusic2,
+        GameMusic3
     }
