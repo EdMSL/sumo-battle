@@ -598,6 +598,18 @@ PrefabInstance:
     m_AddedGameObjects: []
     m_AddedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 37c8d43690670cd479a98957930fb800, type: 3}
+--- !u!114 &813755493 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6631212189729463131, guid: 37c8d43690670cd479a98957930fb800,
+    type: 3}
+  m_PrefabInstance: {fileID: 813755492}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9683e044e8289a044a1204033fd97815, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &834575634
 GameObject:
   m_ObjectHideFlags: 0
@@ -1064,6 +1076,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: UIDocument
       objectReference: {fileID: 0}
+    - target: {fileID: 3419676733236110003, guid: ecd4912fa6ad8214b8f6ddc1e85e7bc7,
+        type: 3}
+      propertyPath: transitionPanelScript
+      value: 
+      objectReference: {fileID: 813755493}
     - target: {fileID: 7319490936467561304, guid: ecd4912fa6ad8214b8f6ddc1e85e7bc7,
         type: 3}
       propertyPath: m_LocalPosition.x
