@@ -43,8 +43,7 @@ public class MainMenuUI : MonoBehaviour
     private UIDocument uiDocument;
     private UIDocument transitionPanel;
     private int selectedLevelIndex;
-    private AsyncOperationHandle<Locale> m_InitializeOperation;
-    private int localeSelected;
+    // private AsyncOperationHandle<Locale> m_InitializeOperation;
 
     private void OnEnable()
     {
@@ -106,19 +105,7 @@ public class MainMenuUI : MonoBehaviour
 
         yield return LocalizationSettings.InitializationOperation;
 
-        m_InitializeOperation = LocalizationSettings.SelectedLocaleAsync;
-
-        if (m_InitializeOperation.IsDone)
-        {
-            for (int i = 0; i < LocalizationSettings.AvailableLocales.Locales.Count; i++)
-            {
-                var locale = LocalizationSettings.AvailableLocales.Locales[i];
-                if (LocalizationSettings.SelectedLocale == locale)
-                {
-                    localeSelected = i;
-                }
-            }
-        }
+        // m_InitializeOperation = LocalizationSettings.SelectedLocaleAsync;
 
         GameSettingsManager.Instance.OnAcceptSettings += GameSettingsManager_OnAcceptSettings;
         GameSettingsManager.Instance.OnCancelSettings += GameSettingsManager_OnCancelSettings;

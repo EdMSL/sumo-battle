@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     public event EventHandler OnGamePaused;
     public event EventHandler OnGameUnpaused;
     public event EventHandler OnGameOver;
+    public event EventHandler OnSecondChance;
 
     public enum State
     {
@@ -42,6 +43,7 @@ public class GameManager : MonoBehaviour
     private bool isCountdownStarted = false;
     private GameUI gameUI;
     private bool isGamePaused = false;
+    private bool isExtraLifeUsed = false;
 
     private void Awake()
     {
@@ -138,11 +140,20 @@ public class GameManager : MonoBehaviour
 
     public void RepeatGame()
     {
-        SpawnManager.Instance.DestroyAllEnemies();
-        isCountdownStarted = false;
-        state = State.Waiting;
-        ResetCounters();
-        SceneManager.LoadScene(1);
+        if (!isExtraLifeUsed)
+        {
+            isExtraLifeUsed = true;
+            state = State.GameProcess;
+            OnSecondChance?.Invoke(this, EventArgs.Empty);
+        }
+        else
+        {
+            SpawnManager.Instance.DestroyAllEnemies();
+            isCountdownStarted = false;
+            state = State.Waiting;
+            ResetCounters();
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+        }
     }
 
     public void EndGame()

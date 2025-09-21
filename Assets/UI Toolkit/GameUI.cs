@@ -26,6 +26,8 @@ public class GameUI : MonoBehaviour
     private VisualElement _upControl;
     private VisualElement _downControl;
     private VisualElement _pauseControl;
+    public VisualElement _endGameBlock;
+    public VisualElement _endGameSecondChanceBlock;
     private Button _endGameGoToMenuBtn;
     private Button _endGameRepeatBtn;
     public VisualElement countdownContainer;
@@ -91,6 +93,8 @@ public class GameUI : MonoBehaviour
         _endGameWindowContent = _endGameWindow.Q("popup-content");
 
         _endGameContainer = _endGameWindow.Q("end-game-container");
+        _endGameBlock = _endGameContainer.Q("end-game-block");
+        _endGameSecondChanceBlock = _endGameContainer.Q("second-chance-block");
         _endGameRepeatBtn = _endGameContainer.Q<Button>("btn-yes");
         _endGameGoToMenuBtn = _endGameContainer.Q<Button>("btn-no");
 
@@ -137,6 +141,7 @@ public class GameUI : MonoBehaviour
         GameManager.Instance.OnGamePaused -= GameManager_OnGamePaused;
         GameManager.Instance.OnGameUnpaused -= GameManager_OnGameUnpaused;
         GameManager.Instance.OnGameOver -= GameManager_OnGameOver;
+        GameManager.Instance.OnSecondChance -= GameManager_OnSecondChance;
     }
 
     private void Start()
@@ -148,6 +153,7 @@ public class GameUI : MonoBehaviour
         GameManager.Instance.OnGamePaused += GameManager_OnGamePaused;
         GameManager.Instance.OnGameUnpaused += GameManager_OnGameUnpaused;
         GameManager.Instance.OnGameOver += GameManager_OnGameOver;
+        GameManager.Instance.OnSecondChance += GameManager_OnSecondChance;
 
         if (!Platform.IsMobileBrowser())
         {
@@ -228,10 +234,20 @@ public class GameUI : MonoBehaviour
 
     private void GameManager_OnGameOver(object sender, EventArgs e)
     {
+        _endGameBlock.ToggleInClassList("hide");
+        _endGameSecondChanceBlock.ToggleInClassList("hide");
         _endGameWindow.RemoveFromClassList("popup-hidden");
         _endGameWindowContent.RemoveFromClassList("animation__hide");
         _endGameWindow.AddToClassList("popup-show");
         _endGameWindowContent.AddToClassList("animation__show");
+    }
+
+    private void GameManager_OnSecondChance(object sender, EventArgs e)
+    {
+        _endGameWindow.AddToClassList("popup-hidden");
+        _endGameWindowContent.AddToClassList("animation__hide");
+        _endGameWindow.RemoveFromClassList("popup-show");
+        _endGameWindowContent.RemoveFromClassList("animation__show");
     }
 
     private void GameManager_OnCountdawnStart(object sender, EventArgs e)

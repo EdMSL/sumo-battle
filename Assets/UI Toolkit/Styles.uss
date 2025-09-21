@@ -85,6 +85,7 @@
     padding-left: 0;
     -unity-text-align: middle-center;
     -unity-font-style: bold;
+    background-color: rgba(0, 0, 0, 0);
     background-image: url("project://database/Assets/UI%20Toolkit/Art/button_rectangle_gradient_green.png?fileID=2800000&guid=bb8fef04c07792549ba7c710f7866985&type=3#button_rectangle_gradient_green");
     color: rgb(255, 255, 255);
     -unity-font-definition: url("project://database/Assets/UI%20Toolkit/GardensC_03_1.otf?fileID=12800000&guid=948aec02539cfcd4389877be80b639e1&type=3#GardensC_03_1");
@@ -149,6 +150,7 @@
     width: 100%;
     height: 100%;
     display: flex;
+    background-color: rgba(0, 0, 0, 0);
 }
 
 .popup__overlay {
@@ -166,6 +168,7 @@
     transition-property: translate;
     transition-duration: 300ms;
     transition-timing-function: ease-out-back;
+    background-color: rgba(0, 0, 0, 0);
     background-image: url("project://database/Assets/UI%20Toolkit/Art/panel_gray.png?fileID=2800000&guid=83faf3ac4a49e0a4b8b97895314b175d&type=3#panel_gray");
     -unity-slice-type: tiled;
     -unity-slice-left: 18;
@@ -308,6 +311,7 @@
 }
 
 .levels__item {
+    background-color: rgba(0, 0, 0, 0);
     background-image: url("project://database/Assets/Materials/Textures/level%202.jpg?fileID=2800000&guid=811f150c3b44b7c4c89480e7cb50f986&type=3#level 2");
     background-size: contain;
     width: 400px;
@@ -341,6 +345,7 @@
     padding-right: var(--padding-m);
     padding-bottom: var(--padding-m);
     padding-left: var(--padding-m);
+    background-color: rgba(0, 0, 0, 0);
 }
 
 .game-menu__container .game__title {
@@ -419,6 +424,7 @@
     padding-right: var(--padding-m);
     padding-bottom: var(--padding-m);
     padding-left: var(--padding-m);
+    background-color: rgba(0, 0, 0, 0);
 }
 
 .end-game__title {
@@ -487,4 +493,8 @@
 
 .controls__block-vertical > .controls__btn {
     margin-bottom: var(--indent-m);
+}
+
+.seond-chance__block {
+    align-items: center;
 }

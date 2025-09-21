@@ -1,6 +1,6 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:Template name="Settings" src="project://database/Assets/UI%20Toolkit/Settings.uxml?fileID=9197481963319205126&amp;guid=2118abaa7f2944543b218e79948ca8a9&amp;type=3#Settings" />
-    <Style src="project://database/Assets/UI%20Toolkit/Styles.uss?fileID=7433441132597879392&amp;guid=6c2a7a29e6f6b5749a27053048a177da&amp;type=3" />
+    <Style src="project://database/Assets/UI%20Toolkit/Styles.uss?fileID=7433441132597879392&amp;guid=6c2a7a29e6f6b5749a27053048a177da&amp;type=3#Styles" />
     <ui:VisualElement name="root" style="flex-grow: 1;">
         <ui:VisualElement name="hud-container" class="hud__container" style="background-color: rgb(50, 50, 50); background-image: url(&quot;project://database/Assets/UI%20Toolkit/Art/panel_black.png?fileID=2800000&amp;guid=b451c59938802044ab3bcab629f5ce45&amp;type=3#panel_black&quot;); -unity-slice-type: tiled; -unity-slice-left: 20; -unity-slice-top: 20; -unity-slice-right: 20; -unity-slice-bottom: 20; -unity-slice-scale: 1px; -unity-background-image-tint-color: rgb(255, 255, 255); top: 0; right: 0%; -unity-background-scale-mode: stretch-to-fill;">
             <ui:VisualElement name="lives-block" class="hud__item">
@@ -42,18 +42,28 @@
         </ui:VisualElement>
         <ui:VisualElement name="end-game-window" class="popup popup-hidden">
             <ui:VisualElement name="popup-overlay" class="popup__overlay" />
-            <ui:VisualElement name="popup-content" class="popup__content animation__hide" style="width: 30%; height: 30%;">
+            <ui:VisualElement name="popup-content" class="popup__content animation__hide" style="width: 30%; height: auto; min-height: 30%;">
                 <ui:VisualElement name="end-game-container" class="end-game__container">
                     <ui:Label text="Label" name="end-game-title" class="end-game__title">
                         <Bindings>
                             <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(1191566724919296)" />
                         </Bindings>
                     </ui:Label>
-                    <ui:Label text="Label" name="end-game-text">
-                        <Bindings>
-                            <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(1191739735764992)" />
-                        </Bindings>
-                    </ui:Label>
+                    <ui:VisualElement name="end-game-block" style="flex-grow: 1;">
+                        <ui:Label text="Label" name="end-game-text">
+                            <Bindings>
+                                <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(1191739735764992)" />
+                            </Bindings>
+                        </ui:Label>
+                    </ui:VisualElement>
+                    <ui:VisualElement name="second-chance-block" class="seond-chance__block hide" style="flex-grow: 1;">
+                        <ui:Button name="second-chance-btn" parse-escape-sequences="false" class="main__btn" style="background-image: url(&quot;project://database/Assets/UI%20Toolkit/Art/231-video-player-6.png?fileID=2800000&amp;guid=aa8cbc0e31e30134c85f0227ddd9d467&amp;type=3#231-video-player-6&quot;); width: 100px; height: 100px;" />
+                        <ui:Label text="Label" name="second-chance-text">
+                            <Bindings>
+                                <UnityEngine.Localization.LocalizedString property="text" table="GUID:9f476537e2cbd4645b826c7bdcef67b0" entry="Id(24368438614781952)" />
+                            </Bindings>
+                        </ui:Label>
+                    </ui:VisualElement>
                     <ui:VisualElement name="end-game-btns" class="end-game__btns">
                         <ui:Button text="Button" name="btn-no" class="main__btn">
                             <Bindings>

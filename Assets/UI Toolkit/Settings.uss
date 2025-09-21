@@ -43,6 +43,13 @@
     flex-grow: 1;
 }
 
+.options__container .inity-base-field {
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
+}
+
 .options__list {
     flex-grow: 1;
     width: 90%;
@@ -51,6 +58,10 @@
 .options__list .unity-scroller .unity-repeat-button {
     -unity-background-image-tint-color: rgb(255, 255, 255);
     background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
 }
 
 .options__list .unity-scroller .unity-scroller__high-button {
@@ -63,6 +74,10 @@
 
 .options__list .unity-scroller__slider .unity-base-slider__tracker {
     background-color: rgba(0, 0, 0, 0);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
 }
 
 .options__list .unity-scroller__slider .unity-base-slider__dragger {
@@ -122,7 +137,7 @@
 
 .options__block .unity-base-slider__tracker {
     height: 50px;
-    top: 15%;
+    top: 18%;
     border-top-width: 6px;
     border-right-width: 6px;
     border-bottom-width: 6px;
@@ -146,8 +161,13 @@
 .options__block .unity-toggle__checkmark {
     height: 100%;
     width: 50px;
+    background-color: rgba(0, 0, 0, 0);
     background-image: url("project://database/Assets/UI%20Toolkit/Art/check_square_color.png?fileID=2800000&guid=1f130f58cca90fc4193f120e17c01c39&type=3#check_square_color");
     -unity-background-image-tint-color: rgb(255, 255, 255);
+    border-left-color: rgba(0, 0, 0, 0);
+    border-right-color: rgba(0, 0, 0, 0);
+    border-top-color: rgba(0, 0, 0, 0);
+    border-bottom-color: rgba(0, 0, 0, 0);
 }
 
 .options__block .unity-toggle__input:checked .unity-toggle__checkmark {

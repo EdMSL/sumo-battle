@@ -3,6 +3,7 @@ using UnityEngine;
 using UnityEngine.InputSystem;
 using JSAM;
 using System.Collections.Generic;
+using System;
 
 public class PlayerController : MonoBehaviour
 {
@@ -52,6 +53,7 @@ public class PlayerController : MonoBehaviour
             menuAction.performed += GameManager_OnTogglePause;
         }
 
+        GameManager.Instance.OnSecondChance += GameManager_OnSecondChance;
 
         switch (GameManager.Instance.difficultyLevel)
         {
@@ -195,6 +197,13 @@ public class PlayerController : MonoBehaviour
         {
             isOnGround = false;
         }
+    }
+
+
+    private void GameManager_OnSecondChance(object sender, EventArgs e)
+    {
+        lives = 1;
+        gameUI.livesCounter.text = lives.ToString();
     }
 
     public void Move(InputAction.CallbackContext context)

@@ -142,6 +142,10 @@ MonoBehaviour:
     m_Localized: Language
     m_Metadata:
       m_Items: []
+  - m_Id: 24368438614781952
+    m_Localized: + extra life
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
