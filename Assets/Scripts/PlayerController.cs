@@ -110,26 +110,30 @@ public class PlayerController : MonoBehaviour
 
     void FixedUpdate()
     {
-        float verticalInput = movement.y;
+        if (GameManager.Instance.state == GameManager.State.GameProcess)
+        {
+            float verticalInput = movement.y;
 
-        if (isOnGround)
-        {
-            playerRb.AddForce(focalPoint.transform.forward * verticalInput * speed);
-        }
-
-        if (playerRb.linearVelocity.magnitude < noMowementMagnitude)
-        {
-            if (!isOnGround)
-            {
-                isMovementBlocked = true;
-            }
-        }
-        else
-        {
             if (isOnGround)
             {
-                isMovementBlocked = false;
+                playerRb.AddForce(focalPoint.transform.forward * verticalInput * speed);
             }
+
+            if (playerRb.linearVelocity.magnitude < noMowementMagnitude)
+            {
+                if (!isOnGround)
+                {
+                    isMovementBlocked = true;
+                }
+            }
+            else
+            {
+                if (isOnGround)
+                {
+                    isMovementBlocked = false;
+                }
+            }
+
         }
     }
 
