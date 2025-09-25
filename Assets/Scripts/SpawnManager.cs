@@ -61,9 +61,16 @@ public class SpawnManager : MonoBehaviour
         {
             if (enemiesList.Count == 0)
             {
-                if (GameManager.Instance.wave > 1)
+                if (GameManager.Instance.wave > 0)
                 {
-                    enemiesQuantity++;
+                    if (GameManager.Instance.difficultyLevel == GameManager.DifficultyLevel.Hard)
+                    {
+                        enemiesQuantity = (byte)(enemiesQuantity + 2);
+                    }
+                    else
+                    {
+                        enemiesQuantity++;
+                    }
                 }
 
                 SpawnEnemysWave(enemiesQuantity);

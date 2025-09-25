@@ -33,6 +33,7 @@ public class PlayerController : MonoBehaviour
     public bool isOnGround { get; set; }
 
     [HideInInspector] public Vector2 movement;
+    private float powerUpTime;
 
     private void Awake()
     {
@@ -60,14 +61,17 @@ public class PlayerController : MonoBehaviour
             case GameManager.DifficultyLevel.Easy:
                 speed = 30f;
                 lives = 3;
+                powerUpTime = 15f;
                 break;
             case GameManager.DifficultyLevel.Normal:
                 speed = 20f;
                 lives = 2;
+                powerUpTime = 10f;
                 break;
             case GameManager.DifficultyLevel.Hard:
                 speed = 10f;
                 lives = 1;
+                powerUpTime = 5f;
                 break;
             default:
                 break;
@@ -139,17 +143,11 @@ public class PlayerController : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.CompareTag("Powerup"))
+        if (other.CompareTag("Powerup") && !isHavePowerup)
         {
             AudioManager.PlaySound(GameAudioLibrarySounds.powerup);
             Destroy(other.gameObject);
             SpawnManager.Instance.powerupsQuantity--;
-
-            if (isHavePowerup)
-            {
-                StopCoroutine(powerUpCoroutine);
-            }
-
             isHavePowerup = true;
             powerUpCoroutine = StartCoroutine(Counter());
             indicator.gameObject.SetActive(true);
@@ -163,7 +161,6 @@ public class PlayerController : MonoBehaviour
             indicator.gameObject.SetActive(false);
             RecountLives();
         }
-
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -230,7 +227,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator Counter()
     {
-        yield return new WaitForSeconds(5);
+        yield return new WaitForSeconds(powerUpTime);
 
         isHavePowerup = false;
         indicator.gameObject.SetActive(false);
