@@ -11,6 +11,8 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 public class MainMenuUI : MonoBehaviour
 {
     [SerializeField] private Transform styleMenu;
+    [SerializeField] private Transform styleMenuBg;
+    [SerializeField] private Transform levelElements;
     [SerializeField] private ListOfSkins skinsList;
     [SerializeField] private ListOfLevels levelsList;
     [SerializeField] private MeshRenderer playerMR;
@@ -102,10 +104,11 @@ public class MainMenuUI : MonoBehaviour
     IEnumerator Start()
     {
         SwitchUIElementsOnStart();
+        levelElements.gameObject.SetActive(true);
+        styleMenu.gameObject.SetActive(false);
+        styleMenuBg.gameObject.SetActive(false);
 
         yield return LocalizationSettings.InitializationOperation;
-
-        // m_InitializeOperation = LocalizationSettings.SelectedLocaleAsync;
 
         GameSettingsManager.Instance.OnAcceptSettings += GameSettingsManager_OnAcceptSettings;
         GameSettingsManager.Instance.OnCancelSettings += GameSettingsManager_OnCancelSettings;
@@ -182,6 +185,8 @@ public class MainMenuUI : MonoBehaviour
         _gameTitle.style.display = DisplayStyle.None;
         _customizationContainer.style.display = DisplayStyle.Flex;
         styleMenu.gameObject.SetActive(true);
+        styleMenuBg.gameObject.SetActive(true);
+        levelElements.gameObject.SetActive(false);
     }
 
     private void OnSettingsBtnClick(ClickEvent evt)
@@ -220,7 +225,6 @@ public class MainMenuUI : MonoBehaviour
         _levelContainer.style.display = DisplayStyle.Flex;
 
         styleMenu.gameObject.SetActive(false);
-
     }
 
     private void OnCustomizationBackBtnClick(ClickEvent evt)
@@ -232,7 +236,8 @@ public class MainMenuUI : MonoBehaviour
         _btnBlock.style.display = DisplayStyle.Flex;
 
         styleMenu.gameObject.SetActive(false);
-
+        styleMenuBg.gameObject.SetActive(false);
+        levelElements.gameObject.SetActive(true);
     }
 
     private void OnLevelRadiobuttonChange(ChangeEvent<int> evt)

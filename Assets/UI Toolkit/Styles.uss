@@ -22,6 +22,11 @@
     display: flex;
 }
 
+.root-white {
+    display: flex;
+    background-color: rgb(255, 255, 255);
+}
+
 .menu__container {
     flex-direction: column;
     width: 50%;
