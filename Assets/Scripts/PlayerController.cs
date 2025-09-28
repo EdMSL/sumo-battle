@@ -28,6 +28,7 @@ public class PlayerController : MonoBehaviour
     private GameUI gameUI;
 
     private Coroutine powerUpCoroutine;
+    private Vector3 newPosition = Vector3.zero;
 
     public int lives { get; set; }
     public bool isOnGround { get; set; }
@@ -113,6 +114,12 @@ public class PlayerController : MonoBehaviour
     {
         if (GameManager.Instance.state == GameManager.State.GameProcess)
         {
+            if (newPosition != Vector3.zero)
+            {
+                transform.position = newPosition;
+                newPosition = Vector3.zero;
+            }
+
             float verticalInput = movement.y;
 
             if (isOnGround)
@@ -233,18 +240,20 @@ public class PlayerController : MonoBehaviour
     private void RestorePosition()
     {
         float maxDistance = 0f;
-
-        Vector3 newPosition = transform.position;
+        // Vector3 newPosition;
 
         for (int i = 0; i < restorePoints.Count; i++)
         {
-            if (maxDistance < Mathf.Abs(Vector3.Distance(gameObject.transform.position, restorePoints[i].transform.position)))
+            float curDistance = Mathf.Abs(Vector3.Distance(transform.position, restorePoints[i].transform.position));
+
+            if (maxDistance < curDistance)
             {
+                maxDistance = curDistance;
                 newPosition = restorePoints[i].position;
             }
         }
 
-        transform.position = newPosition;
+        // transform.position = newPosition;
     }
 
     public void SetSkin(Material skin)
