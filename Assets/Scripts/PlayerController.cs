@@ -20,7 +20,7 @@ public class PlayerController : MonoBehaviour
 
     private Rigidbody playerRb;
     private MeshRenderer playerMr;
-    private float speed = 10f;
+    private float speed = 30f;
     private bool isMovementBlocked;
     private float movementBlockedTimer;
     private bool isHavePowerup;
@@ -59,17 +59,14 @@ public class PlayerController : MonoBehaviour
         switch (GameManager.Instance.difficultyLevel)
         {
             case GameManager.DifficultyLevel.Easy:
-                speed = 30f;
                 lives = 3;
                 powerUpTime = 15f;
                 break;
             case GameManager.DifficultyLevel.Normal:
-                speed = 20f;
                 lives = 2;
                 powerUpTime = 10f;
                 break;
             case GameManager.DifficultyLevel.Hard:
-                speed = 10f;
                 lives = 1;
                 powerUpTime = 5f;
                 break;
