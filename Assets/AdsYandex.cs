@@ -23,6 +23,6 @@ public class AdsYandex : MonoBehaviour
 
     public void AdsCoints()
     {
-        // level.AfterSecondChance();
+        GameManager.Instance.RepeatGame();
     }
 }

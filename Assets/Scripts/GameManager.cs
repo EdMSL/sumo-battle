@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections;
+using JSAM;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.Localization.Settings;
@@ -144,6 +145,7 @@ public class GameManager : MonoBehaviour
         {
             isExtraLifeUsed = true;
             state = State.GameProcess;
+            AudioManager.MusicMuted = false;
             OnSecondChance?.Invoke(this, EventArgs.Empty);
         }
         else
