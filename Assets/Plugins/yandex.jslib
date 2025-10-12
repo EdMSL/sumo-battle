@@ -37,4 +37,25 @@ mergeInto(LibraryManager.library, {
   })
   },
 
+  InitGameplayAPI: function () {
+    ysdk.features.LoadingAPI.ready();
+  },
+
+  StartGameplayAPI: function () {
+    ysdk.features.GameplayAPI.start();
+  },
+
+  StopGameplayAPI: function () {
+    ysdk.features.GameplayAPI.stop();
+  },
+
+  GetLanguage: function () {
+    var bufferSize = lengthBytesUTF8(ysdk.environment.i18n.lang) + 1;
+    var buffer = _malloc(bufferSize);
+
+    stringToUTF8(ysdk.environment.i18n.lang, buffer, bufferSize);
+    
+    return buffer;
+  }
+
 });

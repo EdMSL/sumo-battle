@@ -10,6 +10,7 @@ using UnityEngine.ResourceManagement.AsyncOperations;
 
 public class MainMenuUI : MonoBehaviour
 {
+    [SerializeField] private AdsYandex YandexSDK;
     [SerializeField] private Transform styleMenu;
     [SerializeField] private Transform styleMenuBg;
     [SerializeField] private Transform levelElements;
@@ -109,6 +110,12 @@ public class MainMenuUI : MonoBehaviour
         styleMenuBg.gameObject.SetActive(false);
 
         yield return LocalizationSettings.InitializationOperation;
+
+#if !UNITY_EDITOR && UNITY_WEBGL
+        YandexSDK.StartYandexAPI();
+#endif
+
+        GameSettingsManager.Instance.LoadGameSettings();
 
         GameSettingsManager.Instance.OnAcceptSettings += GameSettingsManager_OnAcceptSettings;
         GameSettingsManager.Instance.OnCancelSettings += GameSettingsManager_OnCancelSettings;
@@ -271,6 +278,9 @@ public class MainMenuUI : MonoBehaviour
     private void OnDifficultyBtnClick(ClickEvent evt)
     {
         AudioManager.PlaySound(GameAudioLibrarySounds.click);
+#if !UNITY_EDITOR && UNITY_WEBGL
+        YandexSDK.StopYandexAPI();
+#endif
 
         var button = (Button)evt.target;
         var btnName = button.name.Split('-')[0];

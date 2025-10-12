@@ -3,13 +3,24 @@ using System.Runtime.InteropServices;
 
 public class AdsYandex : MonoBehaviour
 {
-    //   [SerializeField] private Level level;
-
     [DllImport("__Internal")]
     private static extern void ShowFullscreen();
-
     [DllImport("__Internal")]
     private static extern void ShowRewarded();
+    [DllImport("__Internal")]
+    private static extern void StartGameplayAPI();
+    [DllImport("__Internal")]
+    private static extern void StopGameplayAPI();
+
+    public void StartYandexAPI()
+    {
+        StartGameplayAPI();
+    }
+
+    public void StopYandexAPI()
+    {
+        StopGameplayAPI();
+    }
 
     public void Show1()
     {
@@ -23,6 +34,6 @@ public class AdsYandex : MonoBehaviour
 
     public void AdsCoints()
     {
-        GameManager.Instance.RepeatGame();
+        GameManager.Instance.RepeatGameAfterRevard();
     }
 }

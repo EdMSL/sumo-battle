@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
         Hard,
     }
 
+    [SerializeField] AdsYandex YandexSDK;
+
     public float waitingTime = 1f;
 
     public DifficultyLevel difficultyLevel { get; private set; } = DifficultyLevel.Hard;
@@ -61,6 +63,11 @@ public class GameManager : MonoBehaviour
         // state = State.Waiting;
         state = State.MainMenu;
 
+        if (YandexSDK == null)
+        {
+            YandexSDK = FindFirstObjectByType<AdsYandex>();
+        }
+
         Application.targetFrameRate = 60;
         Time.timeScale = 1f;
     }
@@ -89,6 +96,10 @@ public class GameManager : MonoBehaviour
                 case State.Countdown:
                     if (!isCountdownStarted)
                     {
+#if !UNITY_EDITOR && UNITY_WEBGL
+                        YandexSDK.StartYandexAPI();
+#endif
+
                         isCountdownStarted = true;
                         OnCountdawnStart?.Invoke(this, EventArgs.Empty);
                         StartCoroutine(GamePrepare());
@@ -143,10 +154,8 @@ public class GameManager : MonoBehaviour
     {
         if (!isExtraLifeUsed)
         {
-            isExtraLifeUsed = true;
-            state = State.GameProcess;
-            AudioManager.MusicMuted = false;
-            OnSecondChance?.Invoke(this, EventArgs.Empty);
+            AudioManager.MusicMuted = true;
+            YandexSDK.Show2();
         }
         else
         {
@@ -158,8 +167,20 @@ public class GameManager : MonoBehaviour
         }
     }
 
+    public void RepeatGameAfterRevard()
+    {
+        isExtraLifeUsed = true;
+        state = State.GameProcess;
+        AudioManager.MusicMuted = false;
+        OnSecondChance?.Invoke(this, EventArgs.Empty);
+    }
+
     public void EndGame()
     {
+#if !UNITY_EDITOR && UNITY_WEBGL
+        YandexSDK.StopYandexAPI();
+#endif
+
         Destroy(gameObject);
         state = State.MainMenu;
         SceneManager.LoadScene(0);
@@ -226,12 +247,18 @@ public class GameManager : MonoBehaviour
         if (isGamePaused)
         {
             Time.timeScale = 0f;
+#if !UNITY_EDITOR && UNITY_WEBGL
+            YandexSDK.StopYandexAPI();
+#endif
 
             OnGamePaused?.Invoke(this, EventArgs.Empty);
         }
         else
         {
             Time.timeScale = 1f;
+#if !UNITY_EDITOR && UNITY_WEBGL
+            YandexSDK.StartYandexAPI();
+#endif
 
             OnGameUnpaused?.Invoke(this, EventArgs.Empty);
         }

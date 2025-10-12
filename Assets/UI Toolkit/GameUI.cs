@@ -8,7 +8,6 @@ using AlpaSunFade;
 public class GameUI : MonoBehaviour
 {
     [SerializeField] TransitionPanel transitionPanelScript;
-    [SerializeField] AdsYandex Yandex;
 
     private VisualElement _gameMenuWindow;
     private VisualElement _gameMenuWindowContent;
@@ -147,6 +146,8 @@ public class GameUI : MonoBehaviour
 
     private void Start()
     {
+        GameSettingsManager.Instance.LoadGameSettings();
+
         GameSettingsManager.Instance.OnAcceptSettings += GameSettingsManager_OnAcceptSettings;
         GameSettingsManager.Instance.OnCancelSettings += GameSettingsManager_OnCancelSettings;
 
@@ -297,8 +298,7 @@ public class GameUI : MonoBehaviour
 
     private void OnRepeatGameBtnClick(ClickEvent evt)
     {
-        AudioManager.MusicMuted = true;
-        Yandex.Show2();
+        GameManager.Instance.RepeatGame();
     }
 
     private void OnResumeBtnClick(ClickEvent evt)
