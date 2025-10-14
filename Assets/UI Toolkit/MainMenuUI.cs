@@ -6,10 +6,13 @@ using UnityEngine.Localization.Settings;
 using UnityEngine.UIElements;
 using JSAM;
 using AlpaSunFade;
-using UnityEngine.ResourceManagement.AsyncOperations;
+using System.Runtime.InteropServices;
 
 public class MainMenuUI : MonoBehaviour
 {
+    [DllImport("__Internal")]
+    private static extern void InitGameplayAPI();
+
     [SerializeField] private AdsYandex YandexSDK;
     [SerializeField] private Transform styleMenu;
     [SerializeField] private Transform styleMenuBg;
@@ -112,6 +115,7 @@ public class MainMenuUI : MonoBehaviour
         yield return LocalizationSettings.InitializationOperation;
 
 #if !UNITY_EDITOR && UNITY_WEBGL
+        InitGameplayAPI();
         YandexSDK.StartYandexAPI();
 #endif
 

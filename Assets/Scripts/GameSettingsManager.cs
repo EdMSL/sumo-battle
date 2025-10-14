@@ -108,7 +108,7 @@ public class GameSettingsManager : MonoBehaviour
         soundSwitcher.value = isSoundEnabledOld;
         shadowsSwitcher.value = isShadowsEnabledOld;
 
-        languageSelector.value = languageIndexOld;
+        languageSelector.SetValueWithoutNotify(languageIndexOld);
 
         optionsList.scrollOffset = new Vector2(optionsList.scrollOffset.x, 0);
 
@@ -139,6 +139,8 @@ public class GameSettingsManager : MonoBehaviour
 
     private void OnLanguageChange(ChangeEvent<int> evt)
     {
+        Debug.Log("Trigger OnLanguageChange");
+
         LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[evt.newValue];
         PlayerPrefs.SetInt("selected-locale", evt.newValue);
     }
@@ -283,21 +285,17 @@ public class GameSettingsManager : MonoBehaviour
             if (localeIndex != -1)
             {
                 langIndex = localeIndex;
-                Debug.Log($"The index of the current locale ({currentSelectedLocale.Identifier.Code}) is: {localeIndex}");
             }
             else
             {
                 Debug.LogWarning("Current locale not found in the list of available locales.");
             }
-
-            Debug.Log($"Current Locale Identifier: {currentSelectedLocale.Identifier.Code}");
-            Debug.Log($"Current Locale Name: {currentSelectedLocale.Identifier.CultureInfo.DisplayName}");
         }
         else
         {
             Debug.LogWarning("No locale is currently selected in LocalizationSettings.");
         }
 
-        languageSelector.value = langIndex;
+        languageSelector.SetValueWithoutNotify(langIndex);
     }
 }

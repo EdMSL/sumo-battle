@@ -9,8 +9,6 @@ using System.Runtime.InteropServices;
 public class CustomLocalizationSelector : IStartupLocaleSelector
 {
     [DllImport("__Internal")]
-    private static extern void InitGameplayAPI();
-    [DllImport("__Internal")]
     private static extern string GetLanguage();
 
     public Locale GetStartupLocale(ILocalesProvider availableLocales)
@@ -22,8 +20,7 @@ public class CustomLocalizationSelector : IStartupLocaleSelector
         else
         {
 #if !UNITY_EDITOR && UNITY_WEBGL
-            InitGameplayAPI();
-            var langCode = GetLanguage();
+            var langCode = GetLanguage().ToLower();
 
             if (langCode == "ru" || langCode == "be" || langCode == "kk" || langCode == "uk" || langCode == "uz")
             {
