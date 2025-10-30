@@ -298,4 +298,9 @@ public class GameSettingsManager : MonoBehaviour
 
         languageSelector.SetValueWithoutNotify(langIndex);
     }
+
+    public bool GetIsMusicEnabled()
+    {
+        return isMusicEnabledOld;
+    }
 }

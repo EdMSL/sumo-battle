@@ -171,7 +171,12 @@ public class GameManager : MonoBehaviour
     {
         isExtraLifeUsed = true;
         state = State.GameProcess;
-        AudioManager.MusicMuted = false;
+
+        if (GameSettingsManager.Instance.GetIsMusicEnabled())
+        {
+            AudioManager.MusicMuted = false;
+        }
+
         OnSecondChance?.Invoke(this, EventArgs.Empty);
     }
 
